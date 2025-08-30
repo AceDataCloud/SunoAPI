@@ -168,9 +168,9 @@ Testing is allowed, and the generated effect is similar.
 
 ## More
 
-For more info, please check below APIs and integration documents
+For more info, please check below APIs and integration documents.
 
-| API | Path | Integration Document |
+| API | Path | Integration Guidance |
 | ---- | ---- | ------------ |
 | [Suno Audios Generation API](http://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) | `/suno/audios` | [Suno Audios Generation API Integration Guide](http://platform.acedata.cloud/documents/d016ee3f-421b-4b6e-989a-8beba8701701) |
 | [Suno Persona API](http://platform.acedata.cloud/documents/78bb6c62-6ce0-490f-a7df-e89d80ec0583) | `/suno/persona` | [Suno Persona API Integration Guide](http://platform.acedata.cloud/documents/a1ae233c-c52a-4a62-97dd-0db0c089da5a) |
@@ -183,6 +183,6 @@ For more info, please check below APIs and integration documents
 
 Base URL: [https://api.acedata.cloud](https://api.acedata.cloud)
 
-## Support 
+## Support
 
 If you meet any issue, check our from [support info](https://platform.acedata.cloud/support).
