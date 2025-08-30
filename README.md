@@ -120,6 +120,51 @@ The field descriptions are as follows:
   - model: The model used, generally the latest v3 model
   - style: Style
 
+### Custom Generation
+
+If you want to customize the generation of lyrics, you can input the lyrics:
+
+At this time, the `lyric` field can accept content like the following:
+
+```
+[Verse]\nSnowflakes falling all around\nGlistening white\nCovering the ground\nChildren laughing\nFull of delight\nIn this winter wonderland tonight\nSanta's sleigh\nUp in the sky\nRudolph's nose shining bright\nOh my\nHear the jingle bells\nRinging so clear\nBringing joy and holiday cheer\n[Verse 2]\nRoasting chestnuts by the fire's glow\nChristmas lights\nThey twinkle and show\nFamilies gathering with love and cheer\nSpreading warmth to everyone near
+```
+
+> Note that the `\n` in the lyrics is a newline character. If you don't know how to generate lyrics, you can use the lyrics generation API provided by AceDataCloud to generate lyrics through a prompt. The API is [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/514d82dc-f7ab-4638-9f21-8b9275916b08).
+
+Next, we need to customize the generation of songs based on the lyrics, title, and style, and we can specify the following content:
+
+- lyric: Lyrics text
+- custom: Set to `true`, indicating custom generation; this parameter defaults to false, indicating the use of prompt generation.
+- title: Title of the song.
+- style: Style of the song, optional.
+
+An example of filling out is as follows:
+
+<p><img src="https://cdn.acedata.cloud/qp3iba.png" width="500" class="m-auto"></p>
+
+After filling it out, the code generated automatically is as follows:
+
+<p><img src="https://cdn.acedata.cloud/o5haei.png" width="500" class="m-auto"></p>
+
+The corresponding code:
+
+```shell
+curl -X POST 'https://api.acedata.cloud/suno/audios' \
+-H 'accept: application/json' \
+-H 'authorization: Bearer {token}' \
+-H 'content-type: application/json' \
+-d '{
+  "action": "generate",
+  "prompt": "A song for Christmas",
+  "model": "chirp-v4-5",
+  "lyric": "[Verse]\\nSnowflakes falling all around\\nGlistening white\\nCovering the ground\\nChildren laughing\\nFull of delight\\nIn this winter wonderland tonight\\nSanta's sleigh\\nUp in the sky\\nRudolph's nose shining bright\\nOh my\\nHear the jingle bells\\nRinging so clear\\nBringing joy and holiday cheer\\n[Verse 2]\\nRoasting chestnuts by the fire's glow\\nChristmas lights\\nThey twinkle and show\\nFamilies gathering with love and cheer\\nSpreading warmth to everyone near",
+  "custom": true
+}'
+```
+
+Testing is allowed, and the generated effect is similar.
+
 
 ## More
 
