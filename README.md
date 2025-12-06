@@ -1,6 +1,6 @@
 # Suno Music Generation API
 
-This service has implemented the integration of Suno AI, which can be used to generate music, lyrics, and other content.
+This service implements the integration of Suno AI and can be used to generate music, lyrics, and other content.
 
 API home page: [Ace Data Cloud - Suno Music Generation](https://platform.acedata.cloud/services/f2b646d8-3cfd-46ef-969a-1ea9eebde329)
 
@@ -11,23 +11,33 @@ With the widespread application of AI, various AI programs have gradually become
 
 Suno is a professional high-quality AI song and music creation platform. Users only need to input simple text prompts to generate songs with vocals based on genre style and lyrics. This AI music generator is developed by team members from well-known tech companies such as Meta, TikTok, and Kensho, aiming to allow everyone to create wonderful music without any musical instruments.
 
-Suno has recently upgraded its music generation model to version V4.5+, capable of generating 9-minute songs.
+Here is the progress of model updates:
 
-However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno interface, making it easy and quick to generate desired music.
+| Version | model           | Launch Date   | prompt Limit | style Limit | Maximum Song Duration |
+| ------- | --------------- | -------------- | ------------ | ----------- | --------------------- |
+| v5      | chirp-v5        | 2025.09.23     | 5000         | 1000        | 8 minutes             |
+| v4.5+   | chirp-v4-5-plus | 2025.07.17     | 5000         | 1000        | 8 minutes             |
+| v4.5    | chirp-v4-5      | 2025.05.03     | 5000         | 1000        | 4 minutes             |
+| v4      | chirp-v4        | 2024.12.17     | 3000         | 200         | 150 seconds           |
+| v3.5    | chirp-v3-5      | ---            | 3000         | 200         | 120 seconds           |
+
+Suno has recently upgraded its music generation model to version V5, and to call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
+
+However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno integration, making it easy and quick to generate the desired music.
 
 ### Application and Usage
 
-To use the Suno Audios API, you can first visit the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for the request:
+To use the Suno Audios API, you can first go to the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for the request:
 
 ![](https://cdn.acedata.cloud/nyq0xz.png)
 
-If you are not logged in or registered, you will be automatically redirected to the login page inviting you to register and log in. After logging in or registering, you will automatically return to the current page.
+If you are not logged in or registered, you will be automatically redirected to the login page inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
 
-Upon the first application, there will be a free quota provided, allowing you to use the API for free.
+Upon the first application, there will be a free quota available for use of the API.
 
 ### Basic Usage
 
-To think of some songs, you can input any text, for example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
+If you want to generate a song, you can input any text, for example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/2kuuup.png" width="500" class="m-auto"></p>
 
@@ -36,31 +46,36 @@ Here we can see that we have set the Request Headers, including:
 - `accept`: the format of the response result you want to receive, here filled in as `application/json`, which is JSON format.
 - `authorization`: the key to call the API, which can be directly selected after application.
 
-Additionally, the Request Body is set, including:
+Additionally, we set the Request Body, including:
 
-- `action`: the behavior of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `replace_section`, `concat`, `stems`, `all_stems`.
+- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`.
 - `prompt`: the prompt for Suno's official inspiration mode.
-- `model`: the model for this music generation task, default is `chirp-v3-5`, mainly includes: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`.
+- `model`: the model for this music generation task, default is `chirp-v3-5`, mainly includes: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`, `chirp-v5`.
 - `lyric`: the lyrics content for Suno's official custom mode.
 - `custom`: whether to use the custom mode, default is: `false`.
 - `instrumental`: the pure music option for Suno's official inspiration mode.
 - `title`: the music title for Suno's official custom mode.
 - `style`: the music style for Suno's official custom mode.
-- `style_negative`: the excluded style for Suno's official custom mode.
+- `style_negative`: the excluded styles for Suno's official custom mode.
+- `audio_weight`: the proportion of the uploaded reference audio, range 0-1, the larger the more it relies on the reference audio.
 - `audio_id`: the ID of the reference music.
+- `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
+- `underpainting_start`/`underpainting_end`: the start and end time in seconds for adding accompaniment to a cappella.
 - `persona_id`: the artist's song ID.
-- `weirdness`: advanced parameter for weirdness.
 - `continue_at`: the time in seconds to continue the existing audio. For example, 213.5 means continue to 3 minutes and 33.5 seconds.
-- `style_influence`: advanced parameter for style influence.
-- `replace_section_end`: the end time of the replacement section.
-- `replace_section_start`: the start time of the replacement section.
-- `callback_url`: the URL to receive the callback result.
+- `style_influence`: advanced parameter for `style_influence`.
+- `replace_section_end`: the final time for the replacement segment.
+- `replace_section_start`: the starting time for the replacement segment.
+- `vocal_gender`: controls the gender of the voice, female `f`, male `m`, effective for models 4.5 and above.
+- `weirdness`: advanced parameter for `weirdness`.
+- `lyric_prompt`: the prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
+- `callback_url`: the URL for the callback result.
 
 The generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/1xehwl.png" width="500" class="m-auto"></p>
 
-You can click the "Try" button to directly test the API, wait for 1-2 minutes, and the result is as follows:
+You can click the "Try" button to directly test the API, and after waiting for 1-2 minutes, the result is as follows:
 ```json
 {
   "success": true,
@@ -124,26 +139,26 @@ The field descriptions are as follows:
 
 If you want to customize the generation of lyrics, you can input the lyrics:
 
-At this time, the `lyric` field can accept content like the following:
+At this time, the `lyric` field can accept content similar to the following:
 
 ```
 [Verse]\nSnowflakes falling all around\nGlistening white\nCovering the ground\nChildren laughing\nFull of delight\nIn this winter wonderland tonight\nSanta's sleigh\nUp in the sky\nRudolph's nose shining bright\nOh my\nHear the jingle bells\nRinging so clear\nBringing joy and holiday cheer\n[Verse 2]\nRoasting chestnuts by the fire's glow\nChristmas lights\nThey twinkle and show\nFamilies gathering with love and cheer\nSpreading warmth to everyone near
 ```
 
-> Note that the `\n` in the lyrics is a newline character. If you don't know how to generate lyrics, you can use the lyrics generation API provided by AceDataCloud to generate lyrics through a prompt. The API is [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/514d82dc-f7ab-4638-9f21-8b9275916b08).
+> Note that the `\n` in the lyrics is a newline character. If you do not know how to generate lyrics, you can use the lyrics generation API provided by AceDataCloud to generate lyrics through a prompt. The API is [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/514d82dc-f7ab-4638-9f21-8b9275916b08).
 
 Next, we need to customize the generation of songs based on the lyrics, title, and style, and we can specify the following content:
 
 - lyric: Lyrics text
-- custom: Set to `true`, indicating custom generation; this parameter defaults to false, indicating the use of prompt generation.
+- custom: Fill in as `true`, indicating custom generation; this parameter defaults to false, indicating the use of `prompt` generation.
 - title: Title of the song.
 - style: Style of the song, optional.
 
-An example of filling out is as follows:
+An example of filling in is as follows:
 
 <p><img src="https://cdn.acedata.cloud/qp3iba.png" width="500" class="m-auto"></p>
 
-After filling it out, the code generated automatically is as follows:
+After filling it out, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/o5haei.png" width="500" class="m-auto"></p>
 
@@ -175,8 +190,10 @@ For more info, please check below APIs and integration documents.
 | [Suno Audios Generation API](http://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) | `/suno/audios` | [Suno Audios Generation API Integration Guide](http://platform.acedata.cloud/documents/d016ee3f-421b-4b6e-989a-8beba8701701) |
 | [Suno Persona API](http://platform.acedata.cloud/documents/78bb6c62-6ce0-490f-a7df-e89d80ec0583) | `/suno/persona` | [Suno Persona API Integration Guide](http://platform.acedata.cloud/documents/a1ae233c-c52a-4a62-97dd-0db0c089da5a) |
 | [Suno MP4 API](http://platform.acedata.cloud/documents/adf030f2-ac31-4342-bb65-afd9669272f9) | `/suno/mp4` | [Suno MP4 API Integration Guide](http://platform.acedata.cloud/documents/9dff19bb-3360-4578-8115-91c5efc130a3) |
-| [$t(document_title_suno_timing_generation_api)](http://platform.acedata.cloud/documents/e8b5a84f-742f-4078-8b7d-a52a68aa253f) | `/suno/timing` | [Suno Timing API Integration Guide](http://platform.acedata.cloud/documents/149a2dd6-8af9-43f1-8994-0f4466b16c6f) |
 | [$t(document_title_suno_wav_generation_api)](http://platform.acedata.cloud/documents/c55b2b82-416b-46d7-9854-4c3bf28a3cc5) | `/suno/wav` | [Suno Wav API Integration Guide](http://platform.acedata.cloud/documents/e48efa85-ed94-4ea8-8613-c16d734a3138) |
+| [$t(document_title_suno_timing_generation_api)](http://platform.acedata.cloud/documents/e8b5a84f-742f-4078-8b7d-a52a68aa253f) | `/suno/timing` | [Suno Timing API Integration Guide](http://platform.acedata.cloud/documents/149a2dd6-8af9-43f1-8994-0f4466b16c6f) |
+| [Suno MIDI API](http://platform.acedata.cloud/documents/dc315c81-ebfa-4c5a-b6e8-af593dd67d86) | `/suno/midi` | [Suno MIDI API Integration Guide](http://platform.acedata.cloud/documents/d0557c7c-b518-4c42-b482-cc84d62b208b) |
+| [Suno Style Generation API](http://platform.acedata.cloud/documents/864d5f20-2e97-4334-b0bf-f80a60f0810c) | `/suno/style` | [Suno Style API Integration Guide](http://platform.acedata.cloud/documents/2835d3d3-fcfa-4e31-a4be-33a93b84a450) |
 | [Suno Lyrics Generation API](http://platform.acedata.cloud/documents/514d82dc-f7ab-4638-9f21-8b9275916b08) | `/suno/lyrics` | [Suno Lyrics Generation API Integration Guide](http://platform.acedata.cloud/documents/f1c66741-a488-43ca-91fc-e53fbbda639a) |
 | [Suno Tasks API](http://platform.acedata.cloud/documents/b0dd9823-0e01-4c75-af83-5a6e2e05bfed) | `/suno/tasks` | [Suno Tasks API Integration Guide](http://platform.acedata.cloud/documents/d3868342-7f11-4670-bd31-61a63663cb10) |
 | [Suno Upload API](http://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82) | `/suno/upload` | [Suno Upload API Integration Guide](http://platform.acedata.cloud/documents/26092dda-23d9-4874-9916-e12db6fce3b5) |

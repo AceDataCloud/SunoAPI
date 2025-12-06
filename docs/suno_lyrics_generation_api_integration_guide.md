@@ -2,7 +2,7 @@
 
 If you want to customize song generation but don't want to write the lyrics yourself, you can use the lyrics generation API provided by AceDataCloud to generate lyrics through a prompt. The API is the [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/514d82dc-f7ab-4638-9f21-8b9275916b08).
 
-This API has only one input parameter, which is `prompt`. An example of how to fill it out is as follows:
+The main input parameter for this API is `prompt`, with an optional `model` (default is chirp-v3). An example of how to fill it out is as follows:
 
 ![](https://cdn.acedata.cloud/p53wtj.png)
 
@@ -24,4 +24,4 @@ Click to run, and the result is as follows:
 
 As you can see, the `text` field in `data` contains the lyrics information.
 
-With the lyrics in hand, we can then use the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) to generate a custom song.
+With the lyrics in hand, we can then use the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) to generate custom songs.
