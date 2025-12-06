@@ -180,6 +180,218 @@ curl -X POST 'https://api.acedata.cloud/suno/audios' \
 
 Testing is allowed, and the generated effect is similar.
 
+### Custom Singer Style Generation Function
+If you want to generate a song using a singer's style, first generate a song using the basic usage mentioned above. Finally, you need to set this song to the singer's style, and then enter the [Suno Persona API](https://platform.acedata.cloud/documents/78bb6c62-6ce0-490f-a7df-e89d80ec0583) to generate a singer style id parameter `persona_id` based on the official generated music ID `audio_id`. The specific parameters are shown in the image below:
+
+<p><img src="https://cdn.acedata.cloud/pmzo3l.png" width="500" class="m-auto"></p>
+
+After filling it out, the automatically generated code is as follows:
+
+<p><img src="https://cdn.acedata.cloud/a5g0nj.png" width="500" class="m-auto"></p>
+
+Corresponding Python code:
+
+```python
+import requests
+
+url = "https://api.acedata.cloud/suno/persona"
+
+headers = {
+    "accept": "application/json",
+    "authorization": "Bearer {token}",
+    "content-type": "application/json"
+}
+
+payload = {
+    "audio_id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f",
+    "name": "test"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+Clicking run, you can find a result as follows:
+
+```json
+{
+  "success": true,
+  "task_id": "7628b754-4fe7-4e79-bda4-806d0dd8bf6e",
+  "data": {
+    "persona_id": "e0d7319e-aa2a-44cb-b00a-916218d7cb0b"
+  }
+}
+```
+
+Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song you want to continue generating and the singer style ID, as shown in the example below:
+
+<p><img src="https://cdn.acedata.cloud/fukijq.png" width="500" class="m-auto"></p>
+
+After filling it out, the automatically generated code is as follows:
+
+<p><img src="https://cdn.acedata.cloud/5uzk9d.png" width="500" class="m-auto"></p>
+
+Corresponding Python code:
+
+```python
+import requests
+
+url = "https://api.acedata.cloud/suno/audios"
+
+headers = {
+    "accept": "application/json",
+    "authorization": "Bearer {token}",
+    "content-type": "application/json"
+}
+
+payload = {
+    "action": "artist_consistency",
+    "prompt": "A song for Christmas",
+    "model": "chirp-v4-5",
+    "persona_id": "e0d7319e-aa2a-44cb-b00a-916218d7cb0b",
+    "audio_id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+Clicking run, you can find a result as follows:
+
+```json
+{
+  "success": true,
+  "task_id": "9b732b1a-bd67-48bc-95e4-90140e06836f",
+  "trace_id": "30fcd88e-7687-4137-92d7-913b58115204",
+  "data": [
+    {
+      "id": "727a36e2-8dce-4df7-99e5-14e44635c80f",
+      "title": "",
+      "image_url": "https://cdn2.suno.ai/image_727a36e2-8dce-4df7-99e5-14e44635c80f.jpeg",
+      "lyric": "",
+      "audio_url": "https://cdn1.suno.ai/727a36e2-8dce-4df7-99e5-14e44635c80f.mp3",
+      "video_url": "",
+      "created_at": "2025-06-17T16:27:33.979Z",
+      "model": "chirp-auk",
+      "state": "succeeded",
+      "style": "",
+      "duration": 244.4
+    },
+    {
+      "id": "3b33301a-b17e-4b25-8842-09b46dab1a36",
+      "title": "",
+      "image_url": "https://cdn2.suno.ai/image_3b33301a-b17e-4b25-8842-09b46dab1a36.jpeg",
+      "lyric": "",
+      "audio_url": "https://cdn1.suno.ai/3b33301a-b17e-4b25-8842-09b46dab1a36.mp3",
+      "video_url": "",
+      "created_at": "2025-06-17T16:27:33.979Z",
+      "model": "chirp-auk",
+      "state": "succeeded",
+      "style": "",
+      "duration": 229.88
+    }
+  ]
+}
+```
+
+It can be seen that the result content is consistent with the above, thus achieving the function of generating songs using the singer's style.
+
+### Continue Generation Function
+
+If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained from the basic usage, and as mentioned above, you can see the song ID is:
+
+```
+"id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
+```
+
+> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage mentioned above.
+
+If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song you want to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the image below:
+
+<p><img src="https://cdn.acedata.cloud/a0mn5e.png" width="500" class="m-auto"></p>
+
+Next, you must fill in the lyrics and style to customize the generated song, specifying the following content:
+
+- lyric: lyric text
+- custom: set to `true`, representing custom generation; this parameter defaults to false, representing using `prompt` for generation.
+- style: the style of the song, optional.
+- continue_at: the time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
+
+The example for filling out is as follows:
+
+<p><img src="https://cdn.acedata.cloud/zp9s42.png" width="500" class="m-auto"></p>
+
+After filling it out, the automatically generated code is as follows:
+
+<p><img src="https://cdn.acedata.cloud/wwpw78.png" width="500" class="m-auto"></p>
+
+Corresponding Python code:
+```python
+import requests
+
+url = "https://api.acedata.cloud/suno/audios"
+
+headers = {
+    "accept": "application/json",
+    "authorization": "Bearer {token}",
+    "content-type": "application/json"
+}
+
+payload = {
+    "action": "extend",
+    "prompt": "A song for Christmas",
+    "model": "chirp-v4-5",
+    "audio_id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f",
+    "continue_at": 2,
+    "lyric": "[Verse]\\nSnowflakes falling all around\\nGlistening white\\nCovering the ground\\nChildren laughing\\nFull of delight\\nIn this winter wonderland tonight\\nSanta's sleigh\\nUp in the sky\\nRudolph's nose shining bright\\nOh my\\nHear the jingle bells\\nRinging so clear\\nBringing joy and holiday cheer\\n[Verse 2]\\nRoasting chestnuts by the fire's glow\\nChristmas lights\\nThey twinkle and show\\nFamilies gathering with love and cheer\\nSpreading warmth to everyone near",
+    "custom": True,
+    "instrumental": False
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+Click to run, and you will find a result as follows:
+
+```json
+{
+  "success": true,
+  "task_id": "75b835d9-30d1-4641-8524-0aeedbdc9e1a",
+  "trace_id": "44c41045-a2e1-4d19-aafc-7abd239d0d5c",
+  "data": [
+    {
+      "id": "0a1e1b10-c36a-41c9-9bfb-b26d9d25db98",
+      "title": "",
+      "image_url": "https://cdn2.suno.ai/image_0a1e1b10-c36a-41c9-9bfb-b26d9d25db98.jpeg",
+      "lyric": "[Verse]\\nSnowflakes falling all around\\nGlistening white\\nCovering the ground\\nChildren laughing\\nFull of delight\\nIn this winter wonderland tonight\\nSanta's sleigh\\nUp in the sky\\nRudolph's nose shining bright\\nOh my\\nHear the jingle bells\\nRinging so clear\\nBringing joy and holiday cheer\\n[Verse 2]\\nRoasting chestnuts by the fire's glow\\nChristmas lights\\nThey twinkle and show\\nFamilies gathering with love and cheer\\nSpreading warmth to everyone near",
+      "audio_url": "https://cdn1.suno.ai/0a1e1b10-c36a-41c9-9bfb-b26d9d25db98.mp3",
+      "video_url": "",
+      "created_at": "2025-06-17T16:38:35.509Z",
+      "model": "chirp-auk",
+      "state": "succeeded",
+      "style": "",
+      "duration": 165.92
+    },
+    {
+      "id": "4334c5b4-0a44-4b26-a8f6-66cc4dbb8fc3",
+      "title": "",
+      "image_url": "https://cdn2.suno.ai/image_4334c5b4-0a44-4b26-a8f6-66cc4dbb8fc3.jpeg",
+      "lyric": "[Verse]\\nSnowflakes falling all around\\nGlistening white\\nCovering the ground\\nChildren laughing\\nFull of delight\\nIn this winter wonderland tonight\\nSanta's sleigh\\nUp in the sky\\nRudolph's nose shining bright\\nOh my\\nHear the jingle bells\\nRinging so clear\\nBringing joy and holiday cheer\\n[Verse 2]\\nRoasting chestnuts by the fire's glow\\nChristmas lights\\nThey twinkle and show\\nFamilies gathering with love and cheer\\nSpreading warmth to everyone near",
+      "audio_url": "https://cdn1.suno.ai/4334c5b4-0a44-4b26-a8f6-66cc4dbb8fc3.mp3",
+      "video_url": "",
+      "created_at": "2025-06-17T16:38:35.509Z",
+      "model": "chirp-auk",
+      "state": "succeeded",
+      "style": "",
+      "duration": 158.84
+    }
+  ]
+}
+```
+
+It can be seen that the result content is consistent with the above, thus achieving the function of continuing the song generation.
+
 
 ## More
 
