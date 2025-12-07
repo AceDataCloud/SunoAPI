@@ -21,42 +21,42 @@ Here is the progress of model updates:
 | v4      | chirp-v4        | 2024.12.17     | 3000         | 200         | 150 seconds           |
 | v3.5    | chirp-v3-5      | ---            | 3000         | 200         | 120 seconds           |
 
-Suno has recently upgraded its music generation model to version V5, and to call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
+Suno has recently upgraded its music generation model to version V5. To call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
 
-However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno integration, making it easy and quick to generate the desired music.
+However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno interface, making it convenient and quick to generate desired music.
 
 ### Application and Usage
 
-To use the Suno Audios API, you can first go to the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for the request:
+To use the Suno Audios API, you can first visit the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for requests:
 
 ![](https://cdn.acedata.cloud/nyq0xz.png)
 
 If you are not logged in or registered, you will be automatically redirected to the login page inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
 
-Upon the first application, there will be a free quota available for use of the API.
+Upon first application, there will be a free quota available for use of the API.
 
 ### Basic Usage
 
-If you want to generate a song, you can input any text, for example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
+If you have any song ideas, you can input a piece of text freely. For example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/2kuuup.png" width="500" class="m-auto"></p>
 
 Here we can see that we have set the Request Headers, including:
 
-- `accept`: the format of the response result you want to receive, here filled in as `application/json`, which is JSON format.
+- `accept`: the format of the response result you want to receive, here filled as `application/json`, which means JSON format.
 - `authorization`: the key to call the API, which can be directly selected after application.
 
 Additionally, we set the Request Body, including:
 
-- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`.
-- `prompt`: the prompt for Suno's official inspiration mode.
+- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`.
+- `prompt`: the prompt for the inspiration mode from Suno.
 - `model`: the model for this music generation task, default is `chirp-v3-5`, mainly includes: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`, `chirp-v5`.
-- `lyric`: the lyrics content for Suno's official custom mode.
+- `lyric`: the lyrics content for the custom mode from Suno.
 - `custom`: whether to use the custom mode, default is: `false`.
-- `instrumental`: the pure music option for Suno's official inspiration mode.
-- `title`: the music title for Suno's official custom mode.
-- `style`: the music style for Suno's official custom mode.
-- `style_negative`: the excluded styles for Suno's official custom mode.
+- `instrumental`: the pure music option for the inspiration mode from Suno.
+- `title`: the music title for the custom mode from Suno.
+- `style`: the music style for the custom mode from Suno.
+- `style_negative`: the excluded styles for the custom mode from Suno.
 - `audio_weight`: the proportion of the uploaded reference audio, range 0-1, the larger the more it relies on the reference audio.
 - `audio_id`: the ID of the reference music.
 - `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
@@ -154,11 +154,11 @@ Next, we need to customize the generation of songs based on the lyrics, title, a
 - title: Title of the song.
 - style: Style of the song, optional.
 
-An example of filling in is as follows:
+An example of filling out is as follows:
 
 <p><img src="https://cdn.acedata.cloud/qp3iba.png" width="500" class="m-auto"></p>
 
-After filling it out, the code is automatically generated as follows:
+After filling it out, the code generated automatically is as follows:
 
 <p><img src="https://cdn.acedata.cloud/o5haei.png" width="500" class="m-auto"></p>
 
@@ -211,7 +211,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find a result as follows:
+Clicking run, you can find that a result will be obtained, as follows:
 
 ```json
 {
@@ -223,7 +223,7 @@ Clicking run, you can find a result as follows:
 }
 ```
 
-Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song you want to continue generating and the singer style ID, as shown in the example below:
+Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song you want to continue generating, and the singer style ID, as shown in the example below:
 
 <p><img src="https://cdn.acedata.cloud/fukijq.png" width="500" class="m-auto"></p>
 
@@ -256,7 +256,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find a result as follows:
+Clicking run, you can find that a result will be obtained, as follows:
 
 ```json
 {
@@ -298,7 +298,7 @@ It can be seen that the result content is consistent with the above, thus achiev
 
 ### Continue Generation Function
 
-If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained from the basic usage, and as mentioned above, you can see the song ID is:
+If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained from the basic usage, and as mentioned above, you can see that the song ID is:
 
 ```
 "id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
@@ -310,14 +310,14 @@ If you want to continue generating a song that you uploaded, you can set the par
 
 <p><img src="https://cdn.acedata.cloud/a0mn5e.png" width="500" class="m-auto"></p>
 
-Next, you must fill in the lyrics and style to customize the generated song, specifying the following content:
+Next, we must fill in the lyrics and style to customize the generated song, specifying the following content:
 
-- lyric: lyric text
-- custom: set to `true`, representing custom generation; this parameter defaults to false, representing using `prompt` for generation.
-- style: the style of the song, optional.
-- continue_at: the time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
+- lyric: Lyric text
+- custom: Set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
+- style: The style of the song, optional.
+- continue_at: The time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
 
-The example for filling out is as follows:
+An example of filling it out is as follows:
 
 <p><img src="https://cdn.acedata.cloud/zp9s42.png" width="500" class="m-auto"></p>
 
@@ -390,7 +390,7 @@ Click to run, and you will find a result as follows:
 }
 ```
 
-It can be seen that the result content is consistent with the above, thus achieving the function of continuing the song generation.
+It can be seen that the result content is consistent with the above text, thus achieving the function of continuing the song generation.
 
 
 ## More

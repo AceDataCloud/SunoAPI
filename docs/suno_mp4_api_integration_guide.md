@@ -38,4 +38,4 @@ The result is as follows:
 }
 ```
 
-As we can see, the `video_url` field in `data` is the MP4 file link corresponding to the song.
+As can be seen, the `video_url` field in `data` is the MP4 file link corresponding to the song.

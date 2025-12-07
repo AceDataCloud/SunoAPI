@@ -14,42 +14,42 @@ Here is the progress of model updates:
 | v4      | chirp-v4        | 2024.12.17     | 3000         | 200         | 150 seconds           |
 | v3.5    | chirp-v3-5      | ---            | 3000         | 200         | 120 seconds           |
 
-Suno has recently upgraded its music generation model to version V5, and to call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
+Suno has recently upgraded its music generation model to version V5. To call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
 
-However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno integration, making it easy and quick to generate the desired music.
+However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno interface, making it convenient and quick to generate desired music.
 
 ## Application and Usage
 
-To use the Suno Audios API, you can first go to the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for the request:
+To use the Suno Audios API, you can first visit the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for requests:
 
 ![](https://cdn.acedata.cloud/nyq0xz.png)
 
 If you are not logged in or registered, you will be automatically redirected to the login page inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
 
-Upon the first application, there will be a free quota available for use of the API.
+Upon first application, there will be a free quota available for use of the API.
 
 ## Basic Usage
 
-If you want to generate a song, you can input any text, for example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
+If you have any song ideas, you can input a piece of text freely. For example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/2kuuup.png" width="500" class="m-auto"></p>
 
 Here we can see that we have set the Request Headers, including:
 
-- `accept`: the format of the response result you want to receive, here filled in as `application/json`, which is JSON format.
+- `accept`: the format of the response result you want to receive, here filled as `application/json`, which means JSON format.
 - `authorization`: the key to call the API, which can be directly selected after application.
 
 Additionally, we set the Request Body, including:
 
-- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`.
-- `prompt`: the prompt for Suno's official inspiration mode.
+- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`.
+- `prompt`: the prompt for the inspiration mode from Suno.
 - `model`: the model for this music generation task, default is `chirp-v3-5`, mainly includes: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`, `chirp-v5`.
-- `lyric`: the lyrics content for Suno's official custom mode.
+- `lyric`: the lyrics content for the custom mode from Suno.
 - `custom`: whether to use the custom mode, default is: `false`.
-- `instrumental`: the pure music option for Suno's official inspiration mode.
-- `title`: the music title for Suno's official custom mode.
-- `style`: the music style for Suno's official custom mode.
-- `style_negative`: the excluded styles for Suno's official custom mode.
+- `instrumental`: the pure music option for the inspiration mode from Suno.
+- `title`: the music title for the custom mode from Suno.
+- `style`: the music style for the custom mode from Suno.
+- `style_negative`: the excluded styles for the custom mode from Suno.
 - `audio_weight`: the proportion of the uploaded reference audio, range 0-1, the larger the more it relies on the reference audio.
 - `audio_id`: the ID of the reference music.
 - `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
@@ -147,11 +147,11 @@ Next, we need to customize the generation of songs based on the lyrics, title, a
 - title: Title of the song.
 - style: Style of the song, optional.
 
-An example of filling in is as follows:
+An example of filling out is as follows:
 
 <p><img src="https://cdn.acedata.cloud/qp3iba.png" width="500" class="m-auto"></p>
 
-After filling it out, the code is automatically generated as follows:
+After filling it out, the code generated automatically is as follows:
 
 <p><img src="https://cdn.acedata.cloud/o5haei.png" width="500" class="m-auto"></p>
 
@@ -204,7 +204,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find a result as follows:
+Clicking run, you can find that a result will be obtained, as follows:
 
 ```json
 {
@@ -216,7 +216,7 @@ Clicking run, you can find a result as follows:
 }
 ```
 
-Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song you want to continue generating and the singer style ID, as shown in the example below:
+Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song you want to continue generating, and the singer style ID, as shown in the example below:
 
 <p><img src="https://cdn.acedata.cloud/fukijq.png" width="500" class="m-auto"></p>
 
@@ -249,7 +249,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find a result as follows:
+Clicking run, you can find that a result will be obtained, as follows:
 
 ```json
 {
@@ -291,7 +291,7 @@ It can be seen that the result content is consistent with the above, thus achiev
 
 ## Continue Generation Function
 
-If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained from the basic usage, and as mentioned above, you can see the song ID is:
+If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained from the basic usage, and as mentioned above, you can see that the song ID is:
 
 ```
 "id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
@@ -303,14 +303,14 @@ If you want to continue generating a song that you uploaded, you can set the par
 
 <p><img src="https://cdn.acedata.cloud/a0mn5e.png" width="500" class="m-auto"></p>
 
-Next, you must fill in the lyrics and style to customize the generated song, specifying the following content:
+Next, we must fill in the lyrics and style to customize the generated song, specifying the following content:
 
-- lyric: lyric text
-- custom: set to `true`, representing custom generation; this parameter defaults to false, representing using `prompt` for generation.
-- style: the style of the song, optional.
-- continue_at: the time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
+- lyric: Lyric text
+- custom: Set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
+- style: The style of the song, optional.
+- continue_at: The time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
 
-The example for filling out is as follows:
+An example of filling it out is as follows:
 
 <p><img src="https://cdn.acedata.cloud/zp9s42.png" width="500" class="m-auto"></p>
 
@@ -383,16 +383,16 @@ Click to run, and you will find a result as follows:
 }
 ```
 
-It can be seen that the result content is consistent with the above, thus achieving the function of continuing the song generation.
+It can be seen that the result content is consistent with the above text, thus achieving the function of continuing the song generation.
 
 ## Get the Complete Song
 
-After continuing to generate a song based on the original song, the returned song does not contain the original song content. To obtain the complete song content, the concatenation function needs to be used, and the following content can be specified:
+After continuing to generate a song based on the original song, the returned song does not contain the original song content. If you want to obtain the complete song content, you need to use the concatenation function, and you can specify the following content:
 
-- action: content is `concat`.
-- audio_id: ID of the last segment.
+- action: the content is `concat`.
+- audio_id: the ID of the last segment.
 
-For example, if the extended song ID is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then the parameters can be set as follows:
+For example, if the ID of the extended song is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then you can set the parameters as follows:
 
 ```json
 {
@@ -438,10 +438,10 @@ Other parameters remain unchanged, and the returned result will be a complete so
 }
 ```
 
-## Music Reproduction
+## Music Version
 When generating a song based on an existing song, the style of the returned song may not be appropriate. If you want to create a cover of the originally generated song (custom uploaded music is also supported), you need to use the music cover method, and you can specify the following content:
 
-- action: The content is `cover`, and when performing a cover operation on custom uploaded music, it must be specified as: `upload_cover`.
+- action: The content is `cover`, and when it is a cover operation for custom uploaded music, the content must be specified as: `upload_cover`.
 - audio_id: The ID of the previously generated song.
 
 For example, if the ID of the originally generated song is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then you can set the parameters as follows:
@@ -505,8 +505,8 @@ When a song is generated and you need to perform a separate operation to replace
 - lyric: The complete lyrics after replacement (only needs to overlap with the prompt, not the complete lyrics),
 - prompt: The part of the lyrics that needs to be replaced.
 - style: The style of the song, optional.
-- replace_section_start: The starting time of the lyrics corresponding to `lyric` on the timeline.
-- replace_section_end: The ending time of the lyrics corresponding to `lyric` on the timeline.
+- replace_section_start: The start time of the lyrics corresponding to `lyric` on the timeline.
+- replace_section_end: The end time of the lyrics corresponding to `lyric` on the timeline.
 
 For example, if the ID of the originally generated song is: ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0, then you can set the parameters as follows:
 
@@ -524,7 +524,7 @@ For example, if the ID of the originally generated song is: ade7241b-0357-4a5e-9
 }
 ```
 
-With other parameters unchanged, the returned result will be a song with the section replaced, which is the result of replacing a section of the originally generated song, as shown below:
+With other parameters unchanged, the returned result will be a song with the replaced section, which is the result of replacing a section of the originally generated song, as shown below:
 
 ```json
 {
@@ -567,16 +567,16 @@ With other parameters unchanged, the returned result will be a song with the sec
   ]
 }
 ```
-The generated result is similar to the previous text, thus completing the process of replacing segments of the originally generated song.
+The generated result is similar to the above text, thus completing the process of replacing segments of the originally generated song.
 
 ## Vocal and Instrument Separation
 
-After generating a song, if you need to perform secondary creation with separate operations for accompaniment and vocals, you can separate the pure music accompaniment and the a cappella vocals. You can specify the following content:
+After generating the song, when a secondary creation is needed for separate operations of accompaniment and vocals, pure music accompaniment and clean vocals can be separated. The following content can be specified:
 
-- action: the content is `stems`.
+- action: content is `stems`.
 - audio_id: the ID of the previously generated song.
 
-For example, if the ID of the originally generated song is: ec13e502-d043-4eb2-92ee-e900c6da69d1, then you can set the parameters as follows:
+For example, if the ID of the originally generated song is: ec13e502-d043-4eb2-92ee-e900c6da69d1, then the parameters can be set as follows:
 
 ```json
 {
@@ -585,7 +585,7 @@ For example, if the ID of the originally generated song is: ec13e502-d043-4eb2-9
 }
 ```
 
-With the above parameters, you can obtain the result of vocal and instrument separation, as follows:
+With the above parameters, the result of vocal and instrumental separation can be obtained, as follows:
 
 ```json
 {
@@ -623,16 +623,16 @@ With the above parameters, you can obtain the result of vocal and instrument sep
 }
 ```
 
-The generated result is similar to the previous text, thus completing the process of vocal and instrument separation for the originally generated song.
+The generated result is similar to the above text, thus completing the process of vocal and instrumental separation of the originally generated song.
 
 ## Full Track Vocal and Instrument Separation
 
-After generating a song, if you need to perform full track vocal and instrument separation, you can specify the following content:
+After generating the song, when a full track vocal and instrumental separation operation is needed, the following content can be specified:
 
-- action: the content is `all_stems`.
+- action: content is `all_stems`.
 - audio_id: the ID of the previously generated song.
 
-For example, if the ID of the originally generated song is: bdf23a5a-59f5-4103-b452-054a824a7f9f, then you can set the parameters as follows:
+For example, if the ID of the originally generated song is: bdf23a5a-59f5-4103-b452-054a824a7f9f, then the parameters can be set as follows:
 
 ```json
 {
@@ -641,7 +641,7 @@ For example, if the ID of the originally generated song is: bdf23a5a-59f5-4103-b
 }
 ```
 
-With the above parameters, you can obtain the result of full track vocal and instrument separation, as follows:
+With the above parameters, the result of full track vocal and instrumental separation can be obtained, as follows:
 
 ```json
 {
@@ -651,7 +651,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
   "data": [
     {
       "id": "f86ca64a-9519-4ea7-a592-52438e001412",
-      "title": "Safety String (Vocals)",
+      "title": "安全之弦 (Vocals)",
       "image_url": "https://cdn2.suno.ai/image_f86ca64a-9519-4ea7-a592-52438e001412.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/f86ca64a-9519-4ea7-a592-52438e001412.mp3",
@@ -662,7 +662,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "99e649a7-a394-47b9-a915-d7f847285a36",
-      "title": "Safety String (Backing Vocals)",
+      "title": "安全之弦 (Backing Vocals)",
       "image_url": "https://cdn2.suno.ai/image_99e649a7-a394-47b9-a915-d7f847285a36.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/99e649a7-a394-47b9-a915-d7f847285a36.mp3",
@@ -673,7 +673,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "6d710bf7-809f-4fdc-bb63-b8cb3a456d42",
-      "title": "Safety String (Drums)",
+      "title": "安全之弦 (Drums)",
       "image_url": "https://cdn2.suno.ai/image_6d710bf7-809f-4fdc-bb63-b8cb3a456d42.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/6d710bf7-809f-4fdc-bb63-b8cb3a456d42.mp3",
@@ -796,7 +796,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
     },
 {
       "id": "14c5ffc7-addf-4fee-afd2-4b8b3e7ee470",
-      "title": "The String of Safety (Backing Vocals)",
+      "title": "Safety String (Backing Vocals)",
       "image_url": "https://cdn2.suno.ai/image_14c5ffc7-addf-4fee-afd2-4b8b3e7ee470.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/14c5ffc7-addf-4fee-afd2-4b8b3e7ee470.mp3",
@@ -807,7 +807,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "9d044557-450d-48ab-90dc-8eaf6f1cdb6c",
-      "title": "The String of Safety (Drums)",
+      "title": "Safety String (Drums)",
       "image_url": "https://cdn2.suno.ai/image_9d044557-450d-48ab-90dc-8eaf6f1cdb6c.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/9d044557-450d-48ab-90dc-8eaf6f1cdb6c.mp3",
@@ -818,7 +818,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "efd052d0-c12f-47b3-8282-1f3ef7610e1f",
-      "title": "The String of Safety (Bass)",
+      "title": "Safety String (Bass)",
       "image_url": "https://cdn2.suno.ai/image_efd052d0-c12f-47b3-8282-1f3ef7610e1f.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/efd052d0-c12f-47b3-8282-1f3ef7610e1f.mp3",
@@ -829,7 +829,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "5775372b-292e-4420-96ef-60e57a60cc1f",
-      "title": "The String of Safety (Guitar)",
+      "title": "Safety String (Guitar)",
       "image_url": "https://cdn2.suno.ai/image_5775372b-292e-4420-96ef-60e57a60cc1f.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/5775372b-292e-4420-96ef-60e57a60cc1f.mp3",
@@ -840,7 +840,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "dab3f220-19cd-408e-9b96-30ec18f5b049",
-      "title": "The String of Safety (Keyboard)",
+      "title": "Safety String (Keyboard)",
       "image_url": "https://cdn2.suno.ai/image_dab3f220-19cd-408e-9b96-30ec18f5b049.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/dab3f220-19cd-408e-9b96-30ec18f5b049.mp3",
@@ -851,7 +851,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "2d0cd6d4-af82-4bb5-86fe-d92bdb367157",
-      "title": "The String of Safety (Percussion)",
+      "title": "Safety String (Percussion)",
       "image_url": "https://cdn2.suno.ai/image_2d0cd6d4-af82-4bb5-86fe-d92bdb367157.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/2d0cd6d4-af82-4bb5-86fe-d92bdb367157.mp3",
@@ -862,7 +862,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "f3191a1a-5e8d-4afe-b638-3add222d52cd",
-      "title": "The String of Safety (Strings)",
+      "title": "Safety String (Strings)",
       "image_url": "https://cdn2.suno.ai/image_f3191a1a-5e8d-4afe-b638-3add222d52cd.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/f3191a1a-5e8d-4afe-b638-3add222d52cd.mp3",
@@ -873,7 +873,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "a8834ea5-200b-4206-a812-9780ef336660",
-      "title": "The String of Safety (Synth)",
+      "title": "Safety String (Synth)",
       "image_url": "https://cdn2.suno.ai/image_a8834ea5-200b-4206-a812-9780ef336660.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/a8834ea5-200b-4206-a812-9780ef336660.mp3",
@@ -884,7 +884,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "f50d1a31-ef72-400a-b8ae-0367849d007d",
-      "title": "The String of Safety (FX)",
+      "title": "Safety String (FX)",
       "image_url": "https://cdn2.suno.ai/image_f50d1a31-ef72-400a-b8ae-0367849d007d.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/f50d1a31-ef72-400a-b8ae-0367849d007d.mp3",
@@ -895,7 +895,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
       "duration": 154.92
     }, {
       "id": "cb581673-23cc-40d6-9f9b-0f76720f0d18",
-      "title": "The String of Safety (Brass)",
+      "title": "Safety String (Brass)",
       "image_url": "https://cdn2.suno.ai/image_cb581673-23cc-40d6-9f9b-0f76720f0d18.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/cb581673-23cc-40d6-9f9b-0f76720f0d18.mp3",
@@ -923,7 +923,7 @@ With the above parameters, you can obtain the result of full track vocal and ins
 ```
  
 
-The generated result is similar to the previous text, completing the process of separating the original generated song.
+The generated result is similar to the previous text, thus completing the process of separating the original generated song.
 
 ## Custom Advanced Parameters for Generation
 
@@ -935,7 +935,7 @@ The range of advanced parameters is between 0-1, and the specific parameters are
 
 <p><img src="https://cdn.acedata.cloud/i54sqm.png" width="500" class="m-auto"></p>
 
-After filling in, the following code is automatically generated:
+After filling out, the following code is automatically generated:
 
 <p><img src="https://cdn.acedata.cloud/2dlbo6.png" width="500" class="m-auto"></p>
 
@@ -1003,7 +1003,7 @@ Clicking run, you can find that a result will be obtained, as follows:
 }
 ```
 
-This way, custom songs are generated using advanced parameters, and the results are similar to the previous text.
+Thus, custom songs were generated using advanced parameters, and the results are similar to the previous text.
 
 ## Add Instrumental Function
 
@@ -1023,7 +1023,7 @@ Finally, you get an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and then y
 - audio_id: The ID of the uploaded song with only vocals.
 - style: The style of the accompaniment, preferably without lyrics since it is for accompaniment.
 
-After filling in, the following code is automatically generated:
+After filling out, the following code is automatically generated:
 
 <p><img src="https://cdn.acedata.cloud/8x1ic6.png" width="500" class="m-auto"></p>
 
@@ -1094,25 +1094,25 @@ This completes the operation of adding music to the uploaded a cappella song, wi
 
 ## Add Vocals Feature
 
-In August 2025, Suno released the new Add Vocals feature. First, you need to upload a pure instrumental track, allowing Suno to fill in the lyrics and provide vocal singing. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82) to upload an a cappella song without accompaniment, as shown in the following operation:
+In August 2025, Suno released the new Add Vocals feature. First, you need to upload a pure instrumental track for Suno to add lyrics and vocals. You can start by uploading a cappella song without accompaniment to the [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the following operation:
 
 <p><img src="https://cdn.acedata.cloud/fxl914.png" width="500" class="m-auto"></p>
 
-Then you need to record the `audio_id` after uploading, with the specific result shown in the following image:
+Then, you need to record the `audio_id` after uploading, with the specific result shown in the following image:
 
 <p><img src="https://cdn.acedata.cloud/47t6wj.png" width="500" class="m-auto"></p>
 
-Finally, you get an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and then you need to fill in the following parameters:
+Finally, you get an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and you also need to fill in the following parameters:
 
 - action: The content is `overpainting`.
-- overpainting_start: The start time for adding vocals to the uploaded song, the default value is 0.
-- overpainting_end: The end time for adding vocals to the uploaded song, must be less than the total duration of the song.
+- overpainting_start: The starting time for adding vocals to the uploaded song, the default value is 0.
+- overpainting_end: The endpoint for adding vocals to the uploaded song, must be less than the total duration of the song.
 - audio_id: The ID of the uploaded a cappella song.
 - custom: In this mode, you must use the custom mode to fill in the lyrics.
 - lyric: The lyrics filled in the custom mode.
 - style: The style of the accompaniment.
 
-After filling in, the following code is automatically generated:
+After filling in, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/a4pbes.png" width="500" class="m-auto"></p>
 
@@ -1182,31 +1182,23 @@ Clicking run, you can find that you will get a result as follows:
 
 This completes the operation of adding vocals to the uploaded a cappella song, with results similar to the above.
 
-## Add Vocals Feature
+## Remaster Feature
 
-In August 2025, Suno released the new Add Vocals feature. First, you need to upload a pure instrumental track, allowing Suno to fill in the lyrics and provide vocal singing. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82) to upload an a cappella song without accompaniment, as shown in the following operation:
+In December 2025, Suno released the new Remaster feature, which can regenerate songs but cannot cross accounts. You also need to fill in the following parameters:
 
-<p><img src="https://cdn.acedata.cloud/fxl914.png" width="500" class="m-auto"></p>
-
-Then you need to record the `audio_id` after uploading, with the specific result shown in the following image:
-<p><img src="https://cdn.acedata.cloud/47t6wj.png" width="500" class="m-auto"></p>
-
-Finally, we obtained an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and we also need to fill in the following parameters:
-
-- action: The content is `overpainting`.
-- overpainting_start: The starting time for adding vocals to the uploaded song, the default value is 0.
-- overpainting_end: The endpoint for adding vocals to the uploaded song, must be less than the total duration of the song.
-- audio_id: The ID of the uploaded acapella song without accompaniment.
-- custom: In this mode, custom mode must be used to fill in the lyrics.
-- lyric: The lyrics filled in custom mode.
-- style: The style of the accompaniment.
+- action: The content is `remaster`.
+- audio_id: The ID of the song to be regenerated.
+- model: Only supports v4.5+, v5.
+- variation_category: Only supported in versions above v5, and only has 3 values: high, normal, subtle.
 
 After filling in, the code is automatically generated as follows:
 
-<p><img src="https://cdn.acedata.cloud/a4pbes.png" width="500" class="m-auto"></p>
+<p><img src="https://cdn.acedata.cloud/7h4zmw.png" width="500" class="m-auto"></p>
 
-The corresponding Python code:
-
+Corresponding Python code:
+```python
+# Python code for Remaster feature will be here
+```
 ```python
 import requests
 
@@ -1219,77 +1211,76 @@ headers = {
 }
 
 payload = {
-    "action": "overpainting",
-    "model": "chirp-v4-5",
-    "lyric": "Yea your were the best I could get \\nBut I knew that it couldn’t last \\nStayed down since we were friends \\nHad to leave those thoughts in the past \\nMade like 40k just last week \\nOn top of the 20 with my babe\\ndon’t care for what niggas say",
-    "custom": True,
-    "audio_id": "92254cab-3372-4d9e-bce9-cdcfdbc39070",
-    "overpainting_end": 120
+    "action": "remaster",
+    "variation_category": "high",
+    "audio_id": "21fd46d4-45c3-4826-bec9-3f3df667902e"
 }
 
 response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result will be obtained, as follows:
+Click to run, and you will find that a result is obtained, as follows:
 
 ```json
 {
   "success": true,
-  "task_id": "31bb250e-6614-49ec-ac85-631f224daeba",
-  "trace_id": "efe8e7f3-9a65-4f13-a9f8-51e8478899df",
+  "task_id": "791ee74c-9363-4352-afe7-babb19b89899",
+  "trace_id": "77acda57-c3d4-4e11-a506-4f50e0609916",
   "data": [
     {
-      "id": "a597f945-64df-4722-a631-d436450832bd",
-      "title": "",
-      "image_url": "https://cdn2.suno.ai/image_a597f945-64df-4722-a631-d436450832bd.jpeg",
-      "lyric": "Yea your were the best I could get \\nBut I knew that it couldn’t last \\nStayed down since we were friends \\nHad to leave those thoughts in the past \\nMade like 40k just last week \\nOn top of the 20 with my babe\\ndon’t care for what niggas say",
-      "audio_url": "https://cdn1.suno.ai/a597f945-64df-4722-a631-d436450832bd.mp3",
+      "id": "b0515cdf-9cb5-46cd-b0fe-10a239dc9274",
+      "title": "Christmas in sewing  (Remastered)",
+      "image_url": "https://cdn2.suno.ai/image_b0515cdf-9cb5-46cd-b0fe-10a239dc9274.jpeg",
+      "image_large_url": "https://cdn2.suno.ai/image_large_b0515cdf-9cb5-46cd-b0fe-10a239dc9274.jpeg",
+      "lyric": "In Teror the classes continue,\nnot even Christmas has a break;\nthe group sews among carols\nand a good piece of nougat.\nThe Popular opens its doors,\nand the workshop sounds better;\nthread, needle, and cheerful singing\nwe will have a better time\nWe continue in the seams,\nwith music and fun;\nthe students will eat\nlots of sweets ",
+      "audio_url": "https://cdn1.suno.ai/b0515cdf-9cb5-46cd-b0fe-10a239dc9274.mp3",
       "video_url": "",
-      "created_at": "2025-08-27T15:33:51.550Z",
+      "created_at": "2025-12-04T13:09:59.936Z",
       "model": "chirp-v4",
       "state": "succeeded",
-      "style": "",
-      "duration": 105.32
+      "style": "Carol",
+      "duration": 32.2
     },
     {
-      "id": "b41a8b91-3d88-4ebd-a6cf-732764b24954",
-      "title": "",
-      "image_url": "https://cdn2.suno.ai/image_b41a8b91-3d88-4ebd-a6cf-732764b24954.jpeg",
-      "lyric": "Yea your were the best I could get \\nBut I knew that it couldn’t last \\nStayed down since we were friends \\nHad to leave those thoughts in the past \\nMade like 40k just last week \\nOn top of the 20 with my babe\\ndon’t care for what niggas say",
-      "audio_url": "https://cdn1.suno.ai/b41a8b91-3d88-4ebd-a6cf-732764b24954.mp3",
+      "id": "06edab94-a4f9-4c0c-abac-a2e8a97c76a8",
+      "title": "Christmas in sewing  (Remastered)",
+      "image_url": "https://cdn2.suno.ai/image_06edab94-a4f9-4c0c-abac-a2e8a97c76a8.jpeg",
+      "image_large_url": "https://cdn2.suno.ai/image_large_06edab94-a4f9-4c0c-abac-a2e8a97c76a8.jpeg",
+      "lyric": "In Teror the classes continue,\nnot even Christmas has a break;\nthe group sews among carols\nand a good piece of nougat.\nThe Popular opens its doors,\nand the workshop sounds better;\nthread, needle, and cheerful singing\nwe will have a better time\nWe continue in the seams,\nwith music and fun;\nthe students will eat\nlots of sweets ",
+      "audio_url": "https://cdn1.suno.ai/06edab94-a4f9-4c0c-abac-a2e8a97c76a8.mp3",
       "video_url": "",
-      "created_at": "2025-08-27T15:33:51.550Z",
+      "created_at": "2025-12-04T13:09:59.936Z",
       "model": "chirp-v4",
       "state": "succeeded",
-      "style": "",
-      "duration": 148.16
+      "style": "Carol",
+      "duration": 32.2
     }
   ]
 }
 ```
 
-This completes the operation of adding vocals to the uploaded acapella song, with results similar to the above.
+This completes the operation of regenerating the already generated song, with results similar to the above.
 
 ## Asynchronous Callback
 
 Since the time for Suno to generate music is relatively long, about 1-2 minutes, if the API does not respond for a long time, the HTTP request will keep the connection open, leading to additional system resource consumption. Therefore, this API also provides support for asynchronous callbacks.
 
-The overall process is: When the client initiates a request, an additional `callback_url` field is specified. After the client initiates the API request, the API will immediately return a result containing a `task_id` field information, representing the current task ID. When the task is completed, the generated music result will be sent to the client-specified `callback_url` in the form of a POST JSON, which also includes the `task_id` field, so that the task result can be associated by ID.
+The overall process is: when the client initiates a request, an additional `callback_url` field is specified. After the client initiates the API request, the API will immediately return a result containing a `task_id` field, representing the current task ID. When the task is completed, the result of the generated music will be sent to the client's specified `callback_url` in the form of a POST JSON, which also includes the `task_id` field, allowing the task result to be associated by ID.
 
-Let’s understand how to operate specifically through an example.
+Let's understand how to operate specifically through an example.
 
-First, the Webhook callback is a service that can receive HTTP requests, and developers should replace it with the URL of their own HTTP server. For convenience, a public Webhook sample website https://webhook.site/ is used here. Opening this website will give you a Webhook URL, as shown in the figure:
+First, the Webhook callback is a service that can receive HTTP requests, and developers should replace it with the URL of their own HTTP server. For demonstration purposes, we use a public Webhook sample site https://webhook.site/, where you can open the site to get a Webhook URL, as shown in the figure:
 
 ![](https://cdn.acedata.cloud/fwfqin.png)
 
 Copy this URL, and it can be used as a Webhook. The sample here is https://webhook.site/03e60575-3d96-4132-b681-b713d78116e2.
 
-Next, we can set the `callback_url` field to the above Webhook URL, while filling in `prompt`, as shown in the figure:
+Next, we can set the `callback_url` field to the above Webhook URL, while filling in the `prompt`, as shown in the figure:
 
 ![](https://cdn.acedata.cloud/x8xql1.png)
 
-Clicking run, you can find that an immediate result will be obtained, as follows:
+Click to run, and you will find that an immediate result is obtained, as follows:
 
 ```
 {
@@ -1297,7 +1288,7 @@ Clicking run, you can find that an immediate result will be obtained, as follows
 }
 ```
 
-After a moment, we can observe the generated song results at https://webhook.site/03e60575-3d96-4132-b681-b713d78116e2, as shown in the figure:
+After a moment, we can observe the result of the generated song at https://webhook.site/03e60575-3d96-4132-b681-b713d78116e2, as shown in the figure:
 
 ![](https://cdn.acedata.cloud/f9kosb.png)
 
