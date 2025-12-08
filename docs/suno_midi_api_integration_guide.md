@@ -407,7 +407,6 @@ The result is as follows:
               "end": 74.265625,
               "velocity": 0.49606299212598426
             },
-```json
 {
               "pitch": 60,
               "start": 74.31770833333333,
