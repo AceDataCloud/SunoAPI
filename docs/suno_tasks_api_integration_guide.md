@@ -141,13 +141,13 @@ After a successful request, the API will return the details of the song task her
 
 The response contains multiple fields, the request field is the request body when initiating the task, while the response field is the response body returned after the task is completed. The field descriptions are as follows.
 
-- `id`, the ID of the task that generated this song, used to uniquely identify this song generation task.
+- `id`, the ID of the song generation task, used to uniquely identify this song generation task.
 - `request`, the request information in the song task.
-- `response`, the response information in the song task.
+- `response`, the return information in the song task.
 
 ## Batch Query Operation
 
-This is for querying the details of multiple task IDs, and unlike above, the action needs to be selected as retrieve_batch.
+This is for querying the details of multiple task IDs, and unlike the above, the action needs to be selected as retrieve_batch.
 
 **Request Body** includes:
 
@@ -160,7 +160,7 @@ Set as shown in the image below:
 
 ### Code Example
 
-It can be seen that various languages' code has been automatically generated on the right side, as shown in the image below:
+It can be seen that various languages' code has been automatically generated on the right side, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/1yk792.png" width="500" class="m-auto"></p>
 
@@ -170,7 +170,8 @@ Some code examples are as follows:
 
 After a successful request, the API will return the specific details of all batch song tasks. For example:
 
-```json {
+```json
+{
   "items": [
     {
       "_id": "66d2add5550a4144a5a88dfe",
@@ -239,7 +240,7 @@ After a successful request, the API will return the specific details of all batc
             "id": "b4f498b2-e86f-4172-926a-39da9df84dd3",
             "title": "La La La",
             "image_url": "https://cdn2.suno.ai/image_b4f498b2-e86f-4172-926a-39da9df84dd3.jpeg",
-            "lyric": "[Verse]\nI wake up every morning\nLooking out the window\nSunshine shining bright\nBeginning of a new day\n[Verse 2]\nThe birds sing joyfully\nI dance in the garden\nSurrounded by beautiful flowers\nEvery moment here is mine\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life\n[Verse 3]\nThe sea is blue and vast\nWaves crash sweetly\nWe walk on beaches\nRegardless of the weather\n[Bridge]\nCapture every hour\nListen to my songs\nFeel free\nHappy\nDance to the rhythm now\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life",
+            "lyric": "[Verse]\nI wake up every morning\nLooking out the window\nSunshine shining bright\nBeginning of a new day\n[Verse 2]\nThe birds sing joyfully\nI dance in the garden\nSurrounded by beautiful flowers\nEvery moment here is mine\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life\n[Verse 3]\nThe sea is blue and vast\nWaves crash sweetly\nWe walk on beaches\nRegardless of the weather\n[Bridge]\nCatch every hour\nListen to my songs\nFeel free\nHappy\nDance to the rhythm now\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life",
             "audio_url": "https://cdn1.suno.ai/b4f498b2-e86f-4172-926a-39da9df84dd3.mp3",
             "video_url": "https://cdn1.suno.ai/b4f498b2-e86f-4172-926a-39da9df84dd3.mp4",
             "created_at": "2024-08-31T05:55:09.345Z",
