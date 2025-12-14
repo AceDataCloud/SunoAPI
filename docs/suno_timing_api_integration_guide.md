@@ -1,6 +1,6 @@
 # Suno Timing API Integration Instructions
 
-SUNO allows us to create secondary works from generated music, obtaining the lyrics and audio timeline of the music. This document explains the integration method for the related API.
+SUNO allows us to create secondary works from generated music, obtaining the lyrics and audio timeline of the music. This document explains the integration method of the related API.
 
 This API has only one input parameter, which is `audio_id`, the official generated song ID.
 
@@ -740,7 +740,7 @@ The result is as follows:
         "p_align": 0.819
       },
 {
-        "word": "and ",
+        "word": "y ",
         "success": true,
         "start_s": 150.52,
         "end_s": 150.88,
@@ -1409,7 +1409,7 @@ The result is as follows:
       0.158
 aligned_words
 
-It can be seen that the `aligned_words` field of `data` is an array of objects, each object represents a word or phrase with time information. The meanings of the other fields in `aligned_words` are as follows:
+It can be seen that the `aligned_words` field of `data` is an array of objects, each representing a word or phrase with time information. The meanings of the other fields in `aligned_words` are as follows:
 `word`: The actual word or phrase in the lyrics
 `success`: A boolean value indicating whether the alignment of this word was successful
 `start_s`: The start time of the word
