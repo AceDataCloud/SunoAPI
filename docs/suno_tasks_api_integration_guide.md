@@ -14,9 +14,9 @@ Finally, go to the Tasks API page [Suno Tasks API](https://platform.acedata.clou
 
 ![Application Page](https://cdn.acedata.cloud/rci31i.png)
 
-If you have not logged in or registered, you will be automatically redirected to the [login page](https://platform.acedata.cloud) inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
+If you are not logged in or registered, you will be automatically redirected to the [login page](https://platform.acedata.cloud) inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
 
-There will be a free quota granted for the first application, allowing you to use the API for free.
+There is a free quota available for first-time applicants, allowing you to use the API for free.
 
 ## Request Example
 
@@ -32,7 +32,7 @@ We will take a task ID returned by the Suno Audios Generation API as an example 
 
 **Request Headers** include:
 
-- `accept`: Specifies that the response result should be in JSON format, set to `application/json`.
+- `accept`: Specifies that the response should be in JSON format, set to `application/json`.
 - `authorization`: The key to call the API, which can be selected directly after application.
 
 **Request Body** includes:
@@ -46,7 +46,7 @@ Set as shown in the image below:
 
 ### Code Example
 
-It can be seen that various language codes have been automatically generated on the right side of the page, as shown in the image:
+You can see that various language codes have been automatically generated on the right side of the page, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/p6vi9o.png" width="500" class="m-auto"></p>
 
@@ -141,13 +141,13 @@ After a successful request, the API will return the details of the song task her
 
 The response contains multiple fields, the request field is the request body when initiating the task, while the response field is the response body returned after the task is completed. The field descriptions are as follows.
 
-- `id`, the ID of the song generation task, used to uniquely identify this song generation task.
+- `id`, the ID of the task that generated this song, used to uniquely identify this song generation task.
 - `request`, the request information in the song task.
-- `response`, the return information in the song task.
+- `response`, the response information in the song task.
 
 ## Batch Query Operation
 
-This is for querying the details of multiple task IDs, and unlike the above, the action needs to be selected as retrieve_batch.
+This is for querying the details of multiple task IDs, and unlike above, the action needs to be selected as retrieve_batch.
 
 **Request Body** includes:
 
@@ -160,7 +160,7 @@ Set as shown in the image below:
 
 ### Code Example
 
-It can be seen that various languages' code has been automatically generated on the right side, as shown in the image:
+It can be seen that various languages' code has been automatically generated on the right side, as shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/1yk792.png" width="500" class="m-auto"></p>
 
@@ -170,8 +170,7 @@ Some code examples are as follows:
 
 After a successful request, the API will return the specific details of all batch song tasks. For example:
 
-```json
-{
+```json {
   "items": [
     {
       "_id": "66d2add5550a4144a5a88dfe",
@@ -271,9 +270,9 @@ After a successful request, the API will return the specific details of all batc
 ```
  
 
-The returned result contains multiple fields, where items include the specific details of the batch song tasks, and each song task's specific information is the same as the fields in the previous single task query.
+The returned result contains multiple fields, where items include the specific details of the batch song tasks, and each song task's specific information is the same as the fields above.
 
-- `items`, all specific details of the batch song tasks. It is an array, and each element of the array has the same format as the previous single task query result.
+- `items`, all specific details of the batch song tasks. It is an array, and each element of the array has the same format as the single task query result above.
 - `count`, the number of song tasks in this batch query.
 
 #### CURL
