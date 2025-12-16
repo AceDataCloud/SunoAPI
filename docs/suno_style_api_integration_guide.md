@@ -38,4 +38,4 @@ The result is as follows:
 }
 ```
 
-As can be seen, the `upsampled_tags` field in `data` is the style parameters optimized based on the prompt.
+As can be seen, the `data` field's `upsampled_tags` is the style parameters optimized based on the prompt.
