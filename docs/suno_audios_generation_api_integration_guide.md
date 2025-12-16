@@ -4,15 +4,15 @@ With the widespread application of AI, various AI programs have gradually become
 
 Suno is a professional high-quality AI song and music creation platform. Users only need to input simple text prompts to generate songs with vocals based on genre style and lyrics. This AI music generator is developed by team members from well-known tech companies such as Meta, TikTok, and Kensho, aiming to allow everyone to create wonderful music without any musical instruments.
 
-The following is the progress of model updates:
+Here is the progress of model updates:
 
 | Version | model           | Launch Date  | prompt Limit | style Limit | Maximum Song Duration |
 | ------- | --------------- | ------------ | ------------ | ----------- | --------------------- |
-| v5     | chirp-v5        | 2025.09.23   | 5000         | 1000        | 8 minutes             |
-| v4.5+  | chirp-v4-5-plus | 2025.07.17   | 5000         | 1000        | 8 minutes             |
-| v4.5   | chirp-v4-5      | 2025.05.03   | 5000         | 1000        | 4 minutes             |
-| v4     | chirp-v4        | 2024.12.17   | 3000         | 200         | 150 seconds           |
-| v3.5   | chirp-v3-5      | ---          | 3000         | 200         | 120 seconds           |
+| v5      | chirp-v5        | 2025.09.23   | 5000         | 1000        | 8 minutes             |
+| v4.5+   | chirp-v4-5-plus | 2025.07.17   | 5000         | 1000        | 8 minutes             |
+| v4.5    | chirp-v4-5      | 2025.05.03   | 5000         | 1000        | 4 minutes             |
+| v4      | chirp-v4        | 2024.12.17   | 3000         | 200         | 150 seconds           |
+| v3.5    | chirp-v3-5      | ---          | 3000         | 200         | 120 seconds           |
 
 Suno has recently upgraded its music generation model to version V5. To call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
 
@@ -20,13 +20,13 @@ However, Suno does not officially provide an API. AceDataCloud offers a set of S
 
 ## Application and Usage
 
-To use the Suno Audios API, you can first visit the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for requests:
+To use the Suno Audios API, you can first visit the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for the request:
 
 ![](https://cdn.acedata.cloud/nyq0xz.png)
 
 If you are not logged in or registered, you will be automatically redirected to the login page inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
 
-There is a free quota available for first-time applicants, allowing you to use the API for free.
+There will be a free quota granted upon the first application, allowing you to use the API for free.
 
 ## Basic Usage
 
@@ -45,7 +45,7 @@ Additionally, we set the Request Body, including:
 - `prompt`: the prompt for Suno's official inspiration mode.
 - `model`: the model for this music generation task, default is `chirp-v3-5`, mainly includes: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`, `chirp-v5`.
 - `lyric`: the lyrics content for Suno's official custom mode.
-- `custom`: whether to use custom mode, default is: `false`.
+- `custom`: whether to use the custom mode, default is: `false`.
 - `instrumental`: the pure music option for Suno's official inspiration mode.
 - `title`: the music title for Suno's official custom mode.
 - `style`: the music style for Suno's official custom mode.
@@ -62,7 +62,7 @@ Additionally, we set the Request Body, including:
 - `vocal_gender`: controls the gender of the voice, female `f`, male `m`, effective for models 4.5 and above.
 - `weirdness`: advanced parameter for `weirdness`.
 - `lyric_prompt`: the prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
-- `callback_url`: the URL for callback results.
+- `callback_url`: the URL for receiving callback results.
 
 The generated code is as follows:
 
@@ -155,7 +155,7 @@ After filling it out, the generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/o5haei.png" width="500" class="m-auto"></p>
 
-The corresponding code:
+Corresponding code:
 
 ```shell
 curl -X POST 'https://api.acedata.cloud/suno/audios' \
@@ -204,7 +204,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result will be obtained, as follows:
+Clicking run, you can find a result as follows:
 
 ```json
 {
@@ -216,7 +216,7 @@ Clicking run, you can find that a result will be obtained, as follows:
 }
 ```
 
-Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song to continue generating, and the singer style ID, as shown in the example below:
+Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song you want to continue generating and the singer style ID, as shown in the example below:
 
 <p><img src="https://cdn.acedata.cloud/fukijq.png" width="500" class="m-auto"></p>
 
@@ -249,7 +249,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result will be obtained, as follows:
+Clicking run, you can find a result as follows:
 
 ```json
 {
@@ -291,24 +291,24 @@ It can be seen that the result content is consistent with the above, thus achiev
 
 ## Continue Generation Function
 
-If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song to continue generating. The song ID can be obtained based on the basic usage, and from the above, you can see that the song ID is:
+If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained from the basic usage, as mentioned above, where you can see the song ID is:
 
 ```
 "id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
 ```
 
-> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage above to generate a song.
+> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage mentioned above.
 
-If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the image below:
+If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song you want to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/a0mn5e.png" width="500" class="m-auto"></p>
 
 Next, we must fill in the lyrics and style to customize the generated song, specifying the following content:
 
 - lyric: lyric text
-- custom: set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
+- custom: set to `true`, representing custom generation; this parameter defaults to false, representing using `prompt` generation.
 - style: the style of the song, optional.
-- continue_at: the time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
+- continue_at: the time in seconds to continue the existing audio. For example, 213.5 means continue to 3 minutes and 33.5 seconds.
 
 The example for filling out is as follows:
 
@@ -345,7 +345,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Click to run, and you will find a result as follows:
+Click to run, and you will find that a result is obtained, as follows:
 
 ```json
 {
@@ -397,7 +397,7 @@ For example, if the extended song ID is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, t
 ```json
 {
   "action": "concat",
-  "audio_id": "0a1e1b10-c36a-41c9-9b26d9d25db98"
+  "audio_id": "0a1e1b10-c36a-41c9-9bfb-b26d9d25db98"
 }
 ```
 
@@ -439,12 +439,12 @@ Other parameters remain unchanged, and the returned result will be a complete so
 ```
 
 ## Music Version
-When generating a song based on an existing song, the style of the returned song may not be appropriate. If you want to create a cover of the previously generated song (custom uploaded music is also supported), you need to use the music cover method, and you can specify the following content:
+When generating a song based on an existing song, the style of the returned song may not be appropriate. If you want to create a cover of the originally generated song (custom uploaded music is also supported), you need to use the music cover method, and you can specify the following content:
 
-- action: The content is `cover`, and when it is a cover operation for custom uploaded music, the content must be specified as: `upload_cover`.
+- action: The content is `cover`, and when performing a cover operation on custom uploaded music, it must be specified as: `upload_cover`.
 - audio_id: The ID of the previously generated song.
 
-For example, if the ID of the previously generated song is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then you can set the parameters as follows:
+For example, if the ID of the originally generated song is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then you can set the parameters as follows:
 
 ```json
 {
@@ -455,7 +455,7 @@ For example, if the ID of the previously generated song is: 0a1e1b10-c36a-41c9-9
 }
 ```
 
-With other parameters unchanged, the returned result will be a cover song, which is the result of creating a cover of the previously generated song, as shown below:
+With other parameters unchanged, the returned result will be a cover song, which is the result of creating a cover of the originally generated song, as shown below:
 
 ```json
 {
@@ -493,7 +493,7 @@ With other parameters unchanged, the returned result will be a cover song, which
 }
 ```
 
-The generated result is similar to the above, completing the process of creating a cover of the previously generated song.
+The generated result is similar to the above, completing the process of creating a cover of the originally generated song.
 
 ## Replace Section
 
@@ -508,7 +508,7 @@ When a song is generated and you need to perform a separate operation to replace
 - replace_section_start: The start time of the lyrics corresponding to `lyric` on the timeline.
 - replace_section_end: The end time of the lyrics corresponding to `lyric` on the timeline.
 
-For example, if the ID of the previously generated song is: ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0, then you can set the parameters as follows:
+For example, if the ID of the originally generated song is: ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0, then you can set the parameters as follows:
 
 ```json
 {
@@ -524,7 +524,7 @@ For example, if the ID of the previously generated song is: ade7241b-0357-4a5e-9
 }
 ```
 
-With other parameters unchanged, the returned result will be a song with the replaced section, which is the result of replacing a section of the previously generated song, as shown below:
+With other parameters unchanged, the returned result will be a song with the section replaced, which is the result of replacing a section of the originally generated song, as shown below:
 
 ```json
 {
@@ -567,7 +567,7 @@ With other parameters unchanged, the returned result will be a song with the rep
   ]
 }
 ```
-The generated result is similar to the previous text, thus completing the process of replacing segments of the originally generated song.
+The generated result is similar to the above text, thus completing the process of replacing segments of the originally generated song.
 
 ## Vocal and Instrument Separation
 
@@ -623,7 +623,7 @@ With the above parameters, the result of vocal and instrumental separation can b
 }
 ```
 
-The generated result is similar to the previous text, thus completing the process of vocal and instrumental separation of the originally generated song.
+The generated result is similar to the above text, thus completing the process of vocal and instrumental separation of the originally generated song.
 
 ## Full Track Vocal and Instrument Separation
 
@@ -923,7 +923,7 @@ With the above parameters, the result of full track vocal and instrumental separ
 ```
  
 
-The generated result is similar to the previous text, thus completing the process of separating the original generated song.
+The generated result is similar to the previous text, completing the process of separating the original generated song.
 
 ## Custom Advanced Parameters for Generation
 
@@ -939,7 +939,7 @@ After filling in, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/2dlbo6.png" width="500" class="m-auto"></p>
 
-Corresponding Python code:
+The corresponding Python code:
 
 ```python
 import requests
@@ -1003,7 +1003,7 @@ Clicking run, you can find that a result will be obtained, as follows:
 }
 ```
 
-Thus, custom songs were generated using advanced parameters, and the results are similar to the previous text.
+This way, custom songs are generated using advanced parameters, and the results are similar to the previous text.
 
 ## Add Instrumental Function
 
@@ -1015,7 +1015,7 @@ Then you need to record the `audio_id` after uploading, the specific result is s
 
 <p><img src="https://cdn.acedata.cloud/47t6wj.png" width="500" class="m-auto"></p>
 
-Finally, you get an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and then we need to fill in the following parameters:
+Finally, you get an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and then you need to fill in the following parameters:
 
 - action: The content is `underpainting`.
 - underpainting_start: The starting time for adding accompaniment to the uploaded song, the default value is 0.
@@ -1027,7 +1027,7 @@ After filling in, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/8x1ic6.png" width="500" class="m-auto"></p>
 
-Corresponding Python code:
+The corresponding Python code:
 
 ```python
 import requests
@@ -1090,11 +1090,11 @@ Clicking run, you can find that a result will be obtained, as follows:
 }
 ```
 
-This completes the operation of adding accompaniment to the uploaded a cappella song, with results similar to the above.
+This completes the operation of adding music to the uploaded a cappella song, with results similar to the above.
 
 ## Add Vocals Feature
 
-In August 2025, Suno released the new Add Vocals feature. First, you need to upload a pure instrumental track for Suno to fill in the lyrics and provide vocal singing. You can start by uploading a cappella song without accompaniment to the [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the following operation:
+In August 2025, Suno released the new Add Vocals feature. First, you need to upload a pure instrumental track for Suno to fill in the lyrics and provide vocal singing. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82) to upload a cappella song without accompaniment, as shown in the following operation:
 
 <p><img src="https://cdn.acedata.cloud/fxl914.png" width="500" class="m-auto"></p>
 
@@ -1184,7 +1184,7 @@ This completes the operation of adding vocals to the uploaded a cappella song, w
 
 ## Remaster Feature
 
-In December 2025, Suno released the new Remaster feature, which can regenerate songs but cannot cross accounts. Then you need to fill in the following parameters:
+In December 2025, Suno released the new Remaster feature, which can regenerate songs, but cannot cross accounts. Then you need to fill in the following parameters:
 
 - action: The content is `remaster`.
 - audio_id: The ID of the song to be regenerated.
@@ -1217,7 +1217,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Click to run, and you will find a result like the following:
+Click to run, and you will find that a result is obtained, as follows:
 
 ```json
 {
@@ -1257,7 +1257,7 @@ Click to run, and you will find a result like the following:
 }
 ```
 
-This completes the operation of regenerating the already generated song, with results similar to the above.
+This completes the operation of regenerating the already generated song, and the result is similar to the above.
 
 ## Asynchronous Callback
 
@@ -1267,7 +1267,7 @@ The overall process is: when the client initiates a request, an additional `call
 
 Let's understand how to operate specifically through an example.
 
-First, the Webhook callback is a service that can receive HTTP requests, and developers should replace it with the URL of their own HTTP server. For demonstration purposes, we use a public Webhook sample site https://webhook.site/, where you can open the site to get a Webhook URL, as shown in the image:
+First, the Webhook callback is a service that can receive HTTP requests, and developers should replace it with the URL of their own HTTP server. For demonstration purposes, we use a public Webhook sample site https://webhook.site/, and opening this site will give you a Webhook URL, as shown in the image:
 
 ![](https://cdn.acedata.cloud/fwfqin.png)
 
@@ -1277,7 +1277,7 @@ Next, we can set the `callback_url` field to the above Webhook URL and fill in t
 
 ![](https://cdn.acedata.cloud/x8xql1.png)
 
-Click to run, and you will immediately get a result like the following:
+Click to run, and you will find that an immediate result is obtained, as follows:
 
 ```
 {
@@ -1323,26 +1323,18 @@ The content is as follows:
 }
 ```
 
-You can see that the result contains a `task_id` field, and other fields are similar to the above text. This field can be used to associate tasks.
+You can see that the result contains a `task_id` field, and other fields are similar to the above text, which allows for task association through this field.
 
-## Error Handling
+Of course, we can also obtain results through streaming calls; we just need to set the value of `accept` in the request header to `application/x-ndjson`. Below is an example input as a demonstration:
 
-If an error occurs, you will receive an error message similar to the following:
+<p><img src="https://cdn.acedata.cloud/vgffvk.png" width="500" class="m-auto"></p>
 
-```json
-{
-  "success": false,
-  "error": {
-    "code": "forbidden",
-    "message": "Song Description contained artist name: eminem"
-  },
-  "trace_id": "9bb7c2f4-3b7b-4965-b50a-f663874b1b6f",
-  "task_id": "9bb3a2a6-c438-436d-a9f3-fa466abc077c"
-}
-```
+During the waiting process, we can get the following output:
 
-Below is a list of HTTP Status Codes, `error.code`, and `error.message`:
-
+```json {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
+{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=1f610752-f426-4fd5-89a8-ba2ad0370881","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
+{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp4","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","trace_id":"4440342a-41c4-4140-8bb1-3537a598ca2e","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/d1a3109d-799b-401e-b032-4b501bcf26f3.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":127.16}]}
+{"success":false,"error":{"code":"forbidden","message":"Song Description contained artist name: eminem"},"trace_id":"9bb7c2f4-3b7b-4965-b50a-f663874b1b6f","task_id":"9bb3a2a6-c438-436d-a9f3-fa466abc077c"}
 | Status Code | `error.code`  | `error.message`                                                 |
 | ----------- | ------------- | --------------------------------------------------------------- |
 | 400         | `bad_request` | `The song id does not exist or has been taken offline.`         |
