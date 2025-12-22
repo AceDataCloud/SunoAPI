@@ -6,17 +6,17 @@ This document will provide detailed integration instructions for the Suno Tasks 
 
 ## Application Process
 
-To use the Suno Tasks API, you first need to apply for the corresponding service on the application page [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9), and then copy the task ID from the Suno Audios Generation API, as shown in the image below:
+To use the Suno Tasks API, you first need to apply for the corresponding service on the application page [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9), and then copy the task ID from the Suno Audios Generation API, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/bc6754.png" width="500" class="m-auto"></p>
 
-Finally, go to the Tasks API page [Suno Tasks API](https://platform.acedata.cloud/documents/b0dd9823-0e01-4c75-af83-5a6e2e05bfed) to apply for the corresponding service. After entering the page, click the "Acquire" button, as shown in the image below:
+Finally, go to the Tasks API page [Suno Tasks API](https://platform.acedata.cloud/documents/b0dd9823-0e01-4c75-af83-5a6e2e05bfed) to apply for the corresponding service. After entering the page, click the "Acquire" button, as shown in the image:
 
 ![Application Page](https://cdn.acedata.cloud/rci31i.png)
 
 If you have not logged in or registered, you will be automatically redirected to the [login page](https://platform.acedata.cloud) inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
 
-There will be a free quota granted for the first application, allowing you to use this API for free.
+There will be a free quota granted for the first application, allowing you to use the API for free.
 
 ## Request Example
 
@@ -46,7 +46,7 @@ Set as shown in the image below:
 
 ### Code Example
 
-It can be seen that various language codes have been automatically generated on the right side of the page, as shown in the image below:
+It can be seen that various language codes have been automatically generated on the right side of the page, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/p6vi9o.png" width="500" class="m-auto"></p>
 
@@ -89,7 +89,7 @@ print(response.text)
 
 ### Response Example
 
-After a successful request, the API will return the detailed information of the song task here. For example:
+After a successful request, the API will return the details of the song task here. For example:
 ```json
 {
   "_id": "66d2add5550a4144a5a88dfe",
@@ -139,7 +139,7 @@ After a successful request, the API will return the detailed information of the 
 }
 ```
 
-The response contains multiple fields, the request field is the request body when initiating the task, and the response field is the response body returned after the task is completed. The field descriptions are as follows.
+The response contains multiple fields, the request field is the request body when initiating the task, while the response field is the response body returned after the task is completed. The field descriptions are as follows.
 
 - `id`, the ID of the task that generated this song, used to uniquely identify this song generation task.
 - `request`, the request information in the song task.
@@ -147,7 +147,7 @@ The response contains multiple fields, the request field is the request body whe
 
 ## Batch Query Operation
 
-This is for querying the details of multiple task IDs, and unlike the above, the action needs to be selected as retrieve_batch.
+This is for querying the details of multiple task IDs, and unlike above, the action needs to be selected as retrieve_batch.
 
 **Request Body** includes:
 
@@ -160,7 +160,7 @@ Set as shown in the image below:
 
 ### Code Example
 
-It can be seen that various languages' code has been automatically generated on the right side, as shown in the image below:
+It can be seen that various language codes have been automatically generated on the right side of the page, as shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/1yk792.png" width="500" class="m-auto"></p>
 
@@ -168,7 +168,7 @@ Some code examples are as follows:
 
 ### Response Example
 
-After a successful request, the API will return the specific details of all batch song tasks. For example:
+After a successful request, the API will return the specific detail information of all batch song tasks. For example:
 
 ```json {
   "items": [
@@ -252,7 +252,7 @@ After a successful request, the API will return the specific details of all batc
             "id": "8b44fdf1-3b88-47ac-a351-7c4b4de60549",
             "title": "La La La",
             "image_url": "https://cdn2.suno.ai/image_8b44fdf1-3b88-47ac-a351-7c4b4de60549.jpeg",
-            "lyric": "[Verse]\nI wake up every morning\nLooking out the window\nSunshine shining bright\nBeginning of a new day\n[Verse 2]\nThe birds sing joyfully\nI dance in the garden\nSurrounded by beautiful flowers\nEvery moment here is mine\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life\n[Verse 3]\nThe sea blue and vast\nWaves crash sweetly\nWe walk on beaches\nRegardless of the weather\n[Bridge]\nCapture every hour\nHear my songs\nFeel free\nHappy\nDance to the rhythm now\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life",
+            "lyric": "[Verse]\nI wake up every morning\nLooking through the window\nSunshine shining bright\nBeginning of a new day\n[Verse 2]\nThe birds sing joyfully\nI dance in the garden\nSurrounded by beautiful flowers\nEvery moment here is mine\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life\n[Verse 3]\nThe sea blue and vast\nWaves crash sweetly\nWe walk on beaches\nRegardless of the weather\n[Bridge]\nCapture every hour\nHear my songs\nFeel free\nHappy\nDance to the rhythm now\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life",
             "audio_url": "https://cdn1.suno.ai/8b44fdf1-3b88-47ac-a351-7c4b4de60549.mp3",
             "video_url": "https://cdn1.suno.ai/8b44fdf1-3b88-47ac-a351-7c4b4de60549.mp4",
             "created_at": "2024-08-31T05:55:09.345Z",
@@ -270,9 +270,9 @@ After a successful request, the API will return the specific details of all batc
 ```
  
 
-The returned result contains multiple fields, where items include the specific details of the batch song tasks, and each song task's specific information is the same as the fields in the previous single task query.
+The returned result contains multiple fields, where items include the specific details of the batch song tasks, and each song task's specific information is the same as the fields above.
 
-- `items`, all specific details of the batch song tasks. It is an array, and each element of the array has the same format as the previous single task query result.
+- `items`, all specific details of the batch song tasks. It is an array, and each element of the array has the same format as the return result of querying a single task.
 - `count`, the number of song tasks in this batch query.
 
 #### CURL
