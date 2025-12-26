@@ -21,9 +21,9 @@ Here is the progress of model updates:
 | v4      | chirp-v4        | 2024.12.17     | 3000         | 200         | 150 seconds           |
 | v3.5    | chirp-v3-5      | ---            | 3000         | 200         | 120 seconds           |
 
-Suno has recently upgraded its music generation model to version V5, and to call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
+Suno has recently upgraded its music generation model to version V5. To call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
 
-However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno interface, making it convenient and quick to generate desired music.
+However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno interface, making it easy and quick to generate the desired music.
 
 ### Application and Usage
 
@@ -33,17 +33,17 @@ To use the Suno Audios API, you can first visit the [Suno Audios Generation API]
 
 If you are not logged in or registered, you will be automatically redirected to the login page inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
 
-Upon first application, there will be a free quota provided, allowing you to use the API for free.
+Upon first application, there will be a free quota available for use of the API.
 
 ### Basic Usage
 
-If you want to generate a song, you can input any text, for example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
+To generate songs, you can input any text. For example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/2kuuup.png" width="500" class="m-auto"></p>
 
 Here we can see that we have set the Request Headers, including:
 
-- `accept`: the format of the response result you want to receive, here filled as `application/json`, which means JSON format.
+- `accept`: the format of the response result you want to receive, filled in as `application/json`, which means JSON format.
 - `authorization`: the key to call the API, which can be directly selected after application.
 
 Additionally, we set the Request Body, including:
@@ -66,10 +66,10 @@ Additionally, we set the Request Body, including:
 - `style_influence`: advanced parameter for `style_influence`.
 - `replace_section_end`: the final time for the replacement segment.
 - `replace_section_start`: the starting time for the replacement segment.
-- `vocal_gender`: control for male and female voices, female `f`, male `m`, effective for models 4.5 and above.
+- `vocal_gender`: controls the gender of the voice, female `f`, male `m`, effective for models 4.5 and above.
 - `weirdness`: advanced parameter for `weirdness`.
 - `lyric_prompt`: the prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
-- `callback_url`: the URL for the callback result.
+- `callback_url`: the URL for callback results.
 
 The generated code is as follows:
 
@@ -150,7 +150,7 @@ At this time, the `lyric` field can accept content similar to the following:
 Next, we need to customize the generation of songs based on the lyrics, title, and style, and we can specify the following content:
 
 - lyric: Lyrics text
-- custom: Fill in as `true`, indicating custom generation; this parameter defaults to false, indicating using `prompt` for generation.
+- custom: Fill in as `true`, indicating custom generation; this parameter defaults to false, indicating the use of prompt generation.
 - title: Title of the song.
 - style: Style of the song, optional.
 
@@ -158,7 +158,7 @@ An example of filling in is as follows:
 
 <p><img src="https://cdn.acedata.cloud/qp3iba.png" width="500" class="m-auto"></p>
 
-After filling it out, the code generated automatically is as follows:
+After filling it out, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/o5haei.png" width="500" class="m-auto"></p>
 
@@ -189,7 +189,7 @@ After filling it out, the automatically generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/a5g0nj.png" width="500" class="m-auto"></p>
 
-Corresponding Python code:
+The corresponding Python code:
 
 ```python
 import requests
@@ -211,7 +211,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find a result as follows:
+Clicking run, you can find that a result will be obtained, as follows:
 
 ```json
 {
@@ -231,7 +231,7 @@ After filling it out, the automatically generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/5uzk9d.png" width="500" class="m-auto"></p>
 
-Corresponding Python code:
+The corresponding Python code:
 
 ```python
 import requests
@@ -256,7 +256,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find a result as follows:
+Clicking run, you can find that a result will be obtained, as follows:
 
 ```json
 {
@@ -294,28 +294,28 @@ Clicking run, you can find a result as follows:
 }
 ```
 
-As you can see, the result content is consistent with the above, thus achieving the function of generating songs using the singer's style.
+It can be seen that the result content is consistent with the above text, thus achieving the function of generating songs using the singer's style.
 
 ### Continue Generation Function
 
-If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained from the basic usage, and as mentioned above, you can see the song ID is:
+If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained based on the basic usage, and from the above text, you can see that the song ID is:
 
 ```
 "id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
 ```
 
-> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage mentioned above.
+> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage above to generate a song.
 
 If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song you want to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/a0mn5e.png" width="500" class="m-auto"></p>
 
-Next, you must fill in the lyrics and style to customize the generated song, specifying the following content:
+Next, we must fill in the lyrics and style to customize the generated song, specifying the following content:
 
 - lyric: Lyrics text
 - custom: Set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
 - style: The style of the song, optional.
-- continue_at: The time in seconds to continue the existing audio. For example, 213.5 means continue to 3 minutes and 33.5 seconds.
+- continue_at: The time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
 
 An example of filling it out is as follows:
 
@@ -325,7 +325,7 @@ After filling it out, the automatically generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/wwpw78.png" width="500" class="m-auto"></p>
 
-Corresponding Python code:
+The corresponding Python code:
 ```python
 import requests
 
@@ -352,7 +352,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result will be obtained, as follows:
+Click to run, and you will find a result as follows:
 
 ```json
 {
@@ -390,7 +390,7 @@ Clicking run, you can find that a result will be obtained, as follows:
 }
 ```
 
-It can be seen that the result content is consistent with the above text, thus achieving the function of continuing the song generation.
+It can be seen that the result content is consistent with the above, thus achieving the function of continuing the song generation.
 
 
 ## More
