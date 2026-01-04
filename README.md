@@ -56,7 +56,7 @@ Additionally, we set the Request Body, including:
 - `instrumental`: the pure music option for the inspiration mode from Suno.
 - `title`: the music title for the custom mode from Suno.
 - `style`: the music style for the custom mode from Suno.
-- `style_negative`: the excluded style for the custom mode from Suno.
+- `style_negative`: the excluded styles for the custom mode from Suno.
 - `audio_weight`: the proportion of the uploaded reference audio, range 0-1, the larger the more it relies on the reference audio.
 - `audio_id`: the ID of the reference music.
 - `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
@@ -114,7 +114,7 @@ You can click the "Try" button to directly test the API, and after waiting for 1
 }
 ```
 
-It can be seen that we have obtained the content of two songs, including the title, preview image, lyrics, audio, video, and other content.
+You can see that we have obtained the content of two songs, including the title, preview image, lyrics, audio, video, and other content.
 
 The field descriptions are as follows:
 
@@ -150,7 +150,7 @@ At this time, the `lyric` field can accept content similar to the following:
 Next, we need to customize the generation of songs based on the lyrics, title, and style, and we can specify the following content:
 
 - lyric: Lyrics text
-- custom: Fill in as `true`, indicating custom generation; this parameter defaults to false, indicating using `prompt` for generation.
+- custom: Fill in as `true`, representing custom generation; this parameter defaults to false, representing the use of `prompt` generation.
 - title: Title of the song.
 - style: Style of the song, optional.
 
@@ -189,7 +189,7 @@ After filling it out, the automatically generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/a5g0nj.png" width="500" class="m-auto"></p>
 
-The corresponding Python code:
+Corresponding Python code:
 
 ```python
 import requests
@@ -223,7 +223,7 @@ Clicking run, you can find that a result will be obtained, as follows:
 }
 ```
 
-Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song to continue generating, and the singer style ID, as shown in the example below:
+Using the above `audio_id` and `persona_id` as `97efc9f4-0e8d-4b3e-88df-14568fa1b11f` and `e0d7319e-aa2a-44cb-b00a-916218d7cb0b` for this example data. Then you can set the parameter `action` to `artist_consistency`, and input the ID of the song you want to continue generating and the singer style ID, as shown in the example below:
 
 <p><img src="https://cdn.acedata.cloud/fukijq.png" width="500" class="m-auto"></p>
 
@@ -231,7 +231,7 @@ After filling it out, the automatically generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/5uzk9d.png" width="500" class="m-auto"></p>
 
-The corresponding Python code:
+Corresponding Python code:
 
 ```python
 import requests
@@ -294,26 +294,26 @@ Clicking run, you can find that a result will be obtained, as follows:
 }
 ```
 
-It can be seen that the result content is consistent with the above, thus achieving the function of generating songs using the singer's style.
+It can be seen that the result content is consistent with the above text, thus achieving the function of generating songs using the singer's style.
 
 ### Continue Generation Function
 
-If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song to continue generating. The song ID can be obtained based on the basic usage, as mentioned above, where you can see the song ID is:
+If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song you want to continue generating. The song ID can be obtained based on the basic usage, and from the above text, you can see that the song ID is:
 
 ```
 "id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
 ```
 
-> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage mentioned above to generate a song.
+> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage above to generate a song.
 
-If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the image below:
+If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song you want to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/a0mn5e.png" width="500" class="m-auto"></p>
 
 Next, we must fill in the lyrics and style to customize the generated song, specifying the following content:
 
 - lyric: lyric text
-- custom: set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
+- custom: set to `true`, representing custom generation; this parameter defaults to false, representing using `prompt` generation.
 - style: the style of the song, optional.
 - continue_at: the time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
 
@@ -325,7 +325,7 @@ After filling it out, the automatically generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/wwpw78.png" width="500" class="m-auto"></p>
 
-The corresponding Python code:
+Corresponding Python code:
 ```python
 import requests
 
