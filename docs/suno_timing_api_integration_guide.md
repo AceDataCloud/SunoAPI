@@ -1,6 +1,6 @@
 # Suno Timing API Integration Instructions
 
-SUNO allows us to create secondary works from generated music, obtaining the lyrics and audio timeline of the music. This document explains the integration method of the related API.
+Suno allows us to create secondary works from generated music, obtaining the lyrics and audio timeline of the music. This document explains the integration method for the related API.
 
 This API has only one input parameter, which is `audio_id`, the official generated song ID.
 
@@ -740,92 +740,92 @@ The result is as follows:
         "p_align": 0.819
       },
 {
-        "word": "and ",
+        "word": "y ",
         "success": true,
         "start_s": 150.52,
         "end_s": 150.88,
         "p_align": 0.036
       }, {
-        "word": "ours\n",
+        "word": "nuestro\n",
         "success": true,
         "start_s": 150.88,
         "end_s": 151.88,
         "p_align": 0
       }, {
-        "word": "Sing ",
+        "word": "Cantar ",
         "success": true,
         "start_s": 151.88,
         "end_s": 152.23,
         "p_align": 0.991
       }, {
-        "word": "the ",
+        "word": "las ",
         "success": true,
         "start_s": 152.23,
         "end_s": 152.71,
         "p_align": 0.971
       }, {
-        "word": "songs ",
+        "word": "canciones ",
         "success": true,
         "start_s": 152.71,
         "end_s": 153.15,
         "p_align": 0.97
       }, {
-        "word": "of ",
+        "word": "de ",
         "success": true,
         "start_s": 153.15,
         "end_s": 153.63,
         "p_align": 0.997
       }, {
-        "word": "love ",
+        "word": "amor ",
         "success": true,
         "start_s": 153.63,
         "end_s": 154.07,
         "p_align": 0.998
       }, {
-        "word": "and ",
+        "word": "y ",
         "success": true,
         "start_s": 154.07,
         "end_s": 154.55,
         "p_align": 0.997
       }, {
-        "word": "light\n",
+        "word": "luz\n",
         "success": true,
         "start_s": 154.55,
         "end_s": 155.26,
         "p_align": 0.498
       }, {
-        "word": "Christmas ",
+        "word": "Navidad ",
         "success": true,
         "start_s": 155.26,
         "end_s": 156.18,
         "p_align": 0.988
       }, {
-        "word": "glows ",
+        "word": "brilla ",
         "success": true,
         "start_s": 156.18,
         "end_s": 157.02,
         "p_align": 0.01
       }, {
-        "word": "so ",
+        "word": "tan ",
         "success": true,
         "start_s": 157.02,
         "end_s": 157.46,
         "p_align": 0.998
       }, {
-        "word": "pure ",
+        "word": "pura ",
         "success": true,
         "start_s": 157.46,
         "end_s": 157.94,
         "p_align": 0.996
       }, {
-        "word": "and ",
+        "word": "y ",
         "success": true,
         "start_s": 157.94,
         "end_s": 158.38,
         "p_align": 0.986
       },
       {
-        "word": "bright",
+        "word": "brillante",
         "success": true,
         "start_s": 158.38,
         "end_s": 158.54,
@@ -1409,7 +1409,7 @@ The result is as follows:
     0.17135,
 aligned_words
 
-It can be seen that the `aligned_words` field of `data` is an array of objects, each representing a word or phrase with time information. The meanings of the other fields in `aligned_words` are as follows:
+It can be seen that the `aligned_words` field of `data` is an array of objects, each object represents a word or phrase with time information. The meanings of the other fields in `aligned_words` are as follows:
 `word`: The actual word or phrase in the lyrics
 `success`: A boolean value indicating whether the alignment of this word was successful
 `start_s`: The start time of the word
