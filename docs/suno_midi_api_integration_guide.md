@@ -1,6 +1,6 @@
 # Suno MIDI Generation API Integration Instructions
 
-SUNO allows us to create secondary works from the generated music and obtain the MIDI of the music. This document explains the integration method of the related API.
+Suno allows us to create secondary works from the generated music and obtain the MIDI of the music. This document explains the integration method of the related API.
 
 The core input parameter of this API is `audio_id`, which is the official song ID generated, usually corresponding to the full track separated song ID (where the parameter `action` is `all_stems` in [song generation](https://platform.acedata.cloud/documents/suno-audios)). Optionally, it also supports `callback_url` for asynchronous callback addresses.
 
