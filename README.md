@@ -23,11 +23,11 @@ Here is the progress of model updates:
 
 Suno has recently upgraded its music generation model to version V5. To call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
 
-However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno integration, making it easy and quick to generate the desired music.
+However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno interface, making it easy and quick to generate desired music.
 
 ### Application and Usage
 
-To use the Suno Audios API, you can first visit the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for the request:
+To use the Suno Audios API, you can first visit the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for requests:
 
 ![](https://cdn.acedata.cloud/nyq0xz.png)
 
@@ -37,7 +37,7 @@ Upon first application, there will be a free quota available for use of the API.
 
 ### Basic Usage
 
-If you want to generate a song, you can input any text, for example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
+If you have any song ideas, you can input a piece of text freely. For example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/2kuuup.png" width="500" class="m-auto"></p>
 
@@ -66,7 +66,7 @@ Additionally, we set the Request Body, including:
 - `style_influence`: advanced parameter for `style_influence`.
 - `replace_section_end`: the final time for the replacement segment.
 - `replace_section_start`: the starting time for the replacement segment.
-- `vocal_gender`: control for male and female voices, female `f`, male `m`, effective for models 4.5 and above.
+- `vocal_gender`: controls the gender of the voice, female `f`, male `m`, effective for models 4.5 and above.
 - `weirdness`: advanced parameter for `weirdness`.
 - `lyric_prompt`: the prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
 - `callback_url`: the URL for callback results.
@@ -75,7 +75,7 @@ The generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/1xehwl.png" width="500" class="m-auto"></p>
 
-You can click the "Try" button to directly test the API, wait for 1-2 minutes, and the result is as follows:
+You can click the "Try" button to directly test the API, and after waiting for 1-2 minutes, the result is as follows:
 ```json
 {
   "success": true,
@@ -150,7 +150,7 @@ At this time, the `lyric` field can accept content similar to the following:
 Next, we need to customize the generation of songs based on the lyrics, title, and style, and we can specify the following content:
 
 - lyric: Lyrics text
-- custom: Fill in as `true`, indicating custom generation; this parameter defaults to false, indicating the use of `prompt` generation.
+- custom: Fill in as `true`, representing custom generation; this parameter defaults to false, representing the use of `prompt` generation.
 - title: Title of the song.
 - style: Style of the song, optional.
 
@@ -211,7 +211,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find a result as follows:
+Clicking run, you can find that a result is obtained, as follows:
 
 ```json
 {
@@ -256,7 +256,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find a result as follows:
+Clicking run, you can find that a result is obtained, as follows:
 
 ```json
 {
@@ -298,13 +298,13 @@ It can be seen that the result content is consistent with the above, thus achiev
 
 ### Continue Generation Function
 
-If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song to continue generating. The song ID can be obtained based on the basic usage, as mentioned above, you can see that the song ID is:
+If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song to continue generating. The song ID can be obtained based on the basic usage, and from the above, you can see that the song ID is:
 
 ```
 "id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
 ```
 
-> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage mentioned above to generate a song.
+> Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage above to generate a song.
 
 If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the image below:
 
@@ -317,7 +317,7 @@ Next, we must fill in the lyrics and style to customize the generated song, spec
 - style: The style of the song, optional.
 - continue_at: The time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
 
-An example of filling it out is as follows:
+An example of filling it out is shown below:
 
 <p><img src="https://cdn.acedata.cloud/zp9s42.png" width="500" class="m-auto"></p>
 
