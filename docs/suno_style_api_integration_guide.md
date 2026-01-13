@@ -2,7 +2,7 @@
 
 SUNO allows us to input prompts to generate enhanced song styles. This document explains the integration method for the related API.
 
-This API has only one input parameter, which is `prompt`, the style prompt that needs to be optimized.
+The API has only one input parameter, which is `prompt`, the style prompt that needs to be optimized.
 
 Here, the `prompt` we input is `A song for Christmas`.
 
@@ -38,4 +38,4 @@ The result is as follows:
 }
 ```
 
-As can be seen, the `data` field's `upsampled_tags` is the style parameters optimized based on the prompt.
+As we can see, the `upsampled_tags` field in `data` is the style parameters optimized based on the prompt.
