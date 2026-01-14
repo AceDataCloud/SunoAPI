@@ -4,7 +4,7 @@ SUNO allows us to upload reference audio for secondary creation. This document e
 
 This API has only one input parameter, which is `audio_url`. It is a publicly accessible CDN address that supports the mp3 suffix.
 
-The `audio_url` we input is `https://cdn.acedata.cloud/suno_demo.mp3`, which is a publicly accessible CDN address.
+Here, the `audio_url` we input is `https://cdn.acedata.cloud/suno_demo.mp3`, which is a publicly accessible CDN address.
 
 ```bash
 curl -X POST 'https://api.acedata.cloud/suno/upload' \
