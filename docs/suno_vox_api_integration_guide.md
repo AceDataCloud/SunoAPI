@@ -4,7 +4,7 @@ SUNO allows us to create a new version of Persona-v2-vox: singer style, which di
 
 First, we need to use the API to obtain the `vox_audio_id` parameter value. This API can accept multiple input parameters, such as `audio_id`, `vocal_start`, and `vocal_end`, which refer to the song ID and the selected time range.
 
-Here, the `audio_id` we input is `42599b24-fb14-4cd3-a444-e15ffde3661b`.
+The `audio_id` we are inputting is `42599b24-fb14-4cd3-a444-e15ffde3661b`.
 
 ```python
 import requests
@@ -99,7 +99,7 @@ The result is as follows:
 }
 ```
 
-As we can see, the `id` field in `data` is the `vox_audio_id` we want, and then we go to the [Persona API](https://platform.acedata.cloud/documents/78bb6c62-6ce0-490f-a7df-e89d80ec0583) to create the new version of Persona-v2-vox: singer style, with the specific input as follows:
+As we can see, the `id` field in `data` is the `vox_audio_id` we want, and then we go to the [Persona API](https://platform.acedata.cloud/documents/78bb6c62-6ce0-490f-a7df-e89d80ec0583) to create the new version of Persona-v2-vox: singer style, with the specific input as shown below:
 
 ```python
 import requests
@@ -136,4 +136,4 @@ After the call, we get the following result:
 }
 ```
 
-Then we can create songs using the new version of Persona-v2-vox: singer style based on the `persona_id` value above, and the specific creation method is consistent with the [Suno Song Generation API Integration Instructions](https://platform.acedata.cloud/documents/suno-audios-integration#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%8C%E6%89%8B%E9%A3%8E%E6%A0%BC%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD), and finally, we can use the Suno Vox API to create songs in the new version of Persona-v2-vox: singer style.
+Then we can create songs using the new version of Persona-v2-vox: singer style based on the `persona_id` value above, and the specific creation method is consistent with the [Suno Song Generation API Integration Instructions](https://platform.acedata.cloud/documents/suno-audios-integration#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%8C%E6%89%8B%E9%A3%8E%E6%A0%BC%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD). Finally, we can use the Suno Vox API to create songs in the new version of Persona-v2-vox: singer style.
