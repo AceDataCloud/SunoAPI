@@ -1,6 +1,6 @@
 # Suno Timing API Integration Instructions
 
-SUNO allows us to create secondary works from generated music, obtaining the lyrics and audio timeline of the music. This document explains the integration method for the related API.
+SUNO allows us to create secondary works from generated music, obtaining the lyrics and audio timeline of the music. This document explains the integration method for the relevant API.
 
 This API has only one input parameter, which is `audio_id`, the official generated song ID.
 
@@ -244,7 +244,8 @@ The result is as follows:
         "start_s": 28.29,
         "end_s": 28.72,
         "p_align": 0.986
-      },
+      }, 
+```
 {
         "word": "dreams ",
         "success": true,
@@ -740,19 +741,19 @@ The result is as follows:
         "p_align": 0.819
       },
 {
-        "word": "and ",
+        "word": "y ",
         "success": true,
         "start_s": 150.52,
         "end_s": 150.88,
         "p_align": 0.036
       }, {
-        "word": "ours\n",
+        "word": "nu\n",
         "success": true,
         "start_s": 150.88,
         "end_s": 151.88,
         "p_align": 0
       }, {
-        "word": "Sing ",
+        "word": "Sang ",
         "success": true,
         "start_s": 151.88,
         "end_s": 152.23,
@@ -764,7 +765,7 @@ The result is as follows:
         "end_s": 152.71,
         "p_align": 0.971
       }, {
-        "word": "songs ",
+        "word": "melodies ",
         "success": true,
         "start_s": 152.71,
         "end_s": 153.15,
@@ -776,7 +777,7 @@ The result is as follows:
         "end_s": 153.63,
         "p_align": 0.997
       }, {
-        "word": "love ",
+        "word": "affection ",
         "success": true,
         "start_s": 153.63,
         "end_s": 154.07,
@@ -788,19 +789,19 @@ The result is as follows:
         "end_s": 154.55,
         "p_align": 0.997
       }, {
-        "word": "light\n",
+        "word": "radiance\n",
         "success": true,
         "start_s": 154.55,
         "end_s": 155.26,
         "p_align": 0.498
       }, {
-        "word": "Christmas ",
+        "word": "Yule ",
         "success": true,
         "start_s": 155.26,
         "end_s": 156.18,
         "p_align": 0.988
       }, {
-        "word": "glows ",
+        "word": "shines ",
         "success": true,
         "start_s": 156.18,
         "end_s": 157.02,
@@ -812,7 +813,7 @@ The result is as follows:
         "end_s": 157.46,
         "p_align": 0.998
       }, {
-        "word": "pure ",
+        "word": "clear ",
         "success": true,
         "start_s": 157.46,
         "end_s": 157.94,
@@ -825,7 +826,7 @@ The result is as follows:
         "p_align": 0.986
       },
       {
-        "word": "bright",
+        "word": "luminous",
         "success": true,
         "start_s": 158.38,
         "end_s": 158.54,
