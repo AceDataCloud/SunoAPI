@@ -244,7 +244,8 @@ The result is as follows:
         "start_s": 28.29,
         "end_s": 28.72,
         "p_align": 0.986
-      },
+      }, 
+```
 {
         "word": "dreams ",
         "success": true,
@@ -740,7 +741,7 @@ The result is as follows:
         "p_align": 0.819
       },
 {
-        "word": "and ",
+        "word": "y ",
         "success": true,
         "start_s": 150.52,
         "end_s": 150.88,
@@ -1409,7 +1410,7 @@ The result is as follows:
       0.158
 aligned_words
 
-It can be seen that the `aligned_words` field of `data` is an array of objects, each object represents a word or phrase with time information. The meanings of the other fields in `aligned_words` are as follows:
+It can be seen that the `aligned_words` field of `data` is an array of objects, each representing a word or phrase with time information. The meanings of the other fields in `aligned_words` are as follows:
 `word`: The actual word or phrase in the lyrics
 `success`: A boolean value indicating whether the alignment of this word was successful
 `start_s`: The start time of the word
