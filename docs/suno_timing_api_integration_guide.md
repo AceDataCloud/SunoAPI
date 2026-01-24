@@ -740,92 +740,92 @@ The result is as follows:
         "p_align": 0.819
       },
 {
-        "word": "y ",
+        "word": "and ",
         "success": true,
         "start_s": 150.52,
         "end_s": 150.88,
         "p_align": 0.036
       }, {
-        "word": "nuestro\n",
+        "word": "ours\n",
         "success": true,
         "start_s": 150.88,
         "end_s": 151.88,
         "p_align": 0
       }, {
-        "word": "Cantar ",
+        "word": "Sing ",
         "success": true,
         "start_s": 151.88,
         "end_s": 152.23,
         "p_align": 0.991
       }, {
-        "word": "las ",
+        "word": "the ",
         "success": true,
         "start_s": 152.23,
         "end_s": 152.71,
         "p_align": 0.971
       }, {
-        "word": "canciones ",
+        "word": "songs ",
         "success": true,
         "start_s": 152.71,
         "end_s": 153.15,
         "p_align": 0.97
       }, {
-        "word": "de ",
+        "word": "of ",
         "success": true,
         "start_s": 153.15,
         "end_s": 153.63,
         "p_align": 0.997
       }, {
-        "word": "amor ",
+        "word": "love ",
         "success": true,
         "start_s": 153.63,
         "end_s": 154.07,
         "p_align": 0.998
       }, {
-        "word": "y ",
+        "word": "and ",
         "success": true,
         "start_s": 154.07,
         "end_s": 154.55,
         "p_align": 0.997
       }, {
-        "word": "luz\n",
+        "word": "light\n",
         "success": true,
         "start_s": 154.55,
         "end_s": 155.26,
         "p_align": 0.498
       }, {
-        "word": "Navidad ",
+        "word": "Christmas ",
         "success": true,
         "start_s": 155.26,
         "end_s": 156.18,
         "p_align": 0.988
       }, {
-        "word": "brilla ",
+        "word": "glows ",
         "success": true,
         "start_s": 156.18,
         "end_s": 157.02,
         "p_align": 0.01
       }, {
-        "word": "tan ",
+        "word": "so ",
         "success": true,
         "start_s": 157.02,
         "end_s": 157.46,
         "p_align": 0.998
       }, {
-        "word": "pura ",
+        "word": "pure ",
         "success": true,
         "start_s": 157.46,
         "end_s": 157.94,
         "p_align": 0.996
       }, {
-        "word": "y ",
+        "word": "and ",
         "success": true,
         "start_s": 157.94,
         "end_s": 158.38,
         "p_align": 0.986
       },
       {
-        "word": "brillante",
+        "word": "bright",
         "success": true,
         "start_s": 158.38,
         "end_s": 158.54,
