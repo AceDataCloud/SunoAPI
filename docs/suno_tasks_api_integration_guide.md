@@ -6,17 +6,17 @@ This document will provide detailed integration instructions for the Suno Tasks 
 
 ## Application Process
 
-To use the Suno Tasks API, you first need to apply for the corresponding service on the application page [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9), and then copy the task ID from the Suno Audios Generation API, as shown in the image below:
+To use the Suno Tasks API, you first need to apply for the corresponding service on the application page [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9), and then copy the task ID from the Suno Audios Generation API, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/bc6754.png" width="500" class="m-auto"></p>
 
-Finally, go to the Tasks API page [Suno Tasks API](https://platform.acedata.cloud/documents/b0dd9823-0e01-4c75-af83-5a6e2e05bfed) to apply for the corresponding service. After entering the page, click the "Acquire" button, as shown in the image below:
+Finally, go to the Tasks API page [Suno Tasks API](https://platform.acedata.cloud/documents/b0dd9823-0e01-4c75-af83-5a6e2e05bfed) to apply for the corresponding service. After entering the page, click the "Acquire" button, as shown in the image:
 
 ![Application Page](https://cdn.acedata.cloud/rci31i.png)
 
 If you are not logged in or registered, you will be automatically redirected to the [login page](https://platform.acedata.cloud) inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
 
-There will be a free quota offered for the first application, allowing you to use the API for free.
+There will be a free quota granted for the first application, allowing you to use the API for free.
 
 ## Request Example
 
@@ -46,7 +46,7 @@ Set as shown in the image below:
 
 ### Code Example
 
-It can be seen that various language codes have been automatically generated on the right side of the page, as shown in the image below:
+It can be seen that various language codes have been automatically generated on the right side of the page, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/p6vi9o.png" width="500" class="m-auto"></p>
 
@@ -160,7 +160,7 @@ Set as shown in the image below:
 
 ### Code Example
 
-It can be seen that various languages' code has been automatically generated on the right side, as shown in the image below:
+It can be seen that various languages' code has been automatically generated on the right side, as shown in the image:
 
 <p><img src="https://cdn.acedata.cloud/1yk792.png" width="500" class="m-auto"></p>
 
@@ -168,7 +168,7 @@ Some code examples are as follows:
 
 ### Response Example
 
-After a successful request, the API will return the specific details of all batch song tasks. For example:
+After a successful request, the API will return the specific detail information of all batch song tasks. For example:
 
 ```json
 {
@@ -271,9 +271,9 @@ After a successful request, the API will return the specific details of all batc
 ```
  
 
-The returned result contains multiple fields, where items include the specific details of the batch song tasks, and each song task's specific information is the same as the fields in the previous single task return result.
+The returned result contains multiple fields, where items include the specific details of the batch song tasks, and each song task's specific information is the same as the format of the single task return result above. The field information is as follows.
 
-- `items`, all specific details of the batch song tasks. It is an array, and each element of the array has the same format as the previous query single task return result.
+- `items`, all specific details of the batch song tasks. It is an array, and each element of the array has the same format as the return result of querying a single task above.
 - `count`, the number of song tasks in this batch query.
 
 #### CURL
