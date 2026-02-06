@@ -1,8 +1,8 @@
 # Suno MP4 API Integration Instructions
 
-SUNO allows us to obtain the officially generated MP4 link for the generated music. This document explains the integration method for the related API.
+SUNO allows us to obtain the official generated MP4 link for the generated music. This document explains the integration method for the related API.
 
-This API has only one input parameter, which is `audio_id`, the official song ID generated.
+This API has only one input parameter, which is `audio_id`, the official generated song ID.
 
 The `audio_id` we input here is `275113ab-fe5c-4bca-a33c-0cca96b39fa6`.
 
