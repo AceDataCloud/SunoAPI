@@ -1,6 +1,6 @@
 # Suno Music Generation API
 
-This service implements the integration of Suno AI and can be used to generate music, lyrics, and other content.
+Suno AI music and lyrics generation service.
 
 API home page: [Ace Data Cloud - Suno Music Generation](https://platform.acedata.cloud/services/f2b646d8-3cfd-46ef-969a-1ea9eebde329)
 
