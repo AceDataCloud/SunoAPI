@@ -1,10 +1,10 @@
 # Suno Upload Reference Audio API Integration Instructions
 
-SUNO allows us to upload reference audio for secondary creation. This document explains the integration method of the related API.
+SUNO allows us to upload reference audio for secondary creation. This document explains the integration method for the related API.
 
 This API has only one input parameter, which is `audio_url`, a publicly accessible CDN address that supports the mp3 suffix.
 
-Here, the `audio_url` we input is `https://cdn.acedata.cloud/suno_demo.mp3`, which is a publicly accessible CDN address.
+The `audio_url` we input is `https://cdn.acedata.cloud/suno_demo.mp3`, which is a publicly accessible CDN address.
 
 ```bash
 curl -X POST 'https://api.acedata.cloud/suno/upload' \
