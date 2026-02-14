@@ -24,4 +24,4 @@ Click to run, and the result is as follows:
 
 As you can see, the `text` field in `data` contains the lyrics information.
 
-With the lyrics in hand, we can then use the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) to generate a customized song.
+With the lyrics in hand, we can then use the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) to generate a custom song.
