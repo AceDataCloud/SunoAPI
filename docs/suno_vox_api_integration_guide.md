@@ -136,4 +136,4 @@ After the call, we get the following result:
 }
 ```
 
-Then we can create songs using the new version of Persona-v2-vox: singer style based on the `persona_id` value above, and the specific creation method is consistent with the [Suno Song Generation API Integration Instructions](https://platform.acedata.cloud/documents/suno-audios-integration#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%8C%E6%89%8B%E9%A3%8E%E6%A0%BC%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD). Finally, we can use the Suno Vox API to create songs in the new version of Persona-v2-vox: singer style.
+Then we can create songs using the new version of Persona-v2-vox: singer style based on the `persona_id` value above, and the specific creation method is consistent with the [Suno Song Generation API Integration Instructions](https://platform.acedata.cloud/documents/suno-audios-integration#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%8C%E6%89%8B%E9%A3%8E%E6%A0%BC%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD), and finally, we can use the Suno Vox API to create songs in the new version of Persona-v2-vox: singer style.
