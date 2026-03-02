@@ -740,7 +740,7 @@ The result is as follows:
         "p_align": 0.819
       },
 {
-        "word": "and ",
+        "word": "y ",
         "success": true,
         "start_s": 150.52,
         "end_s": 150.88,
