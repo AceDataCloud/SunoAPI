@@ -22,7 +22,7 @@ There is a free quota available for first-time applicants, allowing you to use t
 
 The Suno Tasks API can be used to query the results of both the Suno Audios Generation API and the Suno Lyrics Generation API. For information on how to use the Suno Audios Generation API, please refer to the document [Suno Audios Generation API](https://platform.acedata.cloud/documents/d016ee3f-421b-4b6e-989a-8beba8701701). For information on how to use the Suno Lyrics Generation API, please refer to [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/f1c66741-a488-43ca-91fc-e53fbbda639a).
 
-We will take a task ID returned by the Suno Audios Generation API as an example to demonstrate how to use this API. Suppose we have a task ID: eae26f89-b64b-404d-a80c-761996660b1c, we will demonstrate how to pass in a task ID.
+We will take a task ID returned by the Suno Audios Generation API as an example to demonstrate how to use this API. Suppose we have a task ID: eae26f89-b64b-404d-a80c-761996660b1c, and we will demonstrate how to pass in a task ID.
 
 ### Task Example Image
 
@@ -89,7 +89,7 @@ print(response.text)
 
 ### Response Example
 
-After a successful request, the API will return the details of the song task here. For example:
+Upon successful request, the API will return the details of the song task here. For example:
 ```json
 {
   "_id": "66d2add5550a4144a5a88dfe",
@@ -168,7 +168,7 @@ Some code examples are as follows:
 
 ### Response Example
 
-After a successful request, the API will return the specific details of all batch song tasks. For example:
+After a successful request, the API will return the specific detail information of all batch song tasks. For example:
 
 ```json
 {
@@ -253,7 +253,7 @@ After a successful request, the API will return the specific details of all batc
             "id": "8b44fdf1-3b88-47ac-a351-7c4b4de60549",
             "title": "La La La",
             "image_url": "https://cdn2.suno.ai/image_8b44fdf1-3b88-47ac-a351-7c4b4de60549.jpeg",
-            "lyric": "[Verse]\nI wake up every morning\nLooking through the window\nSunshine shining bright\nBeginning of a new day\n[Verse 2]\nThe birds sing joyfully\nI dance in the garden\nSurrounded by beautiful flowers\nEvery moment here is mine\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life\n[Verse 3]\nThe sea blue and vast\nWaves crash sweetly\nWe walk on beaches\nRegardless of the weather\n[Bridge]\nCapture every hour\nHear my songs\nFeel free\nHappy\nDance to the rhythm now\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life",
+            "lyric": "[Verse]\nI wake up every morning\nLooking out the window\nSunshine shining bright\nBeginning of a new day\n[Verse 2]\nThe birds sing joyfully\nI dance in the garden\nSurrounded by beautiful flowers\nEvery moment here is mine\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life\n[Verse 3]\nThe sea blue and vast\nWaves gently caress\nWe walk on beaches\nRegardless of the weather\n[Bridge]\nSeize every hour\nHear my songs\nFeel free\nHappy\nDance to the rhythm now\n[Chorus]\nLa la la la la la\nSing with me\nDon't stop\nLa la la la la la\nRejoice enjoying life",
             "audio_url": "https://cdn1.suno.ai/8b44fdf1-3b88-47ac-a351-7c4b4de60549.mp3",
             "video_url": "https://cdn1.suno.ai/8b44fdf1-3b88-47ac-a351-7c4b4de60549.mp4",
             "created_at": "2024-08-31T05:55:09.345Z",
