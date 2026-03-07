@@ -4,7 +4,7 @@ SUNO allows us to create a new version of Persona-v2-vox: singer style, which di
 
 First, we need to use the API to obtain the `vox_audio_id` parameter value. This API can accept multiple input parameters, such as `audio_id`, `vocal_start`, and `vocal_end`, which refer to the song ID and the selected time range.
 
-The `audio_id` we are inputting is `42599b24-fb14-4cd3-a444-e15ffde3661b`.
+Here, the `audio_id` we input is `42599b24-fb14-4cd3-a444-e15ffde3661b`.
 
 ```python
 import requests
