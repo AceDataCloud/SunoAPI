@@ -1414,4 +1414,4 @@ It can be seen that the `aligned_words` field of `data` is an array of objects, 
 `success`: A boolean value indicating whether the alignment of this word was successful
 `start_s`: The start time of the word
 `end_s`: The end time of the word
-`p_align`: The alignment probability or confidence score (range 0-1)
+`p_align`: The probability or confidence score of the alignment (range 0-1)
