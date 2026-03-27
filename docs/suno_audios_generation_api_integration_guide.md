@@ -1423,7 +1423,7 @@ During the waiting process, we can get the following output:
 | 400         | `bad_request` | `instrumental must be a boolean`                                |
 | 400         | `bad_request` | `Title too long.`                                               |
 | 400         | `bad_request` | `Topic too long.`                                               |
-| 400         | `bad_request` | `Style too long.`                                               |
+| 400         | `bad_request` | `style must be less than or equal 120`                          |
 | 400         | `bad_request` | `custom must be a boolean`                                      |
 | 400         | `bad_request` | `audio_id is required when extend audio`                        |
 | 400         | `bad_request` | `continue_at is required when extend audio`                     |
