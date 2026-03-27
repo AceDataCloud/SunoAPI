@@ -678,7 +678,7 @@ Integrate Suno AI music generation capabilities into your application through a 
 </div>
 <div class="s-section-body">
 <p>Suno currently does not provide a public, self-service REST API. Its music generation features can only be accessed through the Suno official website and application.</p>
-<p>Ace Data Cloud fills this gap by providing a <strong class="s-text-dark">stable, production-ready API</strong>, allowing you to programmatically access all of Suno's music generation features—including the latest <strong class="s-text-brand">Chirp v5</strong> model—through a simple REST interface, equipped with OpenAPI specifications, Webhook support, streaming, and pay-as-you-go pricing.</p>
+<p>Ace Data Cloud fills this gap by providing a <strong class="s-text-dark">stable, production-ready API</strong>, allowing you to programmatically access all of Suno's music generation features—including the latest <strong class="s-text-brand">Chirp v5.5</strong> model—through a simple REST interface, equipped with OpenAPI specifications, Webhook support, streaming, and pay-as-you-go pricing.</p>
 </div>
 </div>
 </section>
@@ -948,7 +948,7 @@ Integrate Suno AI music generation capabilities into your application through a 
 </thead>
 <tbody>
 <tr>
-<td>Chirp v5 Model</td>
+<td>Chirp v5.5 Model</td>
 <td class="cmp-us"><span class="ck">✓</span></td>
 <td>Partially supported</td>
 </tr>
