@@ -8,14 +8,13 @@ Here is the progress of model updates:
 
 | Version | model           | Launch Date   | prompt Limit | style Limit | Maximum Song Duration |
 | ------- | --------------- | -------------- | ------------ | ----------- | --------------------- |
-| v5.5    | chirp-v5-5      | 2026.03.27     | 5000         | 1000        | 8 minutes             |
 | v5      | chirp-v5        | 2025.09.23     | 5000         | 1000        | 8 minutes             |
 | v4.5+   | chirp-v4-5-plus | 2025.07.17     | 5000         | 1000        | 8 minutes             |
 | v4.5    | chirp-v4-5      | 2025.05.03     | 5000         | 1000        | 4 minutes             |
 | v4      | chirp-v4        | 2024.12.17     | 3000         | 200         | 150 seconds           |
 | v3.5    | chirp-v3-5      | ---            | 3000         | 200         | 120 seconds           |
 
-Suno now supports the latest `chirp-v5-5` model. To use it, simply set the `model` parameter to `chirp-v5-5`; `chirp-v5` and earlier versions remain available.
+Suno has recently upgraded its music generation model to version V5. To call the latest V5, simply change the model parameter to `chirp-v5`, which can generate songs up to 9 minutes long.
 
 However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno integration, making it easy and quick to generate the desired music.
 
