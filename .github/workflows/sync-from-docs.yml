@@ -1,0 +1,153 @@
+name: Sync from Docs
+
+on:
+  repository_dispatch:
+    types: [docs-updated]
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Force sync even without detected changes"
+        required: false
+        default: "false"
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  create-sync-issue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Checkout Docs repo
+        uses: actions/checkout@v4
+        with:
+          repository: AceDataCloud/Docs
+          path: _docs
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
+
+      - name: Gather Docs changes
+        id: changes
+        run: |
+          cd _docs
+          diff_info=$(git log -1 --pretty=format:"%h %s" 2>/dev/null || echo "unknown")
+          echo "commit_info=$diff_info" >> "$GITHUB_OUTPUT"
+
+          echo "## Current Docs Content for Suno" > /tmp/docs_context.md
+          echo "" >> /tmp/docs_context.md
+
+          # Collect all Suno guide docs in English
+          if [ -d en/guides/suno ]; then
+            echo "### English Integration Guides" >> /tmp/docs_context.md
+            for f in en/guides/suno/*.mdx; do
+              if [ -f "$f" ]; then
+                echo "" >> /tmp/docs_context.md
+                echo "#### $(basename "$f")" >> /tmp/docs_context.md
+                head -100 "$f" >> /tmp/docs_context.md
+              fi
+            done
+          elif [ -d guides/suno ]; then
+            echo "### Integration Guides (zh-CN)" >> /tmp/docs_context.md
+            for f in guides/suno/*.mdx; do
+              if [ -f "$f" ]; then
+                echo "" >> /tmp/docs_context.md
+                echo "#### $(basename "$f")" >> /tmp/docs_context.md
+                head -100 "$f" >> /tmp/docs_context.md
+              fi
+            done
+          fi
+
+          echo "" >> /tmp/docs_context.md
+
+          # OpenAPI spec summary
+          if [ -f openapi/suno.json ]; then
+            echo "### OpenAPI Endpoints" >> /tmp/docs_context.md
+            echo '```' >> /tmp/docs_context.md
+            python3 -c "
+          import json
+          with open('openapi/suno.json') as f:
+              spec = json.load(f)
+          for path, methods in spec.get('paths', {}).items():
+              for method, op in methods.items():
+                  print(f'{method.upper()} {path}: {op.get(\"summary\", \"\")}')
+          " 2>/dev/null || echo "(parse error)"
+            echo '```' >> /tmp/docs_context.md
+          fi
+
+          cd ..
+          docs_context=$(cat /tmp/docs_context.md)
+          if [ ${#docs_context} -gt 8000 ]; then
+            docs_context="${docs_context:0:8000}...(truncated)"
+          fi
+          echo "$docs_context" > /tmp/docs_context_final.md
+
+      - name: Check for existing open sync issue
+        id: existing
+        env:
+          GH_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+        run: |
+          existing=$(gh issue list --label "auto-sync" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "issue_number=$existing" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create sync issue
+        if: steps.existing.outputs.exists != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+        run: |
+          docs_context=$(cat /tmp/docs_context_final.md)
+          commit_info="${{ steps.changes.outputs.commit_info }}"
+
+          body=$(cat <<'ISSUE_BODY'
+          @claude
+
+          The upstream **Docs** repository has been updated. Please review the changes and update this API documentation repo.
+
+          ## About This Repo
+
+          This repo contains API integration guides in `docs/` and a `README.md` with the service intro page. Content should match the upstream Docs.
+
+          ## What to Check
+
+          1. **docs/*.md files** — Compare existing guides against the Docs integration guides below. Add new guides for new endpoints, update existing ones with new parameters/models.
+          2. **README.md** — Update the model version table, feature list, and examples if new capabilities were added.
+          3. **Model versions** — Ensure all available model versions mentioned in the OpenAPI spec are documented.
+
+          ## Instructions
+
+          - Only make changes if the Docs content shows new information not yet in this repo.
+          - If no changes are needed, close this issue with a comment explaining why.
+          - If changes are needed, create a PR with the updates.
+          - Keep the writing style consistent with existing docs.
+          ISSUE_BODY
+          )
+
+          full_body=$(printf '%s\n\n## Docs Content\n\n%s' "$body" "$docs_context")
+
+          gh issue create \
+            --title "sync: update from Docs ($commit_info)" \
+            --label "auto-sync" \
+            --body "$full_body"
+
+      - name: Update existing issue
+        if: steps.existing.outputs.exists == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+        run: |
+          docs_context=$(cat /tmp/docs_context_final.md)
+          commit_info="${{ steps.changes.outputs.commit_info }}"
+
+          body=$(printf '@claude\n\nNew Docs update detected (%s). Please re-check and update if needed.\n\n%s' "$commit_info" "$docs_context")
+
+          gh issue comment "${{ steps.existing.outputs.issue_number }}" \
+            --body "$body"
