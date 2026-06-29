@@ -42,7 +42,7 @@ Here we can see that we have set the Request Headers, including:
 
 Additionally, we set the Request Body, including:
 
-- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`.
+- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`, `artist_consistency`, `artist_consistency_vox`, `underpainting`, `overpainting`, `mashup`, `samples`.
 - `prompt`: the prompt for the inspiration mode from Suno.
 - `model`: the model for this music generation task, default is `chirp-v4`, mainly includes: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`, `chirp-v5`, `chirp-v5-5`.
 - `lyric`: the lyrics content for the custom mode from Suno.
@@ -55,6 +55,7 @@ Additionally, we set the Request Body, including:
 - `audio_id`: the ID of the reference music.
 - `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
 - `underpainting_start`/`underpainting_end`: the start and end time in seconds for adding accompaniment to a cappella.
+- `samples_start`/`samples_end`: the start and end time in seconds for adding samples to an uploaded music track; used with the `samples` action.
 - `persona_id`: the artist's song ID.
 - `continue_at`: the time in seconds to continue the existing audio. For example, 213.5 means continue to 3 minutes and 33.5 seconds.
 - `style_influence`: advanced parameter for `style_influence`.
@@ -1339,6 +1340,41 @@ Click to run, and you will find that a result is obtained, as follows:
 ```
 
 This completes the operation of generating a mixed track for the reference song, with results similar to the above.
+
+## Samples Feature
+
+Suno supports a Samples feature that lets you embed a short audio clip from an uploaded track into a newly generated song. You need to fill in the following parameters:
+
+- action: The content is `samples`.
+- audio_id: The ID of the uploaded audio track to sample from.
+- samples_start: The start time in seconds of the clip to sample from the uploaded track; defaults to 0.
+- samples_end: The end time in seconds of the clip to sample; must be less than the total duration of the uploaded track.
+
+The corresponding Python code:
+
+```python
+import requests
+
+url = "https://api.acedata.cloud/suno/audios"
+
+headers = {
+    "accept": "application/json",
+    "authorization": "Bearer {token}",
+    "content-type": "application/json"
+}
+
+payload = {
+    "action": "samples",
+    "audio_id": "your-uploaded-audio-id",
+    "samples_start": 10,
+    "samples_end": 25
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+This completes the operation of adding a sampled clip from an uploaded audio track into a new song.
 
 ## Asynchronous Callback
 
