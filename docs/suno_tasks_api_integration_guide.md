@@ -6,21 +6,19 @@ This document will provide detailed integration instructions for the Suno Tasks 
 
 ## Application Process
 
-To use the Suno Tasks API, you first need to apply for the corresponding service on the application page [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9), and then copy the task ID from the Suno Audios Generation API, as shown in the image:
+To use Suno Audios Generation API, first open the [Ace Data Cloud Console](https://platform.acedata.cloud/console/applications) and copy your API Token.
 
-<p><img src="https://cdn.acedata.cloud/bc6754.png" width="500" class="m-auto"></p>
+![](https://cdn.acedata.cloud/5hmkdg.jpg)
 
-Finally, go to the Tasks API page [Suno Tasks API](https://platform.acedata.cloud/documents/b0dd9823-0e01-4c75-af83-5a6e2e05bfed) to apply for the corresponding service. After entering the page, click the "Acquire" button, as shown in the image:
+If you are not logged in, you will be redirected to sign in and brought back to this page automatically.
 
-![Application Page](https://cdn.acedata.cloud/rci31i.png)
+**A single API Token works across every service on the platform — no need to subscribe per service.** New accounts receive free starter credit; when it runs low you can top up your shared balance in the [console](https://platform.acedata.cloud/console/coin).
 
-If you are not logged in or registered, you will be automatically redirected to the [login page](https://platform.acedata.cloud) inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
-
-There is a free quota available for first-time applicants, allowing you to use the API for free.
+> 📘 Full documentation: [Suno Audios Generation API →](https://platform.acedata.cloud/documents/suno-audios)
 
 ## Request Example
 
-The Suno Tasks API can be used to query the results of both the Suno Audios Generation API and the Suno Lyrics Generation API. For information on how to use the Suno Audios Generation API, please refer to the document [Suno Audios Generation API](https://platform.acedata.cloud/documents/d016ee3f-421b-4b6e-989a-8beba8701701). For information on how to use the Suno Lyrics Generation API, please refer to [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/f1c66741-a488-43ca-91fc-e53fbbda639a).
+The Suno Tasks API can be used to query the results of both the Suno Audios Generation API and the Suno Lyrics Generation API. For information on how to use the Suno Audios Generation API, please refer to the document [Suno Audios Generation API](https://platform.acedata.cloud/documents/suno-audios-integration). For information on how to use the Suno Lyrics Generation API, please refer to [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/suno-lyrics-generation-integration).
 
 We will take a task ID returned by the Suno Audios Generation API as an example to demonstrate how to use this API. Suppose we have a task ID: eae26f89-b64b-404d-a80c-761996660b1c, and we will demonstrate how to pass in a task ID.
 

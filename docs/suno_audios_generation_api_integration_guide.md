@@ -21,13 +21,15 @@ However, Suno does not officially provide an API. AceDataCloud offers a set of S
 
 ## Application and Usage
 
-To use the Suno Audios API, you can first visit the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) page and click the "Acquire" button to obtain the credentials needed for the request:
+To use Suno Audios Generation API, first open the [Ace Data Cloud Console](https://platform.acedata.cloud/console/applications) and copy your API Token.
 
-![](https://cdn.acedata.cloud/nyq0xz.png)
+![](https://cdn.acedata.cloud/5hmkdg.jpg)
 
-If you are not logged in or registered, you will be automatically redirected to the login page inviting you to register and log in. After logging in or registering, you will be automatically returned to the current page.
+If you are not logged in, you will be redirected to sign in and brought back to this page automatically.
 
-Upon first application, there will be a free quota available for use of the API.
+**A single API Token works across every service on the platform — no need to subscribe per service.** New accounts receive free starter credit; when it runs low you can top up your shared balance in the [console](https://platform.acedata.cloud/console/coin).
+
+> 📘 Full documentation: [Suno Audios Generation API →](https://platform.acedata.cloud/documents/suno-audios)
 
 ## Basic Usage
 
@@ -42,7 +44,7 @@ Here we can see that we have set the Request Headers, including:
 
 Additionally, we set the Request Body, including:
 
-- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`, `artist_consistency`, `artist_consistency_vox`, `underpainting`, `overpainting`, `mashup`, `samples`.
+- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`.
 - `prompt`: the prompt for the inspiration mode from Suno.
 - `model`: the model for this music generation task, default is `chirp-v4`, mainly includes: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`, `chirp-v5`, `chirp-v5-5`.
 - `lyric`: the lyrics content for the custom mode from Suno.
@@ -55,14 +57,13 @@ Additionally, we set the Request Body, including:
 - `audio_id`: the ID of the reference music.
 - `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
 - `underpainting_start`/`underpainting_end`: the start and end time in seconds for adding accompaniment to a cappella.
-- `samples_start`/`samples_end`: the start and end time in seconds for adding samples to an uploaded music track; used with the `samples` action.
 - `persona_id`: the artist's song ID.
 - `continue_at`: the time in seconds to continue the existing audio. For example, 213.5 means continue to 3 minutes and 33.5 seconds.
-- `style_influence`: advanced parameter for `style_influence`.
+- `style_influence`: the "Style Influence" advanced parameter for custom mode, range 0-1; higher values stick closer to the chosen style.
 - `replace_section_end`: the final time for the replacement segment.
 - `replace_section_start`: the starting time for the replacement segment.
 - `vocal_gender`: control of male and female voices, female voice `f`, male voice `m`, effective for models 4.5 and above.
-- `weirdness`: advanced parameter for `weirdness`.
+- `weirdness`: the "Weirdness" advanced parameter for custom mode, range 0-1; higher values are more creative and experimental.
 - `lyric_prompt`: the prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
 - `callback_url`: the URL for callback results.
 
@@ -140,7 +141,7 @@ At this time, the `lyric` field can accept content similar to the following:
 [Verse]\nSnowflakes falling all around\nGlistening white\nCovering the ground\nChildren laughing\nFull of delight\nIn this winter wonderland tonight\nSanta's sleigh\nUp in the sky\nRudolph's nose shining bright\nOh my\nHear the jingle bells\nRinging so clear\nBringing joy and holiday cheer\n[Verse 2]\nRoasting chestnuts by the fire's glow\nChristmas lights\nThey twinkle and show\nFamilies gathering with love and cheer\nSpreading warmth to everyone near
 ```
 
-> Note that the `\n` in the lyrics is a newline character. If you do not know how to generate lyrics, you can use the lyrics generation API provided by AceDataCloud to generate lyrics through a prompt. The API is [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/514d82dc-f7ab-4638-9f21-8b9275916b08).
+> Note that the `\n` in the lyrics is a newline character. If you do not know how to generate lyrics, you can use the lyrics generation API provided by AceDataCloud to generate lyrics through a prompt. The API is [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/suno-lyrics).
 
 Next, we need to customize the generation of songs based on the lyrics, title, and style, and we can specify the following content:
 
@@ -176,7 +177,7 @@ curl -X POST 'https://api.acedata.cloud/suno/audios' \
 Testing is allowed, and the generated effect is similar.
 
 ## Custom Singer Style Generation Function
-If you want to generate a song using a singer's style, first generate a song using the basic usage mentioned above. Finally, you need to set this song to the singer's style, and then enter the [Suno Persona API](https://platform.acedata.cloud/documents/78bb6c62-6ce0-490f-a7df-e89d80ec0583) to generate a singer style id parameter `persona_id` based on the official generated music ID `audio_id`. The specific parameters are shown in the image below:
+If you want to generate a song using a singer's style, first generate a song using the basic usage mentioned above. Finally, you need to set this song to the singer's style, and then enter the [Suno Persona API](https://platform.acedata.cloud/documents/suno-persona) to generate a singer style id parameter `persona_id` based on the official generated music ID `audio_id`. The specific parameters are shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/pmzo3l.png" width="500" class="m-auto"></p>
 
@@ -301,7 +302,7 @@ If you want to continue generating an already generated Suno song, you can set t
 
 > Note that the `id` in the lyrics here is the ID of the generated song. If you do not know how to generate a song, you can refer to the basic usage mentioned above to generate a song.
 
-If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the image below:
+If you want to continue generating a song that you uploaded, you can set the parameter `action` to `upload_extend`, and input the ID of the custom uploaded song to continue generating. The song ID can be obtained using the [Suno Upload Generation API](https://platform.acedata.cloud/documents/suno-upload), as shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/a0mn5e.png" width="500" class="m-auto"></p>
 
@@ -499,77 +500,113 @@ The generated result is similar to the above, completing the process of creating
 
 ## Replace Section
 
-When a song is generated and you need to perform a separate operation to replace a section of the song, you can specify the following content for the replacement operation:
+When a song is generated and you need to replace a section of it as a secondary creation, you can perform a replacement operation.
+
+> ⚠️ **Note**: When called on its own, `replace_section` **only returns the newly generated "replacement segment"** (i.e. the new audio for the replaced range, with a duration roughly equal to `replace_section_end - replace_section_start` plus a small amount of context). It **does not** return the full re-assembled song. To obtain the full song with the replaced section spliced back in, you must follow up with a [Concat](#get-the-complete-song) call against the returned segment ID. The full workflow is shown below.
+
+Parameters:
 
 - action: The content is `replace_section`.
-- audio_id: The ID of the previously generated song.
-- model: The song generation model,
-- lyric: The complete lyrics after replacement (only needs to overlap with the prompt, not the complete lyrics),
-- prompt: The part of the lyrics that needs to be replaced.
+- audio_id: The ID of the original (source) song to replace from.
+- model: The song generation model.
+- lyric: The full lyrics after replacement (covering the replaced section and its surrounding context, consistent with the content of `prompt`).
+- prompt: The new lyrics for the section that is being replaced.
 - style: The style of the song, optional.
-- replace_section_start: The start time of the lyrics corresponding to `lyric` on the timeline.
-- replace_section_end: The end time of the lyrics corresponding to `lyric` on the timeline.
+- replace_section_start: The start time (in seconds) of the section to replace, on the original song's timeline.
+- replace_section_end: The end time (in seconds) of the section to replace, on the original song's timeline.
 
-For example, if the ID of the originally generated song is: ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0, then you can set the parameters as follows:
+### Step 1: Submit the replace_section task
+
+For example, if the original song ID is `18db7ed0-2b8a-41db-91c1-b0781dcca0d4` (94.12 seconds long) and you want to replace the chorus between 30s and 60s with new lyrics, the parameters are:
 
 ```json
 {
   "action": "replace_section",
-  "lyric": "[Chorus]\n新年快乐 人人欢快歌\n祝福洒满每一片角落\n新年快乐 心中花火多\n愿望成真生活似金色波\n[Verse 2]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
-  "prompt": "梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
-  "replace_section_start": 28.94100580270793,
-  "replace_section_end": 85.39410058027079,
-  "model": "chirp-v4",
-  "audio_id": "ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0",
+  "audio_id": "18db7ed0-2b8a-41db-91c1-b0781dcca0d4",
+  "model": "chirp-v5-5",
   "custom": false,
-  "instrumental": false
+  "instrumental": false,
+  "lyric": "[Intro]\n锣鼓喧天 红灯高挂\n[Verse 1]\n爆竹声声辞旧岁\n春风暖暖入万家\n红包压岁笑开颜\n金蛇起舞贺新春\n[Chorus]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n[Verse 2]\n饺子飘香年夜饭\n灯笼摇曳照团圆",
+  "prompt": "梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
+  "replace_section_start": 30.0,
+  "replace_section_end": 60.0
 }
 ```
 
-With other parameters unchanged, the returned result will be a song with the replaced section, which is the result of replacing a section of the originally generated song, as shown below:
+The response contains the newly generated replacement segments (two candidates by default):
 
 ```json
 {
   "success": true,
-  "task_id": "7a37c35d-7081-413d-908d-ab2d3f8139bf",
-  "trace_id": "1ed92d6e-9a19-48f7-ab34-68c82c792303",
+  "task_id": "dd067075-a295-4160-8375-d5504327d55b",
+  "trace_id": "c34f589b-9195-4d0b-af78-9c890e77609c",
   "data": [
     {
-      "id": "2a1467dc-51a4-4872-9ccc-ccd96e4fbbb6",
-      "title": "新年快乐",
-      "image_url": "https://cdn2.suno.ai/image_dc1b5edc-fbae-44a3-8962-d596dbd2b0d7.jpeg",
-      "lyric": "[Chorus]\n新年快乐 人人欢快歌\n祝福洒满每一片角落\n新年快乐 心中花火多\n愿望成真生活似金色波\n[Verse 2]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
-      "audio_url": "https://cdn1.suno.ai/2a1467dc-51a4-4872-9ccc-ccd96e4fbbb6.mp3",
+      "id": "364f9d8b-ca25-463b-9a5e-d0b7139e2d6a",
+      "title": "",
+      "image_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
+      "image_large_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
+      "lyric": "[Intro]\n锣鼓喧天 红灯高挂\n[Verse 1]\n爆竹声声辞旧岁\n春风暖暖入万家\n红包压岁笑开颜\n金蛇起舞贺新春\n[Chorus]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n[Verse 2]\n饺子飘香年夜饭\n灯笼摇曳照团圆",
+      "audio_url": "https://cdn1.suno.ai/364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.mp3",
       "video_url": "",
-      "created_at": "2025-04-18T01:55:02.930Z",
-      "model": "chirp-v4",
+      "created_at": "2026-05-06T06:55:00.000Z",
+      "model": "chirp-v5-5",
       "state": "succeeded",
-      "style": "traditional influences, female vocals",
-      "duration": 202.52,
-      "concat_history": [
-        {
-          "id": "ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0",
-          "type": "gen",
-          "source": "ios",
-          "infill_start_s": 28.94100580270793,
-          "infill_end_s": 85.39410058027079,
-          "infill_dur_s": 56.45309477756285,
-          "infill_context_start_s": 0,
-          "infill_context_end_s": 115.39410058027079,
-          "include_future_s": 2,
-          "include_history_s": 2,
-          "infill": true,
-          "infill_lyrics": "梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地"
-        },
-        {
-          "id": "dc1b5edc-fbae-44a3-8962-d596dbd2b0d7"
-        }
-      ]
+      "style": "",
+      "duration": 45.16
+    },
+    {
+      "id": "fae966ea-5f7f-4e80-9962-1c57963c7f8a",
+      "title": "",
+      "audio_url": "https://cdn1.suno.ai/fae966ea-5f7f-4e80-9962-1c57963c7f8a.mp3",
+      "model": "chirp-v5-5",
+      "state": "succeeded",
+      "duration": 33.8
     }
   ]
 }
 ```
-The generated result is similar to the previous text, thus completing the process of replacing segments of the originally generated song.
+
+Notice the durations of the returned items (45.16s and 33.8s) are much shorter than the original song (94.12s). They are the replacement segments themselves (with a little surrounding context for transitions), **not** the full assembled song. Pick whichever candidate sounds best, and use it for the next step.
+
+### Step 2: Concat the replacement segment back onto the original song
+
+Send a [Concat](#get-the-complete-song) request against the chosen segment ID (e.g. `364f9d8b-ca25-463b-9a5e-d0b7139e2d6a`):
+
+```json
+{
+  "action": "concat",
+  "audio_id": "364f9d8b-ca25-463b-9a5e-d0b7139e2d6a",
+  "model": "chirp-v5-5"
+}
+```
+
+The response is the final, fully assembled song:
+
+```json
+{
+  "success": true,
+  "task_id": "5dbd4a78-0197-4ef3-9c16-8bddaf4f0c94",
+  "trace_id": "580bd1da-2ad3-4d75-be1f-6c14bd4b489d",
+  "data": [
+    {
+      "id": "365a9640-0452-4567-80f0-4f5a2a17ddd5",
+      "title": "新年快乐",
+      "image_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
+      "lyric": "[Intro]\n锣鼓喧天 红灯高挂\n[Verse 1]\n爆竹声声辞旧岁\n春风暖暖入万家\n红包压岁笑开颜\n金蛇起舞贺新春\n[Chorus]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n[Verse 2]\n饺子飘香年夜饭\n灯笼摇曳照团圆",
+      "audio_url": "https://cdn1.suno.ai/365a9640-0452-4567-80f0-4f5a2a17ddd5.mp3",
+      "video_url": "",
+      "created_at": "2026-05-06T06:56:46.057Z",
+      "model": "chirp-v5-5",
+      "state": "succeeded",
+      "style": "traditional Chinese new year, festive, female vocals, upbeat",
+      "duration": 105.28
+    }
+  ]
+}
+```
+
+The `duration` is back to a full-song length (105.28 seconds, comparable to the original), and `audio_url` points to the final audio file with the replaced section spliced in. This completes the "generate → replace_section → concat" secondary-creation workflow.
 
 ## Vocal and Instrument Separation
 
@@ -1011,7 +1048,7 @@ Thus, custom songs were generated using advanced parameters, and the results are
 
 ## Add Instrumental Function
 
-In August 2025, Suno released the Add Instrumental function. First, you need to upload a song with only vocals and no accompaniment, allowing Suno to add music for you. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82) to upload a song with only vocals, corresponding to the operations shown in the image below:
+In August 2025, Suno released the Add Instrumental function. First, you need to upload a song with only vocals and no accompaniment, allowing Suno to add music for you. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/suno-upload) to upload a song with only vocals, corresponding to the operations shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/fxl914.png" width="500" class="m-auto"></p>
 
@@ -1098,7 +1135,7 @@ This completes the operation of adding music to the uploaded a cappella song, wi
 
 ## Add Vocals Feature
 
-In August 2025, Suno released the new Add Vocals feature. First, you need to upload a pure instrumental track, allowing Suno to add lyrics and vocals. You can start by uploading a cappella song without accompaniment to the [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82), as shown in the following operation:
+In August 2025, Suno released the new Add Vocals feature. First, you need to upload a pure instrumental track, allowing Suno to add lyrics and vocals. You can start by uploading a cappella song without accompaniment to the [Suno Upload API](https://platform.acedata.cloud/documents/suno-upload), as shown in the following operation:
 
 <p><img src="https://cdn.acedata.cloud/fxl914.png" width="500" class="m-auto"></p>
 
@@ -1340,41 +1377,6 @@ Click to run, and you will find that a result is obtained, as follows:
 ```
 
 This completes the operation of generating a mixed track for the reference song, with results similar to the above.
-
-## Samples Feature
-
-Suno supports a Samples feature that lets you embed a short audio clip from an uploaded track into a newly generated song. You need to fill in the following parameters:
-
-- action: The content is `samples`.
-- audio_id: The ID of the uploaded audio track to sample from.
-- samples_start: The start time in seconds of the clip to sample from the uploaded track; defaults to 0.
-- samples_end: The end time in seconds of the clip to sample; must be less than the total duration of the uploaded track.
-
-The corresponding Python code:
-
-```python
-import requests
-
-url = "https://api.acedata.cloud/suno/audios"
-
-headers = {
-    "accept": "application/json",
-    "authorization": "Bearer {token}",
-    "content-type": "application/json"
-}
-
-payload = {
-    "action": "samples",
-    "audio_id": "your-uploaded-audio-id",
-    "samples_start": 10,
-    "samples_end": 25
-}
-
-response = requests.post(url, json=payload, headers=headers)
-print(response.text)
-```
-
-This completes the operation of adding a sampled clip from an uploaded audio track into a new song.
 
 ## Asynchronous Callback
 
