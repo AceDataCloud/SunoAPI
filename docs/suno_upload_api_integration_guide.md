@@ -37,4 +37,4 @@ The result is as follows:
 
 As can be seen, the `audio_id` field in `data` is the song ID after uploading.
 
-With the song ID, we can use the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) to generate custom songs. For example, by passing `action` as `upload_extend` and `audio_id` as the returned song ID, we can generate a new song based on the reference audio.
+With the song ID, we can use the [Suno Audios Generation API](https://platform.acedata.cloud/documents/suno-audios) to generate custom songs. For example, by passing `action` as `upload_extend` and `audio_id` as the returned song ID, we can generate a new song based on the reference audio.
