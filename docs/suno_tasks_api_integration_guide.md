@@ -95,6 +95,9 @@ Upon successful request, the API will return the detailed information of the son
   "api_id": "09a26295-5972-4392-9318-dcd9b218f90d",
   "application_id": "ab46a066-ad82-4180-b66b-49dedf8e8a2f",
   "created_at": 1725083093.077,
+  "started_at": 1725083093.137,
+  "finished_at": 1725083131.537,
+  "elapsed": 38.4,
   "credential_id": "66614a7e-e624-494e-87a3-387099b8cbb4",
   "request": {
     "action": "generate",
@@ -137,24 +140,24 @@ Upon successful request, the API will return the detailed information of the son
 }
 ```
 
-The response contains multiple fields, the request field is the request body when initiating the task, while the response field is the response body returned after the task is completed. The field descriptions are as follows.
+The return result contains multiple fields, the request field is the request body when initiating the task, while the response field is the response body returned after the task is completed. The field descriptions are as follows.
 
 - `id`, the ID of the song generation task, used to uniquely identify this song generation task.
 - `request`, the request information in the song task.
 - `response`, the return information in the song task.
 - `created_at`, the task creation time, Unix timestamp (seconds, float).
-- `started_at`, the time the task started executing, ISO-8601 UTC time string.
-- `finished_at`, the time the task was completed, Unix timestamp (seconds, float). This field is not returned if the task is not completed.
-- `elapsed`, the time taken to execute the task, in seconds (float, rounded to 3 decimal places). This field is not returned if the task is not completed.
+- `started_at`, the task start execution time, Unix timestamp (seconds, float).
+- `finished_at`, the task completion time, Unix timestamp (seconds, float). This field is not returned if the task is not completed.
+- `elapsed`, the time taken for task execution, in seconds (float, 3 decimal places). This field is not returned if the task is not completed.
 
 ## Batch Query Operation
 
-This is for querying the details of multiple task IDs, and unlike above, the action needs to be set to retrieve_batch.
+This is for querying the details of multiple task IDs, and unlike above, the action needs to be selected as retrieve_batch.
 
 **Request Body** includes:
 
-- `ids`: An array of uploaded task IDs.
-- `action`: The operation method for the task.
+- `ids`: the array of uploaded task IDs.
+- `action`: the operation method for the task.
 
 Set as shown in the image below:
 
@@ -180,6 +183,9 @@ After a successful request, the API will return the specific details of all batc
       "api_id": "09a26295-5972-4392-9318-dcd9b218f90d",
       "application_id": "ab46a066-ad82-4180-b66b-49dedf8e8a2f",
       "created_at": 1725083093.077,
+      "started_at": 1725083093.137,
+      "finished_at": 1725083131.537,
+      "elapsed": 38.4,
       "credential_id": "66614a7e-e624-494e-87a3-387099b8cbb4",
       "request": {
         "action": "generate",
@@ -226,6 +232,9 @@ After a successful request, the API will return the specific details of all batc
       "api_id": "09a26295-5972-4392-9318-dcd9b218f90d",
       "application_id": "ab46a066-ad82-4180-b66b-49dedf8e8a2f",
       "created_at": 1725083708.53,
+      "started_at": 1725083708.59,
+      "finished_at": 1725083746.99,
+      "elapsed": 38.4,
       "credential_id": "66614a7e-e624-494e-87a3-387099b8cbb4",
       "request": {
         "action": "generate",
@@ -274,7 +283,7 @@ After a successful request, the API will return the specific details of all batc
 
 The returned result contains multiple fields, where items include the specific details of the batch song tasks, and each song task's specific information is the same as the fields in the previous single task return result.
 
-- `items`, all specific details of the batch song tasks. It is an array, and each element of the array has the same format as the previous query single task return result.
+- `items`, all specific details of the batch song tasks. It is an array, and each element of the array has the same format as the previous query for a single task return result.
 - `count`, the number of song tasks in this batch query.
 
 #### CURL
