@@ -1,77 +1,80 @@
-# Suno Song Generation API Integration Instructions
+# Suno Song Generation API Integration Guide
 
-With the widespread application of AI, various AI programs have gradually become popular. AI has gradually penetrated all aspects of people's work and life. The industries involved in AI are also increasing, from the initial writing, to medical education, and now to music.
+With the wider application of AI, various AI programs have gradually become popular. AI has gradually penetrated into all aspects of people's work and daily lives. The industries involved with AI are also increasing, from the initial writing, to medical and education, and now to music.
 
-Suno is a professional high-quality AI song and music creation platform. Users only need to input simple text prompts to generate songs with vocals based on genre style and lyrics. This AI music generator is developed by team members from well-known tech companies such as Meta, TikTok, and Kensho, aiming to allow everyone to create wonderful music without any musical instruments.
+Suno is a professional high-quality AI song and music creation platform. Users only need to enter simple text prompts to generate songs with vocals based on genre styles and lyrics. This AI music generator was developed by team members from well-known technology companies such as Meta, TikTok, and Kensho. Its goal is to allow everyone to create wonderful music without needing any musical instrument tools.
 
-Here is the progress of model updates:
+The following is the progress of model updates:
 
-| Version | model           | Launch Date   | prompt Limit | style Limit | Maximum Song Duration |
-| ------- | --------------- | -------------- | ------------ | ----------- | --------------------- |
-| v5.5    | chirp-v5-5      | 2026.03.27     | 5000         | 1000        | 8 minutes             |
-| v5      | chirp-v5        | 2025.09.23     | 5000         | 1000        | 8 minutes             |
-| v4.5+   | chirp-v4-5-plus | 2025.07.17     | 5000         | 1000        | 8 minutes             |
-| v4.5    | chirp-v4-5      | 2025.05.03     | 5000         | 1000        | 4 minutes             |
-| v4      | chirp-v4        | 2024.12.17     | 3000         | 200         | 150 seconds           |
-| v3.5    | chirp-v3-5      | ---            | 3000         | 200         | 120 seconds           |
+| Version | model | Release Time | lyric Limit | style Limit | Maximum Song Duration |
+| ----- | --------------- | ---------- | -------- | -------- | ------ |
+| v5.5  | chirp-v5-5      | 2026.03.27 | 5000     | 1000     | 8 minutes   |
+| v5    | chirp-v5        | 2025.09.23 | 5000     | 1000     | 8 minutes   |
+| v4.5+ | chirp-v4-5-plus | 2025.07.17 | 5000     | 1000     | 8 minutes   |
+| v4.5  | chirp-v4-5      | 2025.05.03 | 5000     | 1000     | 4 minutes   |
+| v4    | chirp-v4        | 2024.12.17 | 3000     | 200      | 150 seconds  |
+| v3.5  | chirp-v3-5      | ---        | 3000     | 200      | 120 seconds  |
 
-Suno now supports the latest `chirp-v5-5` model. To use the newest version, set the `model` parameter to `chirp-v5-5`; `chirp-v5` and earlier versions remain available.
+> The `lyric` and `style` limits in the above table are the maximum limits under the custom mode (`custom` is `true`). The non-custom inspiration mode (`custom` is `false`) only fills in `prompt`, and its maximum length is 500 characters (the same for all models).
 
-However, Suno does not officially provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno integration, making it easy and quick to generate the desired music.
+Suno now supports the latest `chirp-v5-5` model. When calling the latest version, simply set the `model` parameter to `chirp-v5-5`; `chirp-v5` and earlier versions can still continue to be used.
+
+However, Suno officially does not provide an API. AceDataCloud provides a set of Suno APIs that simulate integration with the official Suno service, making it convenient and fast to generate the desired music.
 
 ## Application and Usage
 
-To use Suno Audios Generation API, first open the [Ace Data Cloud Console](https://platform.acedata.cloud/console/applications) and copy your API Token.
+To use the Suno Audios Generation API, first go to the [Ace Data Cloud Console](https://platform.acedata.cloud/console/applications) to obtain your API Token and keep it for later use.
 
 ![](https://cdn.acedata.cloud/5hmkdg.jpg)
 
-If you are not logged in, you will be redirected to sign in and brought back to this page automatically.
+If you have not logged in or registered yet, you will automatically be redirected to the login page to register and log in. After completion, you will automatically return to the current page.
 
-**A single API Token works across every service on the platform — no need to subscribe per service.** New accounts receive free starter credit; when it runs low you can top up your shared balance in the [console](https://platform.acedata.cloud/console/coin).
+**One API Token can call all services on the platform, and there is no need to apply separately for each service.** A free quota will be provided upon the first application, allowing you to try it for free; when the quota is insufficient, you can recharge the general balance in the [Console](https://platform.acedata.cloud/console/coin).
 
-> 📘 Full documentation: [Suno Audios Generation API →](https://platform.acedata.cloud/documents/suno-audios)
+> 📘 Complete documentation: [Suno Audios Generation API →](https://platform.acedata.cloud/documents/suno-audios)
 
 ## Basic Usage
 
-If you want to generate a song, you can input any text, for example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:
+For whatever kind of song you want to write, you can enter any piece of text. For example, if I want to generate a Christmas song, I can enter `a song for Christmas`, as shown in the figure:
 
 <p><img src="https://cdn.acedata.cloud/2kuuup.png" width="500" class="m-auto"></p>
 
-Here we can see that we have set the Request Headers, including:
+It can be seen that we have set the Request Headers here, including:
 
-- `accept`: the format of the response result you want to receive, here filled in as `application/json`, which means JSON format.
-- `authorization`: the key to call the API, which can be directly selected after application.
+- `accept`: What format of response result you want to receive. Here it is filled in as `application/json`, which means JSON format.
+- `authorization`: The key for calling the API, which can be directly selected from the dropdown after application.
 
-Additionally, we set the Request Body, including:
-
-- `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`.
-- `prompt`: the prompt for the inspiration mode from Suno.
-- `model`: the model for this music generation task, default is `chirp-v4`, mainly includes: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`, `chirp-v5`, `chirp-v5-5`.
-- `lyric`: the lyrics content for the custom mode from Suno.
-- `custom`: whether to use the custom mode, default is: `false`.
-- `instrumental`: the pure music option for the inspiration mode from Suno.
-- `title`: the music title for the custom mode from Suno.
-- `style`: the music style for the custom mode from Suno.
-- `style_negative`: the excluded style for the custom mode from Suno.
-- `audio_weight`: the proportion of the uploaded reference audio, range 0-1, the larger the more it relies on the reference audio.
-- `audio_id`: the ID of the reference music.
-- `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
-- `underpainting_start`/`underpainting_end`: the start and end time in seconds for adding accompaniment to a cappella.
-- `persona_id`: the artist's song ID.
-- `continue_at`: the time in seconds to continue the existing audio. For example, 213.5 means continue to 3 minutes and 33.5 seconds.
-- `style_influence`: the "Style Influence" advanced parameter for custom mode, range 0-1; higher values stick closer to the chosen style.
-- `replace_section_end`: the final time for the replacement segment.
-- `replace_section_start`: the starting time for the replacement segment.
-- `vocal_gender`: control of male and female voices, female voice `f`, male voice `m`, effective for models 4.5 and above.
-- `weirdness`: the "Weirdness" advanced parameter for custom mode, range 0-1; higher values are more creative and experimental.
-- `lyric_prompt`: the prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
-- `callback_url`: the URL for callback results.
+In addition, we have set the Request Body, including:
+- `action`: The behavior of this music generation task. The default is `generate`, mainly including: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`.
+- `prompt`: Suno official inspiration mode prompt (effective when `custom` is `false`), with a maximum of 500 characters.
+- `model`: The model for this music generation task. The default is `chirp-v4`, mainly including: `chirp-v3`, `chirp-v4`, `chirp-v3-5`, `chirp-v4-5`, `chirp-v4-5-plus`, `chirp-v5`, `chirp-v5-5`.
+- `lyric`: Suno official custom mode lyrics content. `chirp-v3-5` and `chirp-v4` have a maximum of 3000 characters; `chirp-v4-5` and above (including `chirp-v5`, `chirp-v5-5`) have a maximum of 5000 characters.
+- `custom`: Whether to use custom mode. The default is: `false`.
+- `instrumental`: The instrumental music option of Suno official inspiration mode.
+- `title`: Suno official custom mode music title. `chirp-v3-5` and `chirp-v4` have a maximum of 80 characters; `chirp-v4-5` and above have a maximum of 100 characters.
+- `style`: Suno official custom mode music style. `chirp-v3-5` and `chirp-v4` have a maximum of 200 characters; `chirp-v4-5` and above (including `chirp-v5`, `chirp-v5-5`) have a maximum of 1000 characters.
+- `style_negative`: The excluded style of Suno official custom mode.
+- `audio_weight`: The proportion of the uploaded reference audio, ranging from 0-1. The larger the value, the more it relies on the reference audio.
+- `audio_id`: The ID of the reference music.
+- `overpainting_start`/`overpainting_end`: The start and end time for adding vocals to existing instrumental music, in seconds.
+- `underpainting_start`/`underpainting_end`: The start and end time for adding accompaniment to a cappella vocals, in seconds.
+- `persona_id`: The artist's song ID.
+- `continue_at`: Continue the existing audio at the time specified in seconds. For example, 213.5 means continuing at 3 minutes and 33.5 seconds.
+- `style_influence`: The "Style Influence" advanced parameter in custom mode, ranging from 0-1. The larger the value, the more closely it matches the selected style.
+- `replace_section_end`: The final time of the replacement section.
+- `replace_section_start`: The starting time of the replacement section.
+- `vocal_gender`: Controls male/female vocal preference. Female voice `f`, male voice `m`, effective for 4.5 and above models; it is a preference option and does not guarantee strict adherence.
+- `weirdness`: The "Weirdness" advanced parameter in custom mode, ranging from 0-1. The larger the value, the more creative and experimental it is.
+- `duration`: The desired song duration, in seconds, with an integer value between 10-360. It only takes effect when `action` is `generate`, `custom` is `true`, and `model` is `chirp-v5-5`; other combinations will return 400. This is the target duration. The actual finished duration is based on the `duration` field in the response and may have a slight deviation.
+- `lyric_prompt`: The prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
+- `callback_url`: The URL that requires callback results.
+- `async`: Optional. When set to `true`, the interface immediately returns `task_id`, no `callback_url` is required, and the results can then be obtained through the corresponding task query interface by polling.
 
 The generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/1xehwl.png" width="500" class="m-auto"></p>
 
-You can click the "Try" button to directly test the API, and after waiting for 1-2 minutes, the result is as follows:
+You can click the "Try" button to directly test the API. After waiting 1-2 minutes, the results are as follows:
 ```json
 {
   "success": true,
@@ -110,51 +113,51 @@ You can click the "Try" button to directly test the API, and after waiting for 1
 }
 ```
 
-You can see that we have obtained the content of two songs, including the title, preview image, lyrics, audio, video, and other content.
+It can be seen that we have obtained the content of two songs at this point, including titles, preview images, lyrics, audio, video, and other content.
 
 The field descriptions are as follows:
 
-- success: Indicates whether the generation was successful; if successful, it is `true`, otherwise it is `false`.
-- data: A list that contains detailed information about the generated songs.
-  - state: The song generation status, mainly includes four types, as follows:
-    - succeeded: Generation successful
-    - pending: In queue
-    - running: In progress
-    - error: Failed
-  - id: Song ID
-  - title: Title of the song
-  - image_url: Cover image of the song
-  - lyric: Lyrics of the song
-  - audio_url: Audio file of the song, opening it will play an mp3 audio.
-  - video_url: Video file of the song, opening it will play an mp4 video.
-  - created_at: Creation time
-  - model: The model used, generally the latest v3 model
-  - style: Style
+- success: whether the generation was successful. If successful, it is `true`; otherwise, it is `false`
+- data: is a list containing detailed information about the generated songs.
+  - state: song generation status, mainly including four types, specifically:
+    - succeeded: generation successful
+    - pending: in queue
+    - running: executing
+    - error: failed
+  - id: song ID
+  - title: song title
+  - image_url: song cover image
+  - lyric: song lyrics
+  - audio_url: song audio file, opening it will directly play an mp3 audio.
+  - video_url: song video file, opening it will directly play an mp4 video.
+  - created_at: creation time
+  - model: the model used, generally the latest v3 model
+  - style: style
 
 ## Custom Generation
 
-If you want to customize the generation of lyrics, you can input the lyrics:
+If you want to customize the generated lyrics, you can input lyrics:
 
-At this time, the `lyric` field can accept content similar to the following:
+At this time, the `lyric` field can pass in content similar to the following:
 
 ```
 [Verse]\nSnowflakes falling all around\nGlistening white\nCovering the ground\nChildren laughing\nFull of delight\nIn this winter wonderland tonight\nSanta's sleigh\nUp in the sky\nRudolph's nose shining bright\nOh my\nHear the jingle bells\nRinging so clear\nBringing joy and holiday cheer\n[Verse 2]\nRoasting chestnuts by the fire's glow\nChristmas lights\nThey twinkle and show\nFamilies gathering with love and cheer\nSpreading warmth to everyone near
 ```
 
-> Note that the `\n` in the lyrics is a newline character. If you do not know how to generate lyrics, you can use the lyrics generation API provided by AceDataCloud to generate lyrics through a prompt. The API is [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/suno-lyrics).
+> Note that in the lyrics here, `\n` is a line break character. If you do not know how to generate lyrics, you can use the lyrics generation API provided by AceDataCloud to generate lyrics through a prompt. The API is [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/suno-lyrics).
 
-Next, we need to customize the generation of songs based on the lyrics, title, and style, and we can specify the following content:
+Next, we need to customize the generation of songs based on lyrics, title, and style. We can specify the following content:
 
-- lyric: Lyrics text
-- custom: Fill in as `true`, indicating custom generation; this parameter defaults to false, indicating the use of `prompt` generation.
-- title: Title of the song.
-- style: Style of the song, optional.
+- lyric: lyrics text
+- custom: fill in as `true`, representing custom generation. This parameter defaults to false, representing generation using `prompt`.
+- title: song title.
+- style: song style, optional.
 
-An example of filling in is as follows:
+The filling example is as follows:
 
 <p><img src="https://cdn.acedata.cloud/qp3iba.png" width="500" class="m-auto"></p>
 
-After filling it out, the generated code is as follows:
+After filling in, the generated code is automatically as follows:
 
 <p><img src="https://cdn.acedata.cloud/o5haei.png" width="500" class="m-auto"></p>
 
@@ -177,6 +180,7 @@ curl -X POST 'https://api.acedata.cloud/suno/audios' \
 Testing is allowed, and the generated effect is similar.
 
 ## Custom Singer Style Generation Function
+```
 If you want to generate a song using a singer's style, first generate a song using the basic usage mentioned above. Finally, you need to set this song to the singer's style, and then enter the [Suno Persona API](https://platform.acedata.cloud/documents/suno-persona) to generate a singer style id parameter `persona_id` based on the official generated music ID `audio_id`. The specific parameters are shown in the image below:
 
 <p><img src="https://cdn.acedata.cloud/pmzo3l.png" width="500" class="m-auto"></p>
@@ -207,7 +211,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result is obtained, as follows:
+Clicking run, you can find a result as follows:
 
 ```json
 {
@@ -252,7 +256,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result is obtained, as follows:
+Clicking run, you can find a result as follows:
 
 ```json
 {
@@ -290,11 +294,11 @@ Clicking run, you can find that a result is obtained, as follows:
 }
 ```
 
-It can be seen that the result content is consistent with the above, thus achieving the function of generating songs using the singer's style.
+It can be seen that the result content is consistent with the above text, thus achieving the function of generating songs using the singer's style.
 
 ## Continue Generation Function
 
-If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song to continue generating. The song ID can be obtained based on the basic usage, as mentioned above, you can see that the song ID is:
+If you want to continue generating an already generated Suno song, you can set the parameter `action` to `extend`, and input the ID of the song to continue generating. The song ID can be obtained based on the basic usage, as mentioned above, where you can see the song ID is:
 
 ```
 "id": "97efc9f4-0e8d-4b3e-88df-14568fa1b11f"
@@ -306,14 +310,14 @@ If you want to continue generating a song that you uploaded, you can set the par
 
 <p><img src="https://cdn.acedata.cloud/a0mn5e.png" width="500" class="m-auto"></p>
 
-Next, we must fill in the lyrics and style to customize the generated song, specifying the following content:
+Next, you must fill in the lyrics and style to customize the generated song, specifying the following content:
 
-- lyric: lyric text
-- custom: set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
-- style: the style of the song, optional.
-- continue_at: the time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
+- lyric: Lyrics text
+- custom: Set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
+- style: The style of the song, optional.
+- continue_at: The time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
 
-The example for filling out is as follows:
+An example of filling it out is shown below:
 
 <p><img src="https://cdn.acedata.cloud/zp9s42.png" width="500" class="m-auto"></p>
 
@@ -442,12 +446,12 @@ Other parameters remain unchanged, and the returned result will be a complete so
 ```
 
 ## Music Reproduction
-When generating a song based on an existing song, the style of the returned song may not be appropriate. If you want to create a cover of the originally generated song (custom uploaded music is also supported), you need to use the music cover method, and you can specify the following content:
+When generating a song based on an existing song, the style of the returned song may not be appropriate. If you want to create a cover of the originally generated song (custom uploaded music is also supported), you need to use the music cover method, which allows you to specify the following content:
 
-- action: The content is `cover`, and when performing a cover operation on custom uploaded music, it must be specified as: `upload_cover`.
+- action: The content is `cover`. When performing a cover operation on custom uploaded music, the content must be specified as: `upload_cover`.
 - audio_id: The ID of the previously generated song.
 
-For example, if the ID of the originally generated song is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then you can set the parameters as follows:
+For example, if the ID of the originally generated song is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, you can set the parameters as follows:
 
 ```json
 {
@@ -496,28 +500,28 @@ With other parameters unchanged, the returned result will be a cover song, which
 }
 ```
 
-The generated result is similar to the above, completing the process of creating a cover of the originally generated song.
+The generated result is similar to the above, completing the process of generating a cover of the originally generated song.
 
 ## Replace Section
 
-When a song is generated and you need to replace a section of it as a secondary creation, you can perform a replacement operation.
+When a song is generated and you need to perform a separate operation to replace a section of the song, you can replace a specific segment of the song.
 
-> ⚠️ **Note**: When called on its own, `replace_section` **only returns the newly generated "replacement segment"** (i.e. the new audio for the replaced range, with a duration roughly equal to `replace_section_end - replace_section_start` plus a small amount of context). It **does not** return the full re-assembled song. To obtain the full song with the replaced section spliced back in, you must follow up with a [Concat](#get-the-complete-song) call against the returned segment ID. The full workflow is shown below.
+> ⚠️ **Note**: When `replace_section` is used alone, it **will only return the newly generated "replacement segment" itself** (i.e., the new audio for the replaced segment, with a duration approximately equal to `replace_section_end - replace_section_start`, and accompanied by a small amount of context), **and will not return the complete song that has been spliced together**. To obtain the complete product spliced with the original song, you need to initiate a [music splicing](#music-splicing) task again for the returned segment ID after the `replace_section` is successful. The complete process is described below.
 
-Parameters:
+Parameter descriptions are as follows:
 
 - action: The content is `replace_section`.
-- audio_id: The ID of the original (source) song to replace from.
+- audio_id: The ID of the original song (the source song being replaced).
 - model: The song generation model.
-- lyric: The full lyrics after replacement (covering the replaced section and its surrounding context, consistent with the content of `prompt`).
-- prompt: The new lyrics for the section that is being replaced.
+- lyric: The complete lyrics after replacement (including the replaced segment and its context, consistent with the content in `prompt`).
+- prompt: The new lyrics for the segment that needs to be replaced.
 - style: The style of the song, optional.
-- replace_section_start: The start time (in seconds) of the section to replace, on the original song's timeline.
-- replace_section_end: The end time (in seconds) of the section to replace, on the original song's timeline.
+- replace_section_start: The start time (in seconds) of the segment being replaced in the original song.
+- replace_section_end: The end time (in seconds) of the segment being replaced in the original song.
 
-### Step 1: Submit the replace_section task
+### Step 1: Initiate the Replace Section Task
 
-For example, if the original song ID is `18db7ed0-2b8a-41db-91c1-b0781dcca0d4` (94.12 seconds long) and you want to replace the chorus between 30s and 60s with new lyrics, the parameters are:
+For example, if the ID of the originally generated song is: 18db7ed0-2b8a-41db-91c1-b0781dcca0d4 (duration 94.12 seconds), and you want to replace the chorus from the 30th second to the 60th second with new lyrics, you can set the parameters as follows:
 
 ```json
 {
@@ -526,15 +530,14 @@ For example, if the original song ID is `18db7ed0-2b8a-41db-91c1-b0781dcca0d4` (
   "model": "chirp-v5-5",
   "custom": false,
   "instrumental": false,
-  "lyric": "[Intro]\n锣鼓喧天 红灯高挂\n[Verse 1]\n爆竹声声辞旧岁\n春风暖暖入万家\n红包压岁笑开颜\n金蛇起舞贺新春\n[Chorus]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n[Verse 2]\n饺子飘香年夜饭\n灯笼摇曳照团圆",
-  "prompt": "梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
+  "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nThe sound of firecrackers bids farewell to the old year\nThe spring breeze warms every home\nRed envelopes bring smiles\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant for the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
+  "prompt": "Plum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere",
   "replace_section_start": 30.0,
   "replace_section_end": 60.0
 }
 ```
 
-The response contains the newly generated replacement segments (two candidates by default):
-
+The return will be the newly generated replacement segment (a total of 2 candidates), as shown below:
 ```json
 {
   "success": true,
@@ -546,7 +549,7 @@ The response contains the newly generated replacement segments (two candidates b
       "title": "",
       "image_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
       "image_large_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
-      "lyric": "[Intro]\n锣鼓喧天 红灯高挂\n[Verse 1]\n爆竹声声辞旧岁\n春风暖暖入万家\n红包压岁笑开颜\n金蛇起舞贺新春\n[Chorus]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n[Verse 2]\n饺子飘香年夜饭\n灯笼摇曳照团圆",
+      "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nThe sound of firecrackers bids farewell to the old year\nThe spring breeze warmly enters every home\nRed envelopes bring smiles to faces\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant for the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
       "audio_url": "https://cdn1.suno.ai/364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.mp3",
       "video_url": "",
       "created_at": "2026-05-06T06:55:00.000Z",
@@ -567,11 +570,11 @@ The response contains the newly generated replacement segments (two candidates b
 }
 ```
 
-Notice the durations of the returned items (45.16s and 33.8s) are much shorter than the original song (94.12s). They are the replacement segments themselves (with a little surrounding context for transitions), **not** the full assembled song. Pick whichever candidate sounds best, and use it for the next step.
+It can be seen that the durations of the two returned audio clips (45.16 seconds, 33.8 seconds) are much shorter than the original song (94.12 seconds). They are just the replacement segments themselves (including a little bit of context before and after for transition) and are **not** the entire song spliced together. You can choose one of the two candidates that you are satisfied with, and the next step is to splice this segment back into the original song.
 
-### Step 2: Concat the replacement segment back onto the original song
+### Step Two: Splice the Replacement Segment Back into the Original Song
 
-Send a [Concat](#get-the-complete-song) request against the chosen segment ID (e.g. `364f9d8b-ca25-463b-9a5e-d0b7139e2d6a`):
+For the selected segment above (for example, `364f9d8b-ca25-463b-9a5e-d0b7139e2d6a`), initiate a `concat` task according to the method in the [Music Splicing](#音乐拼接) section:
 
 ```json
 {
@@ -581,7 +584,7 @@ Send a [Concat](#get-the-complete-song) request against the chosen segment ID (e
 }
 ```
 
-The response is the final, fully assembled song:
+The return is the spliced complete song, as shown below:
 
 ```json
 {
@@ -591,9 +594,9 @@ The response is the final, fully assembled song:
   "data": [
     {
       "id": "365a9640-0452-4567-80f0-4f5a2a17ddd5",
-      "title": "新年快乐",
+      "title": "Happy New Year",
       "image_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
-      "lyric": "[Intro]\n锣鼓喧天 红灯高挂\n[Verse 1]\n爆竹声声辞旧岁\n春风暖暖入万家\n红包压岁笑开颜\n金蛇起舞贺新春\n[Chorus]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地\n[Verse 2]\n饺子飘香年夜饭\n灯笼摇曳照团圆",
+      "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nThe sound of firecrackers bids farewell to the old year\nThe spring breeze warmly enters every home\nRed envelopes bring smiles to faces\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant for the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
       "audio_url": "https://cdn1.suno.ai/365a9640-0452-4567-80f0-4f5a2a17ddd5.mp3",
       "video_url": "",
       "created_at": "2026-05-06T06:56:46.057Z",
@@ -606,16 +609,16 @@ The response is the final, fully assembled song:
 }
 ```
 
-The `duration` is back to a full-song length (105.28 seconds, comparable to the original), and `audio_url` points to the final audio file with the replaced section spliced in. This completes the "generate → replace_section → concat" secondary-creation workflow.
+At this point, the `duration` has been restored to the full song length (105.28 seconds, approximately equal to the original song length), and the `audio_url` points to the completed song after the replacement. This completes the "generate → replace segment → splice full song" secondary creation process.
 
 ## Vocal and Instrument Separation
 
-After generating the song, when a secondary creation is needed for separate operations of accompaniment and vocals, pure music accompaniment and clean vocals can be separated. The following content can be specified:
+When the song is generated and needs to be further created with separate operations for accompaniment and vocals, the pure instrumental accompaniment and the clean vocal can be separated. You can specify the following content:
 
-- action: The content is `stems`.
-- audio_id: The ID of the previously generated song.
+- action: the content is `stems`.
+- audio_id: the ID of the previously generated song.
 
-For example, if the ID of the originally generated song is: ec13e502-d043-4eb2-92ee-e900c6da69d1, then the parameters can be set as follows:
+For example, if the ID of the song generated earlier is: ec13e502-d043-4eb2-92ee-e900c6da69d1, then you can set the parameters as follows:
 
 ```json
 {
@@ -624,8 +627,8 @@ For example, if the ID of the originally generated song is: ec13e502-d043-4eb2-9
 }
 ```
 
-With the above parameters, the result of vocal and instrument separation can be obtained, as follows:
-
+With the above parameters, you can obtain the results of the vocal and instrumental separation, as shown below:
+```
 ```json
 {
   "success": true,
@@ -662,16 +665,16 @@ With the above parameters, the result of vocal and instrument separation can be 
 }
 ```
 
-The generated result is similar to the previous text, thus completing the process of vocal and instrument separation of the originally generated song.
+The generated result is similar to the above, completing the process of vocal separation for the originally generated song.
 
-## Full Track Vocal and Instrument Separation
+## Full Track Vocal Separation
 
-After generating the song, when a full track vocal and instrument separation operation is needed, the following content can be specified:
+When a full track vocal separation operation is needed after generating a song, the following content can be specified:
 
 - action: The content is `all_stems`.
 - audio_id: The ID of the previously generated song.
 
-For example, if the ID of the originally generated song is: bdf23a5a-59f5-4103-b452-054a824a7f9f, then the parameters can be set as follows:
+For example, if the ID of the previously generated song is: bdf23a5a-59f5-4103-b452-054a824a7f9f, then the parameters can be set as follows:
 
 ```json
 {
@@ -680,7 +683,7 @@ For example, if the ID of the originally generated song is: bdf23a5a-59f5-4103-b
 }
 ```
 
-With the above parameters, the result of full track vocal and instrument separation can be obtained, as follows:
+With the above parameters, the result of the full track vocal separation can be obtained, as follows:
 
 ```json
 {
@@ -690,7 +693,7 @@ With the above parameters, the result of full track vocal and instrument separat
   "data": [
     {
       "id": "f86ca64a-9519-4ea7-a592-52438e001412",
-      "title": "安全之弦 (Vocals)",
+      "title": "Safety String (Vocals)",
       "image_url": "https://cdn2.suno.ai/image_f86ca64a-9519-4ea7-a592-52438e001412.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/f86ca64a-9519-4ea7-a592-52438e001412.mp3",
@@ -701,7 +704,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "99e649a7-a394-47b9-a915-d7f847285a36",
-      "title": "安全之弦 (Backing Vocals)",
+      "title": "Safety String (Backing Vocals)",
       "image_url": "https://cdn2.suno.ai/image_99e649a7-a394-47b9-a915-d7f847285a36.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/99e649a7-a394-47b9-a915-d7f847285a36.mp3",
@@ -712,7 +715,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "6d710bf7-809f-4fdc-bb63-b8cb3a456d42",
-      "title": "安全之弦 (Drums)",
+      "title": "Safety String (Drums)",
       "image_url": "https://cdn2.suno.ai/image_6d710bf7-809f-4fdc-bb63-b8cb3a456d42.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/6d710bf7-809f-4fdc-bb63-b8cb3a456d42.mp3",
@@ -721,11 +724,9 @@ With the above parameters, the result of full track vocal and instrument separat
       "model": "chirp-ahi-stem-12-t1",
       "state": "succeeded",
       "duration": 154.92
-    }, 
-```
-{
+    }, {
       "id": "e05f07e3-7d80-4713-8e51-7f176c733543",
-      "title": "The String of Safety (Bass)",
+      "title": "Safety String (Bass)",
       "image_url": "https://cdn2.suno.ai/image_e05f07e3-7d80-4713-8e51-7f176c733543.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/e05f07e3-7d80-4713-8e51-7f176c733543.mp3",
@@ -736,7 +737,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "93fe7cd8-62fd-4739-b78e-142c7e0b8562",
-      "title": "The String of Safety (Guitar)",
+      "title": "Safety String (Guitar)",
       "image_url": "https://cdn2.suno.ai/image_93fe7cd8-62fd-4739-b78e-142c7e0b8562.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/93fe7cd8-62fd-4739-b78e-142c7e0b8562.mp3",
@@ -745,9 +746,11 @@ With the above parameters, the result of full track vocal and instrument separat
       "model": "chirp-ahi-stem-12-t1",
       "state": "succeeded",
       "duration": 154.92
-    }, {
+    },
+```
+{
       "id": "8367d71c-fdd3-441c-8ebe-70c33cca821b",
-      "title": "The String of Safety (Keyboard)",
+      "title": "Safety String (Keyboard)",
       "image_url": "https://cdn2.suno.ai/image_8367d71c-fdd3-441c-8ebe-70c33cca821b.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/8367d71c-fdd3-441c-8ebe-70c33cca821b.mp3",
@@ -758,7 +761,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "28c03590-731c-416e-8fd3-95cdb3d75043",
-      "title": "The String of Safety (Percussion)",
+      "title": "Safety String (Percussion)",
       "image_url": "https://cdn2.suno.ai/image_28c03590-731c-416e-8fd3-95cdb3d75043.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/28c03590-731c-416e-8fd3-95cdb3d75043.mp3",
@@ -769,7 +772,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "3d4c1a28-4e1c-485a-8201-d21bb93aca2f",
-      "title": "The String of Safety (Strings)",
+      "title": "Safety String (Strings)",
       "image_url": "https://cdn2.suno.ai/image_3d4c1a28-4e1c-485a-8201-d21bb93aca2f.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/3d4c1a28-4e1c-485a-8201-d21bb93aca2f.mp3",
@@ -780,7 +783,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "b9db8ded-01ec-4e37-b8a5-64aab3a814c2",
-      "title": "The String of Safety (Synth)",
+      "title": "Safety String (Synth)",
       "image_url": "https://cdn2.suno.ai/image_b9db8ded-01ec-4e37-b8a5-64aab3a814c2.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/b9db8ded-01ec-4e37-b8a5-64aab3a814c2.mp3",
@@ -791,7 +794,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "10a5248e-32e6-42b9-8da1-678a8a392aef",
-      "title": "The String of Safety (FX)",
+      "title": "Safety String (FX)",
       "image_url": "https://cdn2.suno.ai/image_10a5248e-32e6-42b9-8da1-678a8a392aef.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/10a5248e-32e6-42b9-8da1-678a8a392aef.mp3",
@@ -802,7 +805,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "2d272128-111f-4901-8f62-5ae1eb43095a",
-      "title": "The String of Safety (Brass)",
+      "title": "Safety String (Brass)",
       "image_url": "https://cdn2.suno.ai/image_2d272128-111f-4901-8f62-5ae1eb43095a.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/2d272128-111f-4901-8f62-5ae1eb43095a.mp3",
@@ -813,7 +816,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "4a7c19a5-f8d4-4e4a-add9-aa0bad9307cc",
-      "title": "The String of Safety (Woodwinds)",
+      "title": "Safety String (Woodwinds)",
       "image_url": "https://cdn2.suno.ai/image_4a7c19a5-f8d4-4e4a-add9-aa0bad9307cc.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/4a7c19a5-f8d4-4e4a-add9-aa0bad9307cc.mp3",
@@ -824,7 +827,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "1ca774f9-3e75-48a6-941b-808875eadcd2",
-      "title": "The String of Safety (Vocals)",
+      "title": "Safety String (Vocals)",
       "image_url": "https://cdn2.suno.ai/image_1ca774f9-3e75-48a6-941b-808875eadcd2.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/1ca774f9-3e75-48a6-941b-808875eadcd2.mp3",
@@ -833,8 +836,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "model": "chirp-ahi-stem-12-t1",
       "state": "succeeded",
       "duration": 154.92
-    },
-{
+    }, {
       "id": "14c5ffc7-addf-4fee-afd2-4b8b3e7ee470",
       "title": "Safety String (Backing Vocals)",
       "image_url": "https://cdn2.suno.ai/image_14c5ffc7-addf-4fee-afd2-4b8b3e7ee470.jpeg",
@@ -856,9 +858,10 @@ With the above parameters, the result of full track vocal and instrument separat
       "model": "chirp-ahi-stem-12-t1",
       "state": "succeeded",
       "duration": 154.92
-    }, {
+    },
+{
       "id": "efd052d0-c12f-47b3-8282-1f3ef7610e1f",
-      "title": "Safety String (Bass)",
+      "title": "The String of Safety (Bass)",
       "image_url": "https://cdn2.suno.ai/image_efd052d0-c12f-47b3-8282-1f3ef7610e1f.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/efd052d0-c12f-47b3-8282-1f3ef7610e1f.mp3",
@@ -869,7 +872,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "5775372b-292e-4420-96ef-60e57a60cc1f",
-      "title": "Safety String (Guitar)",
+      "title": "The String of Safety (Guitar)",
       "image_url": "https://cdn2.suno.ai/image_5775372b-292e-4420-96ef-60e57a60cc1f.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/5775372b-292e-4420-96ef-60e57a60cc1f.mp3",
@@ -880,7 +883,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "dab3f220-19cd-408e-9b96-30ec18f5b049",
-      "title": "Safety String (Keyboard)",
+      "title": "The String of Safety (Keyboard)",
       "image_url": "https://cdn2.suno.ai/image_dab3f220-19cd-408e-9b96-30ec18f5b049.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/dab3f220-19cd-408e-9b96-30ec18f5b049.mp3",
@@ -891,7 +894,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "2d0cd6d4-af82-4bb5-86fe-d92bdb367157",
-      "title": "Safety String (Percussion)",
+      "title": "The String of Safety (Percussion)",
       "image_url": "https://cdn2.suno.ai/image_2d0cd6d4-af82-4bb5-86fe-d92bdb367157.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/2d0cd6d4-af82-4bb5-86fe-d92bdb367157.mp3",
@@ -902,7 +905,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "f3191a1a-5e8d-4afe-b638-3add222d52cd",
-      "title": "Safety String (Strings)",
+      "title": "The String of Safety (Strings)",
       "image_url": "https://cdn2.suno.ai/image_f3191a1a-5e8d-4afe-b638-3add222d52cd.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/f3191a1a-5e8d-4afe-b638-3add222d52cd.mp3",
@@ -913,7 +916,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "a8834ea5-200b-4206-a812-9780ef336660",
-      "title": "Safety String (Synth)",
+      "title": "The String of Safety (Synth)",
       "image_url": "https://cdn2.suno.ai/image_a8834ea5-200b-4206-a812-9780ef336660.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/a8834ea5-200b-4206-a812-9780ef336660.mp3",
@@ -924,7 +927,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "f50d1a31-ef72-400a-b8ae-0367849d007d",
-      "title": "Safety String (FX)",
+      "title": "The String of Safety (FX)",
       "image_url": "https://cdn2.suno.ai/image_f50d1a31-ef72-400a-b8ae-0367849d007d.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/f50d1a31-ef72-400a-b8ae-0367849d007d.mp3",
@@ -935,7 +938,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "duration": 154.92
     }, {
       "id": "cb581673-23cc-40d6-9f9b-0f76720f0d18",
-      "title": "Safety String (Brass)",
+      "title": "The String of Safety (Brass)",
       "image_url": "https://cdn2.suno.ai/image_cb581673-23cc-40d6-9f9b-0f76720f0d18.jpeg",
       "lyric": "",
       "audio_url": "https://cdn1.suno.ai/cb581673-23cc-40d6-9f9b-0f76720f0d18.mp3",
@@ -944,9 +947,7 @@ With the above parameters, the result of full track vocal and instrument separat
       "model": "chirp-ahi-stem-12-t1",
       "state": "succeeded",
       "duration": 154.92
-    },
-```json
-{
+    }, {
       "id": "d91cfb52-f0a3-4546-bf8a-2ad14c3775a5",
       "title": "The String of Safety (Woodwinds)",
       "image_url": "https://cdn2.suno.ai/image_d91cfb52-f0a3-4546-bf8a-2ad14c3775a5.jpeg",
@@ -961,26 +962,24 @@ With the above parameters, the result of full track vocal and instrument separat
   ]
 }
 ```
- 
 
-The generated result is similar to the previous text, completing the process of vocal and instrumental separation for the originally generated song.
+The generated result is similar to the above, which completes the process of separating the vocals and instruments of the originally generated song.
 
-## Custom Advanced Parameters for Generation
+## Advanced Parameters for Custom Generation
 
-The official allows the use of advanced parameters `weirdness`==>`Weirdness`, `style_influence`==>`Style Influence`, `audio_weight`==>`Audio Influence` in custom mode for generation, corresponding to the official examples as shown below:
+The official version allows the use of advanced parameters `weirdness`==>`Weirdness`, `style_influence`==>`Style Influence`, and `audio_weight`==>`Audio Influence` for generation in custom mode. The corresponding official example is as follows:
 
 <p><img src="https://cdn.acedata.cloud/1xonxy.png" width="500" class="m-auto"></p>
 
-The range of advanced parameters is between 0-1, and the specific parameters are shown in the image below:
+The ranges of the advanced parameters are all between 0-1, and the specific parameters are shown in the following figure:
 
 <p><img src="https://cdn.acedata.cloud/7i94ih.png" width="500" class="m-auto"></p>
 
-After filling in, the code is automatically generated as follows:
+After filling in the information, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/2dlbo6.png" width="500" class="m-auto"></p>
 
-Corresponding Python code:
-
+The corresponding Python code:
 ```python
 import requests
 
@@ -1006,7 +1005,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result is obtained as follows:
+Clicking run, you can find that a result will be obtained, as follows:
 
 ```json
 {
@@ -1044,31 +1043,68 @@ Clicking run, you can find that a result is obtained as follows:
 }
 ```
 
-Thus, custom songs were generated using advanced parameters, and the results are similar to the previous text.
+This way, custom songs are generated using advanced parameters, and the results are similar to the above.
 
-## Add Instrumental Function
+## Control Song Duration
 
-In August 2025, Suno released the Add Instrumental function. First, you need to upload a song with only vocals and no accompaniment, allowing Suno to add music for you. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/suno-upload) to upload a song with only vocals, corresponding to the operations shown in the image below:
+By default, the duration of the generated song is determined by the model, usually between 30 seconds and 4 minutes. If a longer or shorter product is needed, the expected duration can be specified through the `duration` parameter, measured in seconds, with integer values typically recommended between 10 and 360.
+
+This parameter is mainly aimed at song generation in custom mode (`custom` is `true`), and works best with newer models (such as `chirp-v5-5`). Different models and operations have varying levels of support for duration control; if the current combination does not support it, this parameter may be ignored or return an error message, and adjustments can be made based on the returned results.
+
+The corresponding Python code:
+
+```python
+import requests
+
+url = "https://api.acedata.cloud/suno/audios"
+
+headers = {
+    "accept": "application/json",
+    "authorization": "Bearer {token}",
+    "content-type": "application/json"
+}
+
+payload = {
+    "action": "generate",
+    "model": "chirp-v5-5",
+    "custom": True,
+    "title": "Under the City Lights",
+    "style": "lo-fi piano",
+    "lyric": "[Verse]\nSunrise creepin\nGold on the floor\n[Chorus]\nUnder the city lights\n",
+    "duration": 330
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+It should be noted that the `duration` in the request is the **expected duration**, while the `duration` field of each song in the response `data` is the **actual duration** of that song. Both have the same name but different meanings; the actual duration will fluctuate around the expected value and is not guaranteed to be exactly equal.
+
+If a certain model or operation does not support duration control, the interface may ignore this parameter or return an error message. It is recommended to confirm the effect with a single request before using it in bulk.
+
+## Add Instrumental Feature
+
+In August 2025, Suno released the Add Instrumental feature. First, you need to upload a song with only vocals and no accompaniment, allowing Suno to add music for you. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/suno-upload) to upload a song with only vocals, corresponding to the operations shown in the following image:
 
 <p><img src="https://cdn.acedata.cloud/fxl914.png" width="500" class="m-auto"></p>
 
-Then you need to record the `audio_id` after uploading, with the specific result shown in the image below:
+Then you need to record the `audio_id` after uploading, with the specific result shown in the following image:
 
 <p><img src="https://cdn.acedata.cloud/47t6wj.png" width="500" class="m-auto"></p>
 
-Finally, you get an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and then you need to fill in the following parameters:
+Finally, you get an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and then we need to fill in the following parameters:
 
-- action: The content is `underpainting`.
-- underpainting_start: The starting time for adding accompaniment to the uploaded song, the default value is 0.
-- underpainting_end: The endpoint for adding accompaniment to the uploaded song, must be less than the total duration of the song.
-- audio_id: The ID of the uploaded song with only vocals.
-- style: The style of the accompaniment, preferably without lyrics since it is for accompaniment.
+- action: the content is `underpainting`.
+- underpainting_start: the starting time for adding accompaniment to the uploaded song, the default value is 0.
+- underpainting_end: the endpoint for adding accompaniment to the uploaded song, must be less than the total duration of the song.
+- audio_id: the ID of the uploaded song with only vocals.
+- style: the style of the accompaniment, preferably without lyrics since it is for accompaniment.
 
 After filling in, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/8x1ic6.png" width="500" class="m-auto"></p>
 
-Corresponding Python code:
+The corresponding Python code:
 
 ```python
 import requests
@@ -1093,8 +1129,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result is obtained as follows:
-```
+Clicking run, you can find that a result will be obtained, as follows:
 ```json
 {
   "success": true,
@@ -1153,7 +1188,7 @@ Finally, you obtain an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and you
 - lyric: The lyrics filled in the custom mode.
 - style: The style of the accompaniment.
 
-After filling in, the following code is automatically generated:
+After filling in, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/a4pbes.png" width="500" class="m-auto"></p>
 
@@ -1225,14 +1260,14 @@ This completes the operation of adding vocals to the uploaded a cappella song, w
 
 ## Remaster Feature
 
-In December 2025, Suno released the new Remaster feature, which can regenerate songs but cannot cross accounts. You also need to fill in the following parameters:
+In December 2025, Suno released the Remaster feature, which can regenerate songs and cannot cross accounts. You also need to fill in the following parameters:
 
 - action: The content is `remaster`.
 - audio_id: The ID of the song to be regenerated.
 - model: Only supports v4.5+, v5.
 - variation_category: Only supported in versions above v5, and only has 3 values: high, normal, subtle.
 
-After filling in, the following code is automatically generated:
+After filling in, the code is automatically generated as follows:
 
 <p><img src="https://cdn.acedata.cloud/7h4zmw.png" width="500" class="m-auto"></p>
 
@@ -1376,15 +1411,179 @@ Click to run, and you will find that a result is obtained, as follows:
 }
 ```
 
-This completes the operation of generating a mixed track for the reference song, with results similar to the above.
+This completes the operation of generating a mixed track based on the reference songs, with results similar to the above.
+
+## Samples Generate Songs
+
+In December 2025, Suno released a new Samples feature, which can generate songs based on two reference songs. We also need to fill in the following parameters:
+
+- action: The content is `samples`.
+- samples_start: Sampling start time.
+- samples_end: Sampling end time.
+- audio_id: The ID of the reference song to sample.
+
+After filling in, the following code is automatically generated:
+
+<p><img src="https://cdn.acedata.cloud/vkzumz.png" width="500" class="m-auto"></p>
+
+Corresponding Python code:
+
+```python
+import requests
+
+url = "https://api.acedata.cloud/suno/audios"
+
+headers = {
+    "accept": "application/json",
+    "authorization": "Bearer {token}",
+    "content-type": "application/json"
+}
+
+payload = {
+    "action": "samples",
+    "model": "chirp-v5",
+    "lyric": "[Verse 1]\\nPhone lit up\\nHeadline in my hand\\nFeels made up\\nStill says “you won’t understand”\\nYour name\\nMy name\\nSide by side in the scroll\\nCold black text\\nOn a story I used to hold\\n\\n[Chorus]\\nYou’re breaking news\\nAnd I’m just breaking\\nFront-page truth\\nHeart still shaking\\nEverybody reads\\nWhat we already knew\\nYou’re a story now\\nAnd I’m the one you broke it to\\n\\n[Verse 2]\\nNeighbors talk\\nThrough a half-closed door\\nCoffee cools\\nOn a cracked old floor\\nYour suitcase snaps\\nLike a camera flash\\nOne last quote\\nThen you cut to black\\n\\n[Chorus]\\nYou’re breaking news\\nAnd I’m just breaking\\nFront-page truth\\nHeart still shaking\\nEverybody reads\\nWhat we already knew\\nYou’re a story now\\nAnd I’m the one you broke it to\\n\\n[Bridge]\\nIs there a line\\nWhere we rewind\\nOr just a feed\\nThat leaves us behind\\nTell me\\nWho gets\\nThe final view\\nWhen I stop trending\\nWith you\\n\\n[Chorus]\\nYou’re breaking news\\nAnd I’m just breaking\\nFront-page truth\\nHeart still shaking\\nEverybody reads\\nWhat we already knew\\nYou’re a story now\\nAnd I’m the one you broke it to (yeah)",
+    "custom": True,
+    "instrumental": False,
+    "audio_id": "0fa07665-6b8e-4a8b-8bd3-7e0cfcdada88",
+    "samples_end": 102.16,
+    "samples_start": 59.88
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+Clicking run, you can find that a result will be obtained, as follows:
+```json
+{
+    "success": true,
+    "task_id": "12135a45-6384-4683-9bb1-64f19933915a",
+    "trace_id": "683e559d-340e-4c72-8fae-e683442ac7e9",
+    "data": [
+        {
+            "id": "9a0b680f-a9ea-4a36-8695-8ea777ab6ee7",
+            "title": "Whistle in the Wind",
+            "image_url": "https://cdn2.suno.ai/image_9a0b680f-a9ea-4a36-8695-8ea777ab6ee7.jpeg",
+            "image_large_url": "https://cdn2.suno.ai/image_large_9a0b680f-a9ea-4a36-8695-8ea777ab6ee7.jpeg",
+            "lyric": "[Verse 1]\nPhone lit up\nHeadline in my hand\nFeels made up\nStill says “you won’t understand”\nYour name\nMy name\nSide by side in the scroll\nCold black text\nOn a story I used to hold\n[Chorus]\nYou’re breaking news\nAnd I’m just breaking\nFront-page truth\nHeart still shaking\nEverybody reads\nWhat we already knew\nYou’re a story now\nAnd I’m the one you broke it to\n[Verse 2]\nNeighbors talk\nThrough a half-closed door\nCoffee cools\nOn a cracked old floor\nYour suitcase snaps\nLike a camera flash\nOne last quote\nThen you cut to black\n[Chorus]\nYou’re breaking news\nAnd I’m just breaking\nFront-page truth\nHeart still shaking\nEverybody reads\nWhat we already knew\nYou’re a story now\nAnd I’m the one you broke it to\n[Bridge]\nIs there a line\nWhere we rewind\nOr just a feed\nThat leaves us behind\nTell me\nWho gets\nThe final view\nWhen I stop trending\nWith you\n[Chorus]\nYou’re breaking news\nAnd I’m just breaking\nFront-page truth\nHeart still shaking\nEverybody reads\nWhat we already knew\nYou’re a story now\nAnd I’m the one you broke it to (yeah)",
+            "audio_url": "https://cdn1.suno.ai/9a0b680f-a9ea-4a36-8695-8ea777ab6ee7.mp3",
+            "video_url": "",
+            "created_at": "2026-01-31T14:34:45.043Z",
+            "model": "chirp-v5",
+            "state": "succeeded",
+            "style": "acoustic with a hint of optimism,folk-pop,female vocals",
+            "duration": 176.92
+        },
+        {
+            "id": "66473dee-3aaf-43b2-80fd-76568b3abbb1",
+            "title": "Whistle in the Wind",
+            "image_url": "https://cdn2.suno.ai/image_66473dee-3aaf-43b2-80fd-76568b3abbb1.jpeg",
+            "image_large_url": "https://cdn2.suno.ai/image_large_66473dee-3aaf-43b2-80fd-76568b3abbb1.jpeg",
+            "lyric": "[Verse 1]\nPhone lit up\nHeadline in my hand\nFeels made up\nStill says “you won’t understand”\nYour name\nMy name\nSide by side in the scroll\nCold black text\nOn a story I used to hold\n[Chorus]\nYou’re breaking news\nAnd I’m just breaking\nFront-page truth\nHeart still shaking\nEverybody reads\nWhat we already knew\nYou’re a story now\nAnd I’m the one you broke it to\n[Verse 2]\nNeighbors talk\nThrough a half-closed door\nCoffee cools\nOn a cracked old floor\nYour suitcase snaps\nLike a camera flash\nOne last quote\nThen you cut to black\n[Chorus]\nYou’re breaking news\nAnd I’m just breaking\nFront-page truth\nHeart still shaking\nEverybody reads\nWhat we already knew\nYou’re a story now\nAnd I’m the one you broke it to\n[Bridge]\nIs there a line\nWhere we rewind\nOr just a feed\nThat leaves us behind\nTell me\nWho gets\nThe final view\nWhen I stop trending\nWith you\n[Chorus]\nYou’re breaking news\nAnd I’m just breaking\nFront-page truth\nHeart still shaking\nEverybody reads\nWhat we already knew\nYou’re a story now\nAnd I’m the one you broke it to (yeah)",
+            "audio_url": "https://cdn1.suno.ai/66473dee-3aaf-43b2-80fd-76568b3abbb1.mp3",
+            "video_url": "",
+            "created_at": "2026-01-31T14:34:45.043Z",
+            "model": "chirp-v5",
+            "state": "succeeded",
+            "style": "acoustic with a hint of optimism,folk-pop,female vocals",
+            "duration": 177.48
+        }
+    ]
+}
+```
+
+This completes the operation of sampling and generating songs, with results similar to the above.
+
+## Inspo Creative Function
+
+Suno's newly released Inspo creative function can generate brand new music based on 1 to 4 segments of reference audio as inspiration. Unlike covers, Inspo does not replicate the original song but extracts stylistic inspiration from the reference audio and combines it with prompts, style tags, etc., to create new works. When using, the following parameters need to be filled in:
+
+- action: The content is `inspo`.
+- audio_urls: A list of URLs for reference audio, requiring 1 to 4 publicly accessible audio addresses.
+- model: The model used, such as `chirp-v5`.
+- prompt: Lyrics or creative prompts (optional).
+- tags: Music style tags, such as `acoustic, folk, warm` (optional).
+- title: Song title (optional).
+- audio_weight: The influence weight of the reference audio on the generated result, ranging from 0 to 1 (optional).
+
+> Note: The reference audio must be publicly accessible audio files. If the reference audio completely matches known recordings in the platform's music library, Suno may refuse to generate due to copyright verification, so it is recommended to use self-owned or Suno-generated audio as inspiration.
+
+Corresponding Python code:
+
+```python
+import requests
+
+url = "https://api.acedata.cloud/suno/audios"
+
+headers = {
+    "accept": "application/json",
+    "authorization": "Bearer {token}",
+    "content-type": "application/json"
+}
+
+payload = {
+    "action": "inspo",
+    "model": "chirp-v5",
+    "audio_urls": [
+        "https://cdn1.suno.ai/935dd2f5-ddef-43cf-8e68-5a262425694d.mp3"
+    ],
+    "prompt": "warm acoustic folk with soft vocals",
+    "tags": "acoustic, folk, warm",
+    "title": "Inspo Demo",
+    "audio_weight": 0.6
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+Clicking run, you can find that you will get a result like this:
+```json
+{
+    "success": true,
+    "task_id": "725e6b41-78d0-4adf-856c-05e81098c029",
+    "trace_id": "8c2f0b3e-2f6a-4738-8b1d-c58068ca3dab",
+    "data": [
+        {
+            "id": "20ca5628-86e0-4c32-8ae4-9f0c481e45f3",
+            "title": "Inspo Demo",
+            "image_url": "https://cdn2.suno.ai/image_20ca5628-86e0-4c32-8ae4-9f0c481e45f3.jpeg",
+            "lyric": "",
+            "audio_url": "https://cdn1.suno.ai/20ca5628-86e0-4c32-8ae4-9f0c481e45f3.mp3",
+            "video_url": "",
+            "created_at": "2026-06-18T13:01:53.910Z",
+            "model": "chirp-v5",
+            "state": "succeeded",
+            "style": "acoustic, folk, warm",
+            "duration": 36.92
+        },
+        {
+            "id": "8744a796-9961-45af-868d-4f3bc1c44257",
+            "title": "Inspo Demo",
+            "image_url": "https://cdn2.suno.ai/image_8744a796-9961-45af-868d-4f3bc1c44257.jpeg",
+            "lyric": "",
+            "audio_url": "https://cdn1.suno.ai/8744a796-9961-45af-868d-4f3bc1c44257.mp3",
+            "video_url": "",
+            "created_at": "2026-06-18T13:01:53.910Z",
+            "model": "chirp-v5",
+            "state": "succeeded",
+            "style": "acoustic, folk, warm",
+            "duration": 84.16
+        }
+    ]
+}
+```
+
+This completes the operation of inspiration creation, and the returned result is consistent with the normal song generation.
 
 ## Asynchronous Callback
 
 Since the time for Suno to generate music is relatively long, approximately 1-2 minutes, if the API does not respond for a long time, the HTTP request will keep the connection open, leading to additional system resource consumption. Therefore, this API also provides support for asynchronous callbacks.
 
-The overall process is: when the client initiates a request, an additional `callback_url` field is specified. After the client initiates the API request, the API will immediately return a result containing a `task_id` field, representing the current task ID. When the task is completed, the generated music result will be sent to the client-specified `callback_url` in the form of a POST JSON, which also includes the `task_id` field, allowing the task result to be associated by ID.
+The overall process is: when the client initiates a request, an additional `callback_url` field is specified. After the client initiates the API request, the API will immediately return a result containing a `task_id` field information, representing the current task ID. When the task is completed, the generated music result will be sent to the client-specified `callback_url` in the form of a POST JSON, which also includes the `task_id` field, allowing the task result to be associated by ID.
 
-Next, let's understand how to operate specifically through an example.
+Let’s understand how to operate specifically through an example.
 
 First, the Webhook callback is a service that can receive HTTP requests, and developers should replace it with the URL of their own HTTP server. For demonstration purposes, we use a public Webhook sample site https://webhook.site/, where you can open the site to get a Webhook URL, as shown in the image:
 
@@ -1404,11 +1603,12 @@ Clicking run, you can find that an immediate result is obtained, as follows:
 }
 ```
 
-After a moment, we can observe the generated song results at https://webhook.site/03e60575-3d96-4132-b681-b713d78116e2, as shown in the image:
+After a moment, we can observe the generated song result at https://webhook.site/03e60575-3d96-4132-b681-b713d78116e2, as shown in the image:
 
 ![](https://cdn.acedata.cloud/f9kosb.png)
 
 The content is as follows:
+
 ```json
 {
   "success": true,
@@ -1442,7 +1642,7 @@ The content is as follows:
 }
 ```
 
-It can be seen that the result contains a `task_id` field, and other fields are similar to the above text, which allows for task association through this field.
+You can see that the result contains a `task_id` field, and other fields are similar to the above text. This field allows for task association.
 
 Of course, we can also obtain results through streaming calls; we just need to set the value of `accept` in the request header to `application/x-ndjson`. Below is an example input as a demonstration:
 
@@ -1450,9 +1650,35 @@ Of course, we can also obtain results through streaming calls; we just need to s
 
 During the waiting process, we can get the following output:
 
-```json {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
-{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=1f610752-f426-4fd5-89a8-ba2ad0370881","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
-{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp4","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","trace_id":"4440342a-41c4-4140-8bb1-3537a598ca2e","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/d1a3109d-799b-401e-b032-4b501bcf26f3.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":127.16}]}
+```json
+```
+{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=1f610752-f426-4fd5-89a8-ba2ad0370881","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
+{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
+{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","trace_id":"4440342a-41c4-4140-8bb1-3537a598ca2e","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/d1a3109d-799b-401e-b032-4b501bcf26f3.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":127.16}]}
+ 
+
+The result obtained is similar to the basic call, and the multiple results above achieve streaming calls.
+
+## Error Handling
+
+If an error occurs, you will receive an error message similar to the following:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "forbidden",
+    "message": "Song Description contained artist name: eminem"
+  },
+  "trace_id": "9bb7c2f4-3b7b-4965-b50a-f663874b1b6f",
+  "task_id": "9bb3a2a6-c438-436d-a9f3-fa466abc077c"
+}
+```
+
+Below is a list of HTTP Status Codes, `error.code`, and `error.message`:
+
+> Note: Different upstream account limits and error messages may vary. Generally, `chirp-v3-5`/`chirp-v4` has lower `style` restrictions (200), while `chirp-v4-5` and above usually support up to 1000; when hitting old upstreams, messages like `Tags too long.` or `style must be less than or equal 120` may appear as compatibility messages.
+
 | Status Code | `error.code`  | `error.message`                                                 |
 | ----------- | ------------- | --------------------------------------------------------------- |
 | 400         | `bad_request` | `The song id does not exist or has been taken offline.`         |
