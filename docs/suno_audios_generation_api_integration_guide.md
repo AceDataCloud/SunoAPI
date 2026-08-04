@@ -19,7 +19,7 @@ Here is the progress of model updates:
 
 Suno now supports the latest `chirp-v5-5` model. When calling the latest version, set the `model` parameter to `chirp-v5-5`; `chirp-v5` and earlier versions can still be used.
 
-However, the official Suno does not provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno integration, making it convenient and quick to generate desired music.
+However, the Suno official does not provide an API. AceDataCloud offers a set of Suno APIs that simulate the official Suno integration, making it convenient and quick to generate desired music.
 
 ## Application and Usage
 
@@ -29,7 +29,7 @@ To use the Suno Audios Generation API, first go to the [Ace Data Cloud Console](
 
 If you are not logged in or registered, you will be automatically redirected to the login page inviting you to register and log in, and will automatically return to the current page after completion.
 
-**One API Token can call all services on the platform without needing to apply separately for each service.** The first application will grant free credits for a trial experience; when credits are insufficient, you can recharge the general balance in the [console](https://platform.acedata.cloud/console/coin).
+**One API Token can call all services on the platform without needing to apply separately for each service.** The first application will grant free credits for a free experience; when credits are insufficient, you can recharge the general balance in the [console](https://platform.acedata.cloud/console/coin).
 
 > 📘 Complete Documentation: [Suno Audios Generation API →](https://platform.acedata.cloud/documents/suno-audios)
 
@@ -67,14 +67,14 @@ Additionally, the Request Body is set, including:
 - `weirdness`: The "Weirdness" advanced parameter in custom mode, range 0-1, the larger the more creative and experimental.
 - `duration`: The expected song length, in seconds, must be an integer, range from 10 to 360. This parameter is used for song generation in custom mode (`custom` is `true`). It is a tendency prompt rather than a hard constraint: the model will reference it but does not guarantee to meet it, the actual product length is based on the `duration` field in the response, usually shorter than the expected value.
 - `lyric_prompt`: The prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
-- `callback_url`: The URL to receive the callback result.
-- `async`: Optional, when set to `true`, the interface immediately returns `task_id`, no need to provide `callback_url`, and then polls the corresponding task query interface to get the result.
+- `callback_url`: The URL for receiving callback results.
+- `async`: Optional, when set to `true`, the interface immediately returns `task_id`, no need to provide `callback_url`, and then polls the corresponding task query interface to obtain results.
 
 The generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/1xehwl.png" width="500" class="m-auto"></p>
 
-You can click the "Try" button to directly test the API, wait for 1-2 minutes, the result is as follows:
+You can click the "Try" button to directly test the API, wait for 1-2 minutes, and the result is as follows:
 ```json
 {
   "success": true,
@@ -153,7 +153,7 @@ Next, we need to customize the generation of songs based on the lyrics, title, a
 - title: Title of the song.
 - style: Style of the song, optional.
 
-An example of filling out is as follows:
+An example of filling in is as follows:
 
 <p><img src="https://cdn.acedata.cloud/qp3iba.png" width="500" class="m-auto"></p>
 
@@ -311,10 +311,10 @@ If you want to continue generating a song that you uploaded, you can set the par
 
 Next, you must fill in the lyrics and style to customize the generated song, specifying the following content:
 
-- lyric: Lyrics text
-- custom: Set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
-- style: The style of the song, optional.
-- continue_at: The time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
+- lyric: lyric text
+- custom: set to `true`, representing custom generation; this parameter defaults to false, representing using `prompt` for generation.
+- style: the style of the song, optional.
+- continue_at: the time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
 
 An example of filling it out is shown below:
 
@@ -351,7 +351,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-Clicking run, you can find that a result will be obtained, as follows:
+Click to run, and you will find a result as follows:
 
 ```json
 {
@@ -391,14 +391,14 @@ Clicking run, you can find that a result will be obtained, as follows:
 
 It can be seen that the result content is consistent with the above, thus achieving the function of continuing the song generation.
 
-## Get the complete song
+## Get the Complete Song
 
-After continuing to generate a song based on the original song, the returned song does not contain the original song content. If you want to obtain the complete song content, you need to use the concatenation function, and you can specify the following content:
+After continuing to generate a song based on the original song, the returned song does not contain the original song content. To obtain the complete song content, the concatenation function needs to be used, and the following content can be specified:
 
 - action: content is `concat`.
 - audio_id: ID of the last segment.
 
-For example, if the extended song ID is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then you can set the parameters as follows:
+For example, if the extended song ID is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then the parameters can be set as follows:
 
 ```json
 {
@@ -444,8 +444,8 @@ Other parameters remain unchanged, and the returned result will be a complete so
 }
 ```
 
-## Music versioning
-When generating a song based on an existing song, the style of the returned song may not be suitable. If you want to create a cover of the originally generated song (custom uploaded music is also supported), you need to use the music cover method, which allows you to specify the following content:
+## Music Version
+When generating a song based on an existing song, the style of the returned song may not be appropriate. If you want to create a cover of the originally generated song (custom uploaded music is also supported), you need to use the music cover method, which allows you to specify the following content:
 
 - action: The content is `cover`. When performing a cover operation on custom uploaded music, the content must be specified as: `upload_cover`.
 - audio_id: The ID of the previously generated song.
@@ -461,7 +461,7 @@ For example, if the ID of the originally generated song is: 0a1e1b10-c36a-41c9-9
 }
 ```
 
-With other parameters unchanged, the returned result will be a cover of the original generated song, as shown below:
+With other parameters unchanged, the returned result will be a cover song, which is the result of creating a cover of the originally generated song, as shown below:
 
 ```json
 {
@@ -499,7 +499,7 @@ With other parameters unchanged, the returned result will be a cover of the orig
 }
 ```
 
-The generated result is similar to the above, completing the process of generating a cover of the originally generated song.
+The generated result is similar to the above, completing the process of creating a cover of the originally generated song.
 
 ## Replace Section
 
@@ -515,8 +515,8 @@ Parameter descriptions are as follows:
 - lyric: The complete lyrics after replacement (including the replaced segment and its context, consistent with the content in `prompt`).
 - prompt: The new lyrics for the segment that needs to be replaced.
 - style: The style of the song, optional.
-- replace_section_start: The start time (in seconds) of the replaced segment in the original song.
-- replace_section_end: The end time (in seconds) of the replaced segment in the original song.
+- replace_section_start: The start time (in seconds) of the segment being replaced in the original song.
+- replace_section_end: The end time (in seconds) of the segment being replaced in the original song.
 
 ### Step 1: Initiate the Replace Section Task
 
@@ -529,14 +529,14 @@ For example, if the ID of the originally generated song is: 18db7ed0-2b8a-41db-9
   "model": "chirp-v5-5",
   "custom": false,
   "instrumental": false,
-  "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nFirecrackers sound to bid farewell to the old year\nThe spring breeze warms every home\nRed envelopes bring smiles for the new year\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant for the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
+  "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nThe sound of firecrackers bids farewell to the old year\nThe spring breeze warms every home\nRed envelopes bring smiles\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant for the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
   "prompt": "Plum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere",
   "replace_section_start": 30.0,
   "replace_section_end": 60.0
 }
 ```
 
-The return will be the newly generated replacement segment (with a total of 2 candidates), as shown below:
+The return will be the newly generated replacement segment (a total of 2 candidates), as shown below:
 ```json
 {
   "success": true,
@@ -548,7 +548,7 @@ The return will be the newly generated replacement segment (with a total of 2 ca
       "title": "",
       "image_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
       "image_large_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
-      "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nThe sound of firecrackers bids farewell to the old year\nThe spring breeze warmly enters every home\nRed envelopes bring smiles to faces\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant for the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
+      "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nThe sound of firecrackers bids farewell to the old year\nThe spring breeze warmly enters every home\nRed envelopes bring smiles to faces\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant during the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
       "audio_url": "https://cdn1.suno.ai/364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.mp3",
       "video_url": "",
       "created_at": "2026-05-06T06:55:00.000Z",
@@ -595,7 +595,7 @@ The return is the spliced complete song, as shown below:
       "id": "365a9640-0452-4567-80f0-4f5a2a17ddd5",
       "title": "Happy New Year",
       "image_url": "https://cdn2.suno.ai/image_364f9d8b-ca25-463b-9a5e-d0b7139e2d6a.jpeg",
-      "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nThe sound of firecrackers bids farewell to the old year\nThe spring breeze warmly enters every home\nRed envelopes bring smiles to faces\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant for the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
+      "lyric": "[Intro]\nThe drums are loud, the red lanterns are high\n[Verse 1]\nThe sound of firecrackers bids farewell to the old year\nThe spring breeze warmly enters every home\nRed envelopes bring smiles to faces\nThe golden snake dances to celebrate the new spring\n[Chorus]\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\nPlum blossoms bloom, spring is overflowing everywhere\n[Verse 2]\nDumplings are fragrant during the New Year's Eve dinner\nLanterns sway, illuminating the reunion",
       "audio_url": "https://cdn1.suno.ai/365a9640-0452-4567-80f0-4f5a2a17ddd5.mp3",
       "video_url": "",
       "created_at": "2026-05-06T06:56:46.057Z",
@@ -612,7 +612,7 @@ At this point, the `duration` has been restored to the full song length (105.28 
 
 ## Vocal and Instrument Separation
 
-When the song is generated and needs to be further created with separate operations for accompaniment and vocals, the pure instrumental accompaniment and the clean vocal can be separated. You can specify the following content:
+When the song is generated and needs to be re-created with separate operations for accompaniment and vocals, the pure instrumental accompaniment and the clean vocal can be separated. You can specify the following content:
 
 - action: the content is `stems`.
 - audio_id: the ID of the previously generated song.
@@ -1048,9 +1048,9 @@ This way, custom songs are generated using advanced parameters, and the results 
 
 ## Control Song Duration
 
-By default, the duration of the generated song is determined by the model, usually between 30 seconds and 4 minutes. If a longer or shorter product is needed, the expected duration can be specified through the `duration` parameter, with the unit in seconds, and the value should be an integer between 10 and 360.
+By default, the duration of the generated song is determined by the model, usually between 30 seconds and 4 minutes. If a longer or shorter product is needed, the expected duration can be specified through the `duration` parameter, with values being integers between 10 and 360 seconds.
 
-This parameter is used for song generation in custom mode (`custom` is `true`). It should be noted that `duration` is a **preference hint, not a hard constraint**: the model will refer to this value during creation, but it does not guarantee to achieve it. In practice, the actual duration is often significantly shorter than the expected value, and the durations of two songs returned in the same request may also differ by several times. Therefore, do not treat it as precise duration control; if a fixed duration is required for business purposes, please trim or retry after obtaining the product.
+This parameter is used for song generation in custom mode (`custom` is `true`). It should be noted that `duration` is a **tendency prompt, not a hard constraint**: the model will refer to this value during creation, but it does not guarantee to achieve it. In practice, the actual duration is often significantly shorter than the expected value, and the durations of two songs returned in the same request may also differ by several times. Even with completely identical requests, the durations obtained from multiple submissions may vary greatly. Therefore, do not treat it as precise duration control; if a fixed duration is required for business purposes, please trim or retry after obtaining the product.
 
 The corresponding Python code:
 
@@ -1081,11 +1081,11 @@ print(response.text)
 
 It is important to note that the `duration` in the request is the **expected duration**, while the `duration` field of each song in the response `data` is the **actual duration** of that song. Both have the same name but different meanings, and the actual duration is not guaranteed to equal the expected value. The length of the lyrics is one of the main factors affecting the duration of the product; if a longer product is needed, it is recommended to provide more complete lyrics at the same time.
 
-The interface will not perform additional validation on `duration`, and the parameters will be passed to the model as is. If unsupported values for the current mode or model are passed in, it may result in that value being ignored. It is recommended to confirm the effect with a single request before using it in bulk.
+The interface will not perform additional validation on `duration`, and the parameters will be passed to the model as is. If values that are not supported by the current mode or model are passed in, it may result in that value being ignored. It is recommended to confirm the effect with a single request before using it in bulk.
 
 ## Add Instrumental Function
 
-In August 2025, Suno introduced the Add Instrumental function. First, you need to upload a song with only vocals and no accompaniment, allowing Suno to add music for you. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/suno-upload) to upload a song with only vocals, corresponding to the operations shown in the following image:
+In August 2025, Suno introduced the Add Instrumental function. First, you need to upload a song with only vocals and no accompaniment, allowing Suno to help you with the music. You can first go to the [Suno Upload API](https://platform.acedata.cloud/documents/suno-upload) to upload a song with only vocals, corresponding to the operations shown in the following image:
 
 <p><img src="https://cdn.acedata.cloud/fxl914.png" width="500" class="m-auto"></p>
 
@@ -1095,13 +1095,13 @@ Then you need to record the `audio_id` after uploading, with the specific result
 
 Finally, you get an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and then we need to fill in the following parameters:
 
-- action: the content is `underpainting`.
+- action: content is `underpainting`.
 - underpainting_start: the starting time for adding accompaniment to the uploaded song, the default value is 0.
 - underpainting_end: the endpoint for adding accompaniment to the uploaded song, must be less than the total duration of the song.
 - audio_id: the ID of the uploaded song with only vocals.
 - style: the style of the accompaniment, preferably without lyrics since it is for accompaniment.
 
-After filling in, the code is automatically generated as follows:
+After filling in, the automatically generated code is as follows:
 
 <p><img src="https://cdn.acedata.cloud/8x1ic6.png" width="500" class="m-auto"></p>
 
@@ -1182,8 +1182,8 @@ Then, you need to record the `audio_id` after uploading, with the specific resul
 Finally, you obtain an `audio_id`: 92254cab-3372-4d9e-bce9-cdcfdbc39070, and you also need to fill in the following parameters:
 
 - action: The content is `overpainting`.
-- overpainting_start: The starting time for adding vocals to the uploaded song, the default value is 0.
-- overpainting_end: The endpoint for adding vocals to the uploaded song, must be less than the total duration of the song.
+- overpainting_start: The start time for adding vocals to the uploaded song, with a default value of 0.
+- overpainting_end: The end time for adding vocals to the uploaded song, which must be less than the total duration of the song.
 - audio_id: The ID of the uploaded a cappella song.
 - custom: In this mode, you must use a custom mode to fill in the lyrics.
 - lyric: The lyrics filled in the custom mode.
@@ -1304,30 +1304,30 @@ Click to run, and you will find that a result is obtained, as follows:
   "data": [
     {
       "id": "b0515cdf-9cb5-46cd-b0fe-10a239dc9274",
-      "title": "Christmas in sewing  (Remastered)",
+      "title": "Navidad en costura  (Remastered)",
       "image_url": "https://cdn2.suno.ai/image_b0515cdf-9cb5-46cd-b0fe-10a239dc9274.jpeg",
       "image_large_url": "https://cdn2.suno.ai/image_large_b0515cdf-9cb5-46cd-b0fe-10a239dc9274.jpeg",
-      "lyric": "In Teror the classes continue,\nnot even Christmas has a break;\nthe group sews among carols\nand a good piece of nougat.\nThe Popular opens its doors,\nand the workshop sounds better;\nthread, needle, and cheerful singing\nwe will have a better time\nWe continue in the seams,\nwith music and fun;\nthe students will eat\na lot of sweets ",
+      "lyric": "In Teror the classes continue,\nnot even at Christmas is there a break;\nthe group sews among carols\nand a good piece of nougat.\nLa Popular opens its doors,\nand the workshop sounds better;\nthread, needle, and cheerful singing\nwe will have a better time\nWe continue in the seams,\nwith music and fun;\nthe students will eat\nlots of sweets ",
       "audio_url": "https://cdn1.suno.ai/b0515cdf-9cb5-46cd-b0fe-10a239dc9274.mp3",
       "video_url": "",
       "created_at": "2025-12-04T13:09:59.936Z",
       "model": "chirp-v4",
       "state": "succeeded",
-      "style": "Carol",
+      "style": "Villancico",
       "duration": 32.2
     },
     {
       "id": "06edab94-a4f9-4c0c-abac-a2e8a97c76a8",
-      "title": "Christmas in sewing  (Remastered)",
+      "title": "Navidad en costura  (Remastered)",
       "image_url": "https://cdn2.suno.ai/image_06edab94-a4f9-4c0c-abac-a2e8a97c76a8.jpeg",
       "image_large_url": "https://cdn2.suno.ai/image_large_06edab94-a4f9-4c0c-abac-a2e8a97c76a8.jpeg",
-      "lyric": "In Teror the classes continue,\nnot even Christmas has a break;\nthe group sews among carols\nand a good piece of nougat.\nThe Popular opens its doors,\nand the workshop sounds better;\nthread, needle, and cheerful singing\nwe will have a better time\nWe continue in the seams,\nwith music and fun;\nthe students will eat\na lot of sweets ",
+      "lyric": "In Teror the classes continue,\nnot even at Christmas is there a break;\nthe group sews among carols\nand a good piece of nougat.\nLa Popular opens its doors,\nand the workshop sounds better;\nthread, needle, and cheerful singing\nwe will have a better time\nWe continue in the seams,\nwith music and fun;\nthe students will eat\nlots of sweets ",
       "audio_url": "https://cdn1.suno.ai/06edab94-a4f9-4c0c-abac-a2e8a97c76a8.mp3",
       "video_url": "",
       "created_at": "2025-12-04T13:09:59.936Z",
       "model": "chirp-v4",
       "state": "succeeded",
-      "style": "Carol",
+      "style": "Villancico",
       "duration": 32.2
     }
   ]
@@ -1338,7 +1338,7 @@ This completes the operation of regenerating the already generated song, with re
 
 ## Mashup Generation Function
 
-In December 2025, Suno released a new Mashup function, which can generate a song based on two reference songs, and we also need to fill in the following parameters:
+In December 2025, Suno released a new Mashup feature, which can generate a song based on two reference songs, and we also need to fill in the following parameters:
 
 - action: The content is `mashup`.
 - mashup_audio_ids: The IDs of the two reference songs.
@@ -1621,7 +1621,7 @@ The content is as follows:
       "image_url": "https://cdn1.suno.ai/image_da4324e5-84b2-484b-b0e9-dd261381c594.png",
       "lyric": "[Verse]\nSnow falling gently from the sky\nChildren giggling as they pass by\nFire crackling\nCozy and warm\nChristmas spirit begins to swarm\n[Verse 2]\nTwinkling lights\nA sight to behold\nStockings hung\nWaiting to be filled with gold\nGifts wrapped with love\nPiled high\nExcitement in the air\nYou can't deny\n[Chorus]\nWinter whispers in the wind\nJoy and love it brings\nLet's celebrate this season\nWith the ones we're missing",
       "audio_url": "https://cdn1.suno.ai/da4324e5-84b2-484b-b0e9-dd261381c594.mp3",
-      "video_url": "https://cdn1.suno.ai/image_da4324e5-84b2-484b-b0e9-dd261381c594.mp4",
+      "video_url": "https://cdn1.suno.ai/da4324e5-84b2-484b-b0e9-dd261381c594.mp4",
       "created_at": "2024-05-11T07:33:05.430Z",
       "model": "chirp-v3",
       "prompt": "A song for Christmas",
@@ -1653,7 +1653,7 @@ During the waiting process, we can get the following output:
 
 ```json
 {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=1f610752-f426-4fd5-89a8-ba2ad0370881","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
-{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
+{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp4","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
 {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","trace_id":"4440342a-41c4-4140-8bb1-3537a598ca2e","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/d1a3109d-799b-401e-b032-4b501bcf26f3.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":127.16}]}
  
 
