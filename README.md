@@ -501,6 +501,7 @@ display: flex; gap: 8px; flex-wrap: wrap;
 justify-content: center; margin-top: 16px;
 }
 .tag-item
+```css
 {
 padding: 4px 12px; background: var(--el-bg-color-page);
 border: 1px solid var(--el-border-color-light); border-radius: 9999px;
@@ -628,6 +629,7 @@ Generate <span>AI Music</span>
 </h1>
 <p class="hero-subtitle">
 Integrate Suno AI music generation capabilities into your application through a stable and comprehensive REST API. Create custom songs, pure music, remixes, covers, and more—all through a unified interface.
+```
 </p>
 <div class="hero-actions">
 <a href="https://platform.acedata.cloud/documents/suno-audios" class="s-btn-primary">📄 View Documentation</a>
@@ -730,15 +732,15 @@ Integrate Suno AI music generation capabilities into your application through a 
 <div class="code-lang">cURL</div>
 </div>
 <pre class="code-block">curl -X POST https://api.acedata.cloud/suno/audios \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "action": "generate",
-    "prompt": "A cheerful pop song about a summer road trip",
-    "model": "chirp-v4",
-    "custom": false,
-    "callback_url": "https://your-app.com/webhook"
-  }'</pre>
+-H "Authorization: Bearer YOUR_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{
+"action": "generate",
+"prompt": "A cheerful pop song about a summer road trip",
+"model": "chirp-v4",
+"custom": false,
+"callback_url": "https://your-app.com/webhook"
+}'</pre>
 </div>
 <div style="margin-top: 16px;">
 <div class="code-wrap">
@@ -747,18 +749,18 @@ Integrate Suno AI music generation capabilities into your application through a 
 <div class="code-lang">Response</div>
 </div>
 <pre class="code-block">{
-  "success": true,
-  "task_id": "b3d7a1...",
-  "data": [{
-    "id": "a8f2c9...",
-    "title": "Summer Highway",
-    "style": "cheerful pop, driving beat",
-    "duration": 124.5,
-    "audio_url": "https://cdn1.suno.ai/a8f2c9.mp3",
-    "image_url": "https://cdn2.suno.ai/a8f2c9.jpeg",
-    "video_url": "https://cdn1.suno.ai/a8f2c9.mp4",
-    "state": "succeeded"
-  }]
+"success": true,
+"task_id": "b3d7a1...",
+"data": [{
+"id": "a8f2c9...",
+"title": "Summer Highway",
+"style": "cheerful pop, driving beat",
+"duration": 124.5,
+"audio_url": "https://cdn1.suno.ai/a8f2c9.mp3",
+"image_url": "https://cdn2.suno.ai/a8f2c9.jpeg",
+"video_url": "https://cdn1.suno.ai/a8f2c9.mp4",
+"state": "succeeded"
+}]
 }</pre>
 </div>
 </div>
@@ -1070,13 +1072,11 @@ Integrate Suno AI music generation capabilities into your application through a 
 <h2>Which model is right for you?</h2>
 <p>Choose from 6 Suno model versions based on your quality and speed needs</p>
 
-
 ## Quick Start
 
 - Base URL: [https://api.acedata.cloud](https://api.acedata.cloud)
 - Service page: [Suno Music Generation on Ace Data Cloud](https://platform.acedata.cloud/service/suno)
-- Docs: [Developer documentation](https://platform.acedata.cloud/documents/suno)
-- Demo: [Try the demo](https://studio.acedata.cloud/suno)
+- Docs: [Developer documentation](https://docs.acedata.cloud)
 
 ```bash
 curl --request POST "https://api.acedata.cloud/suno/audios" \
@@ -1094,14 +1094,13 @@ Explore the supported endpoints and integration guides for Suno Music Generation
 | [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) | `/suno/audios` | [Suno Audios Generation API Integration Guide](https://platform.acedata.cloud/documents/d016ee3f-421b-4b6e-989a-8beba8701701) |
 | [Suno Persona API](https://platform.acedata.cloud/documents/78bb6c62-6ce0-490f-a7df-e89d80ec0583) | `/suno/persona` | [Suno Persona API Integration Guide](https://platform.acedata.cloud/documents/a1ae233c-c52a-4a62-97dd-0db0c089da5a) |
 | [Suno MP4 API](https://platform.acedata.cloud/documents/adf030f2-ac31-4342-bb65-afd9669272f9) | `/suno/mp4` | [Suno MP4 API Integration Guide](https://platform.acedata.cloud/documents/9dff19bb-3360-4578-8115-91c5efc130a3) |
-| [Suno Voices API](https://platform.acedata.cloud/documents/82db5f13-db62-4d2d-af3a-ef5c5456b8d7) | `/suno/voices` | [](https://platform.acedata.cloud/documents/) |
-| [$t(document_title_suno_timing_generation_api)](https://platform.acedata.cloud/documents/e8b5a84f-742f-4078-8b7d-a52a68aa253f) | `/suno/timing` | [Suno Timing API Integration Guide](https://platform.acedata.cloud/documents/149a2dd6-8af9-43f1-8994-0f4466b16c6f) |
 | [Suno Vox API](https://platform.acedata.cloud/documents/ae804856-897a-4f5b-9329-8514a86a1d43) | `/suno/vox` | [Suno Vox API Integration Guide](https://platform.acedata.cloud/documents/4d487ecc-0b64-4e8f-a40b-908b9d776c76) |
+| [$t(document_title_suno_timing_generation_api)](https://platform.acedata.cloud/documents/e8b5a84f-742f-4078-8b7d-a52a68aa253f) | `/suno/timing` | [Suno Timing API Integration Guide](https://platform.acedata.cloud/documents/149a2dd6-8af9-43f1-8994-0f4466b16c6f) |
 | [Suno Wav API](https://platform.acedata.cloud/documents/c55b2b82-416b-46d7-9854-4c3bf28a3cc5) | `/suno/wav` | [Suno Wav API Integration Guide](https://platform.acedata.cloud/documents/e48efa85-ed94-4ea8-8613-c16d734a3138) |
 | [Suno MIDI API](https://platform.acedata.cloud/documents/dc315c81-ebfa-4c5a-b6e8-af593dd67d86) | `/suno/midi` | [Suno MIDI API Integration Guide](https://platform.acedata.cloud/documents/d0557c7c-b518-4c42-b482-cc84d62b208b) |
 | [Suno Style Generation API](https://platform.acedata.cloud/documents/864d5f20-2e97-4334-b0bf-f80a60f0810c) | `/suno/style` | [Suno Style API Integration Guide](https://platform.acedata.cloud/documents/2835d3d3-fcfa-4e31-a4be-33a93b84a450) |
-| [Suno MashupLyrics Generation API](https://platform.acedata.cloud/documents/851f9405-5f19-405a-8dbd-df4bd88e05a2) | `/suno/mashup-lyrics` | [Suno Mashup Lyrics Generation API Integration Guide](https://platform.acedata.cloud/documents/ec26e17f-7709-40f4-ad87-2f50c16f94b0) |
 | [Suno Lyrics Generation API](https://platform.acedata.cloud/documents/514d82dc-f7ab-4638-9f21-8b9275916b08) | `/suno/lyrics` | [Suno Lyrics Generation API Integration Guide](https://platform.acedata.cloud/documents/f1c66741-a488-43ca-91fc-e53fbbda639a) |
+| [Suno MashupLyrics Generation API](https://platform.acedata.cloud/documents/851f9405-5f19-405a-8dbd-df4bd88e05a2) | `/suno/mashup-lyrics` | [Suno Mashup Lyrics Generation API Integration Guide](https://platform.acedata.cloud/documents/ec26e17f-7709-40f4-ad87-2f50c16f94b0) |
 | [Suno Tasks API](https://platform.acedata.cloud/documents/b0dd9823-0e01-4c75-af83-5a6e2e05bfed) | `/suno/tasks` | [Suno Tasks API Integration Guide](https://platform.acedata.cloud/documents/d3868342-7f11-4670-bd31-61a63663cb10) |
 | [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82) | `/suno/upload` | [Suno Upload API Integration Guide](https://platform.acedata.cloud/documents/26092dda-23d9-4874-9916-e12db6fce3b5) |
 
