@@ -707,7 +707,7 @@ Integrate Suno AI music generation capabilities into your application through a 
 <div class="feat-card">
 <div class="feat-icon">📝</div>
 <h3>AI Lyrics Generation</h3>
-<p>Automatically generate structured lyrics with paragraph markers (verse, chorus, bridge) using two AI models. Also supports mashup lyrics, blending the lyrics of two songs.</p>
+<p>Automatically generate structured lyrics with paragraph markers (verse, chorus, bridge). The required <code>model</code> parameter accepts <code>default</code> or <code>remi-v1</code>. Also supports mashup lyrics, blending the lyrics of two songs.</p>
 </div>
 <div class="feat-card">
 <div class="feat-icon">🔀</div>
