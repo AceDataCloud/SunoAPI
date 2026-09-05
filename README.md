@@ -17,6 +17,10 @@ Keywords: suno-api, ai-music, music-generation, lyrics-generation, rest-api, ai-
 - English integration guides, API references, and service documentation
 - Global-ready workflow for developers building chat, image, video, music, and search products
 
+## Custom Models (Beta)
+
+Create a reusable music model from 6–24 authorized audio files, query its status, and generate new tracks through `POST /suno/custom-models`. See the [custom models integration guide](docs/suno_custom_models_api_integration_guide.md).
+
 ## Overview
 
 <style>
