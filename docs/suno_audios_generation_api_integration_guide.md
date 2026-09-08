@@ -1,5 +1,7 @@
 # Suno Song Generation API Integration Instructions
 
+> **Example URL note:** Media hosts in historical response snapshots are normalized to `media.example.com` for publication. These URLs show response structure and are not downloadable assets. Terminal audio and WAV results preferentially use an Ace Data Cloud CDN URL; if persistence fails, the original media URL may be retained, so download important results promptly. Intermediate preview URLs are not persisted.
+
 With the widespread application of AI, various AI programs have gradually become popular. AI has gradually penetrated all aspects of people's work and life. The industries involved in AI are also increasing, from the initial writing, to medical education, and now to music.
 
 Suno is a professional high-quality AI song and music creation platform. Users only need to input simple text prompts to generate songs with vocals based on genre style and lyrics. This AI music generator is developed by team members from well-known tech companies such as Meta, TikTok, and Kensho, aiming to allow everyone to create wonderful music without any musical instruments.
@@ -81,9 +83,9 @@ You can click the "Try" button to directly test the API, and after waiting for 1
     {
       "id": "b481b17a-bf50-4e10-8adc-4d5635050893",
       "title": "Under the Mistletoe",
-      "image_url": "https://cdn2.suno.ai/image_b481b17a-bf50-4e10-8adc-4d5635050893.jpeg",
+      "image_url": "https://media.example.com/suno/image_b481b17a-bf50-4e10-8adc-4d5635050893.jpeg",
       "lyric": "[Verse]\nSnowflakes falling on the ground\nTwinkling lights all around\nThe scent of pine fills the air\nChristmas magic everywhere\n[Chorus]\nUnder the mistletoe tonight\nHearts aglow in the soft moonlight\nLaughter echoes\nSpirits bright\nIt’s Christmas time\nIt feels so right\n[Verse 2]\nStockings hung by the fire’s glow\nWarmth inside while the cold winds blow\nCookies baking\nSweet delight\nA season of joy shining bright\n[Chorus]\nUnder the mistletoe tonight\nHearts aglow in the soft moonlight\nLaughter echoes\nSpirits bright\nIt’s Christmas time\nIt feels so right\n[Bridge]\nCarols sung by candlelight\nStars above make the world feel tight\nPeace and love\nA season’s creed\nFilling hearts with all we need\n[Chorus]\nUnder the mistletoe tonight\nHearts aglow in the soft moonlight\nLaughter echoes\nSpirits bright\nIt’s Christmas time\nIt feels so right",
-      "audio_url": "https://cdn1.suno.ai/b481b17a-bf50-4e10-8adc-4d5635050893.mp3",
+      "audio_url": "https://media.example.com/suno/b481b17a-bf50-4e10-8adc-4d5635050893.mp3",
       "video_url": "",
       "created_at": "2025-06-17T15:59:32.468Z",
       "model": "chirp-auk",
@@ -95,9 +97,9 @@ You can click the "Try" button to directly test the API, and after waiting for 1
     {
       "id": "fbf22dab-5e2b-4e02-84c0-6d7605f14c3d",
       "title": "Under the Mistletoe",
-      "image_url": "https://cdn2.suno.ai/image_fbf22dab-5e2b-4e02-84c0-6d7605f14c3d.jpeg",
+      "image_url": "https://media.example.com/suno/image_fbf22dab-5e2b-4e02-84c0-6d7605f14c3d.jpeg",
       "lyric": "[Verse]\nSnowflakes falling on the ground\nTwinkling lights all around\nThe scent of pine fills the air\nChristmas magic everywhere\n[Chorus]\nUnder the mistletoe tonight\nHearts aglow in the soft moonlight\nLaughter echoes\nSpirits bright\nIt’s Christmas time\nIt feels so right\n[Verse 2]\nStockings hung by the fire’s glow\nWarmth inside while the cold winds blow\nCookies baking\nSweet delight\nA season of joy shining bright\n[Chorus]\nUnder the mistletoe tonight\nHearts aglow in the soft moonlight\nLaughter echoes\nSpirits bright\nIt’s Christmas time\nIt feels so right\n[Bridge]\nCarols sung by candlelight\nStars above make the world feel tight\nPeace and love\nA season’s creed\nFilling hearts with all we need\n[Chorus]\nUnder the mistletoe tonight\nHearts aglow in the soft moonlight\nLaughter echoes\nSpirits bright\nIt’s Christmas time\nIt feels so right",
-      "audio_url": "https://cdn1.suno.ai/fbf22dab-5e2b-4e02-84c0-6d7605f14c3d.mp3",
+      "audio_url": "https://media.example.com/suno/fbf22dab-5e2b-4e02-84c0-6d7605f14c3d.mp3",
       "video_url": "",
       "created_at": "2025-06-17T15:59:32.468Z",
       "model": "chirp-auk",
@@ -125,7 +127,7 @@ The field descriptions are as follows:
   - title: Title of the song
   - image_url: Cover image of the song
   - lyric: Lyrics of the song
-  - audio_url: Audio file of the song, opening it will play an mp3 audio.
+  - audio_url: Terminal audio URL. Ace Data Cloud CDN is preferred; persistence failure may retain the original media URL.
   - video_url: Video file of the song, opening it will play an mp4 video.
   - created_at: Creation time
   - model: The model used, generally the latest v3 model
@@ -263,9 +265,9 @@ Clicking run, you can find that a result is obtained, as follows:
     {
       "id": "727a36e2-8dce-4df7-99e5-14e44635c80f",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_727a36e2-8dce-4df7-99e5-14e44635c80f.jpeg",
+      "image_url": "https://media.example.com/suno/image_727a36e2-8dce-4df7-99e5-14e44635c80f.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/727a36e2-8dce-4df7-99e5-14e44635c80f.mp3",
+      "audio_url": "https://media.example.com/suno/727a36e2-8dce-4df7-99e5-14e44635c80f.mp3",
       "video_url": "",
       "created_at": "2025-06-17T16:27:33.979Z",
       "model": "chirp-auk",
@@ -276,9 +278,9 @@ Clicking run, you can find that a result is obtained, as follows:
     {
       "id": "3b33301a-b17e-4b25-8842-09b46dab1a36",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_3b33301a-b17e-4b25-8842-09b46dab1a36.jpeg",
+      "image_url": "https://media.example.com/suno/image_3b33301a-b17e-4b25-8842-09b46dab1a36.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/3b33301a-b17e-4b25-8842-09b46dab1a36.mp3",
+      "audio_url": "https://media.example.com/suno/3b33301a-b17e-4b25-8842-09b46dab1a36.mp3",
       "video_url": "",
       "created_at": "2025-06-17T16:27:33.979Z",
       "model": "chirp-auk",
@@ -359,9 +361,9 @@ Click to run, and you will find a result as follows:
     {
       "id": "0a1e1b10-c36a-41c9-9bfb-b26d9d25db98",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_0a1e1b10-c36a-41c9-9bfb-b26d9d25db98.jpeg",
+      "image_url": "https://media.example.com/suno/image_0a1e1b10-c36a-41c9-9bfb-b26d9d25db98.jpeg",
       "lyric": "[Verse]\\nSnowflakes falling all around\\nGlistening white\\nCovering the ground\\nChildren laughing\\nFull of delight\\nIn this winter wonderland tonight\\nSanta's sleigh\\nUp in the sky\\nRudolph's nose shining bright\\nOh my\\nHear the jingle bells\\nRinging so clear\\nBringing joy and holiday cheer\\n[Verse 2]\\nRoasting chestnuts by the fire's glow\\nChristmas lights\\nThey twinkle and show\\nFamilies gathering with love and cheer\\nSpreading warmth to everyone near",
-      "audio_url": "https://cdn1.suno.ai/0a1e1b10-c36a-41c9-9bfb-b26d9d25db98.mp3",
+      "audio_url": "https://media.example.com/suno/0a1e1b10-c36a-41c9-9bfb-b26d9d25db98.mp3",
       "video_url": "",
       "created_at": "2025-06-17T16:38:35.509Z",
       "model": "chirp-auk",
@@ -372,9 +374,9 @@ Click to run, and you will find a result as follows:
     {
       "id": "4334c5b4-0a44-4b26-a8f6-66cc4dbb8fc3",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_4334c5b4-0a44-4b26-a8f6-66cc4dbb8fc3.jpeg",
+      "image_url": "https://media.example.com/suno/image_4334c5b4-0a44-4b26-a8f6-66cc4dbb8fc3.jpeg",
       "lyric": "[Verse]\\nSnowflakes falling all around\\nGlistening white\\nCovering the ground\\nChildren laughing\\nFull of delight\\nIn this winter wonderland tonight\\nSanta's sleigh\\nUp in the sky\\nRudolph's nose shining bright\\nOh my\\nHear the jingle bells\\nRinging so clear\\nBringing joy and holiday cheer\\n[Verse 2]\\nRoasting chestnuts by the fire's glow\\nChristmas lights\\nThey twinkle and show\\nFamilies gathering with love and cheer\\nSpreading warmth to everyone near",
-      "audio_url": "https://cdn1.suno.ai/4334c5b4-0a44-4b26-a8f6-66cc4dbb8fc3.mp3",
+      "audio_url": "https://media.example.com/suno/4334c5b4-0a44-4b26-a8f6-66cc4dbb8fc3.mp3",
       "video_url": "",
       "created_at": "2025-06-17T16:38:35.509Z",
       "model": "chirp-auk",
@@ -415,9 +417,9 @@ Other parameters remain unchanged, and the returned result will be a complete so
     {
       "id": "0efec7e0-11bf-4313-9981-2c0e7218d7dd",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_0a1e1b10-c36a-41c9-9bfb-b26d9d25db98.jpeg",
+      "image_url": "https://media.example.com/suno/image_0a1e1b10-c36a-41c9-9bfb-b26d9d25db98.jpeg",
       "lyric": "[Verse]\\nSnowflakes falling all around\\nGlistening white\\nCovering the ground\\nChildren laughing\\nFull of delight\\nIn this winter wonderland tonight\\nSanta's sleigh\\nUp in the sky\\nRudolph's nose shining bright\\nOh my\\nHear the jingle bells\\nRinging so clear\\nBringing joy and holiday cheer\\n[Verse 2]\\nRoasting chestnuts by the fire's glow\\nChristmas lights\\nThey twinkle and show\\nFamilies gathering with love and cheer\\nSpreading warmth to everyone near\n[Verse]\\nSnowflakes falling all around\\nGlistening white\\nCovering the ground\\nChildren laughing\\nFull of delight\\nIn this winter wonderland tonight\\nSanta's sleigh\\nUp in the sky\\nRudolph's nose shining bright\\nOh my\\nHear the jingle bells\\nRinging so clear\\nBringing joy and holiday cheer\\n[Verse 2]\\nRoasting chestnuts by the fire's glow\\nChristmas lights\\nThey twinkle and show\\nFamilies gathering with love and cheer\\nSpreading warmth to everyone near",
-      "audio_url": "https://cdn1.suno.ai/0efec7e0-11bf-4313-9981-2c0e7218d7dd.mp3",
+      "audio_url": "https://media.example.com/suno/0efec7e0-11bf-4313-9981-2c0e7218d7dd.mp3",
       "video_url": "",
       "created_at": "2025-06-17T16:43:06.718Z",
       "model": "chirp-auk",
@@ -469,9 +471,9 @@ With other parameters unchanged, the returned result will be a cover song, which
     {
       "id": "6988fa57-f810-41cf-afab-7838db2c77dc",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_6988fa57-f810-41cf-afab-7838db2c77dc.jpeg",
+      "image_url": "https://media.example.com/suno/image_6988fa57-f810-41cf-afab-7838db2c77dc.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/6988fa57-f810-41cf-afab-7838db2c77dc.mp3",
+      "audio_url": "https://media.example.com/suno/6988fa57-f810-41cf-afab-7838db2c77dc.mp3",
       "video_url": "",
       "created_at": "2025-06-17T16:44:13.007Z",
       "model": "chirp-auk",
@@ -482,9 +484,9 @@ With other parameters unchanged, the returned result will be a cover song, which
     {
       "id": "ce98b991-0258-4f05-8245-e43d4efa8fb8",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_ce98b991-0258-4f05-8245-e43d4efa8fb8.jpeg",
+      "image_url": "https://media.example.com/suno/image_ce98b991-0258-4f05-8245-e43d4efa8fb8.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/ce98b991-0258-4f05-8245-e43d4efa8fb8.mp3",
+      "audio_url": "https://media.example.com/suno/ce98b991-0258-4f05-8245-e43d4efa8fb8.mp3",
       "video_url": "",
       "created_at": "2025-06-17T16:44:13.007Z",
       "model": "chirp-auk",
@@ -538,9 +540,9 @@ With other parameters unchanged, the returned result will be a song with the rep
     {
       "id": "2a1467dc-51a4-4872-9ccc-ccd96e4fbbb6",
       "title": "新年快乐",
-      "image_url": "https://cdn2.suno.ai/image_dc1b5edc-fbae-44a3-8962-d596dbd2b0d7.jpeg",
+      "image_url": "https://media.example.com/suno/image_dc1b5edc-fbae-44a3-8962-d596dbd2b0d7.jpeg",
       "lyric": "[Chorus]\n新年快乐 人人欢快歌\n祝福洒满每一片角落\n新年快乐 心中花火多\n愿望成真生活似金色波\n[Verse 2]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
-      "audio_url": "https://cdn1.suno.ai/2a1467dc-51a4-4872-9ccc-ccd96e4fbbb6.mp3",
+      "audio_url": "https://media.example.com/suno/2a1467dc-51a4-4872-9ccc-ccd96e4fbbb6.mp3",
       "video_url": "",
       "created_at": "2025-04-18T01:55:02.930Z",
       "model": "chirp-v4",
@@ -599,10 +601,10 @@ With the above parameters, the result of vocal and instrument separation can be 
     {
       "id": "e3de0928-085a-42c4-b982-3b24738d1989",
       "title": "Deck the Sky - Vocals",
-      "image_url": "https://cdn2.suno.ai/image_e3de0928-085a-42c4-b982-3b24738d1989.jpeg",
+      "image_url": "https://media.example.com/suno/image_e3de0928-085a-42c4-b982-3b24738d1989.jpeg",
       "lyric": "[Verse]\nSnowflakes dance on rooftops high\nChildren's laughter fills the sky\nCarols ring from church bells loud\nHolidays a joyful crowd\n[Verse 2]\nCandy canes and cocoa warm\nWrapped up tight in our own storm\nStockings hung with dreams and cheer\nMagic growing every year\n[Chorus]\nDeck the sky with twinkling stars\nHoliday joy feels ours and ours\nSing the songs of love and light\nChristmas glows so pure and bright\n[Verse 3]\nFireside tales of long ago\nReindeer prance in icy glow\nEvergreen and tinsel’s gleam\nChristmas time a lovely dream\n[Bridge]\nHearts are full with friends and kin\nMistletoe for love to win\nGifts of love and hope we share\nChristmas spirit everywhere\n[Chorus]\nDeck the sky with twinkling stars\nHoliday joy feels ours and ours\nSing the songs of love and light\nChristmas glows so pure and bright",
-      "audio_url": "https://cdn1.suno.ai/e3de0928-085a-42c4-b982-3b24738d1989.mp3",
-      "video_url": "https://cdn1.suno.ai/e3de0928-085a-42c4-b982-3b24738d1989.mp4",
+      "audio_url": "https://media.example.com/suno/e3de0928-085a-42c4-b982-3b24738d1989.mp3",
+      "video_url": "https://media.example.com/suno/e3de0928-085a-42c4-b982-3b24738d1989.mp4",
       "created_at": "2025-01-05T07:49:16.881Z",
       "model": "",
       "state": "succeeded",
@@ -612,10 +614,10 @@ With the above parameters, the result of vocal and instrument separation can be 
     {
       "id": "ad5d7c89-709c-4eb4-a5a6-72f9f5e57fdb",
       "title": "Deck the Sky - Instrumental",
-      "image_url": "https://cdn2.suno.ai/image_ad5d7c89-709c-4eb4-a5a6-72f9f5e57fdb.jpeg",
+      "image_url": "https://media.example.com/suno/image_ad5d7c89-709c-4eb4-a5a6-72f9f5e57fdb.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/ad5d7c89-709c-4eb4-a5a6-72f9f5e57fdb.mp3",
-      "video_url": "https://cdn1.suno.ai/ad5d7c89-709c-4eb4-a5a6-72f9f5e57fdb.mp4",
+      "audio_url": "https://media.example.com/suno/ad5d7c89-709c-4eb4-a5a6-72f9f5e57fdb.mp3",
+      "video_url": "https://media.example.com/suno/ad5d7c89-709c-4eb4-a5a6-72f9f5e57fdb.mp4",
       "created_at": "2025-01-05T07:49:16.892Z",
       "model": "",
       "state": "succeeded",
@@ -655,9 +657,9 @@ With the above parameters, the result of full track vocal and instrument separat
     {
       "id": "f86ca64a-9519-4ea7-a592-52438e001412",
       "title": "安全之弦 (Vocals)",
-      "image_url": "https://cdn2.suno.ai/image_f86ca64a-9519-4ea7-a592-52438e001412.jpeg",
+      "image_url": "https://media.example.com/suno/image_f86ca64a-9519-4ea7-a592-52438e001412.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/f86ca64a-9519-4ea7-a592-52438e001412.mp3",
+      "audio_url": "https://media.example.com/suno/f86ca64a-9519-4ea7-a592-52438e001412.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -666,9 +668,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "99e649a7-a394-47b9-a915-d7f847285a36",
       "title": "安全之弦 (Backing Vocals)",
-      "image_url": "https://cdn2.suno.ai/image_99e649a7-a394-47b9-a915-d7f847285a36.jpeg",
+      "image_url": "https://media.example.com/suno/image_99e649a7-a394-47b9-a915-d7f847285a36.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/99e649a7-a394-47b9-a915-d7f847285a36.mp3",
+      "audio_url": "https://media.example.com/suno/99e649a7-a394-47b9-a915-d7f847285a36.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -677,9 +679,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "6d710bf7-809f-4fdc-bb63-b8cb3a456d42",
       "title": "安全之弦 (Drums)",
-      "image_url": "https://cdn2.suno.ai/image_6d710bf7-809f-4fdc-bb63-b8cb3a456d42.jpeg",
+      "image_url": "https://media.example.com/suno/image_6d710bf7-809f-4fdc-bb63-b8cb3a456d42.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/6d710bf7-809f-4fdc-bb63-b8cb3a456d42.mp3",
+      "audio_url": "https://media.example.com/suno/6d710bf7-809f-4fdc-bb63-b8cb3a456d42.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -690,9 +692,9 @@ With the above parameters, the result of full track vocal and instrument separat
 {
       "id": "e05f07e3-7d80-4713-8e51-7f176c733543",
       "title": "The String of Safety (Bass)",
-      "image_url": "https://cdn2.suno.ai/image_e05f07e3-7d80-4713-8e51-7f176c733543.jpeg",
+      "image_url": "https://media.example.com/suno/image_e05f07e3-7d80-4713-8e51-7f176c733543.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/e05f07e3-7d80-4713-8e51-7f176c733543.mp3",
+      "audio_url": "https://media.example.com/suno/e05f07e3-7d80-4713-8e51-7f176c733543.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -701,9 +703,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "93fe7cd8-62fd-4739-b78e-142c7e0b8562",
       "title": "The String of Safety (Guitar)",
-      "image_url": "https://cdn2.suno.ai/image_93fe7cd8-62fd-4739-b78e-142c7e0b8562.jpeg",
+      "image_url": "https://media.example.com/suno/image_93fe7cd8-62fd-4739-b78e-142c7e0b8562.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/93fe7cd8-62fd-4739-b78e-142c7e0b8562.mp3",
+      "audio_url": "https://media.example.com/suno/93fe7cd8-62fd-4739-b78e-142c7e0b8562.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -712,9 +714,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "8367d71c-fdd3-441c-8ebe-70c33cca821b",
       "title": "The String of Safety (Keyboard)",
-      "image_url": "https://cdn2.suno.ai/image_8367d71c-fdd3-441c-8ebe-70c33cca821b.jpeg",
+      "image_url": "https://media.example.com/suno/image_8367d71c-fdd3-441c-8ebe-70c33cca821b.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/8367d71c-fdd3-441c-8ebe-70c33cca821b.mp3",
+      "audio_url": "https://media.example.com/suno/8367d71c-fdd3-441c-8ebe-70c33cca821b.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -723,9 +725,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "28c03590-731c-416e-8fd3-95cdb3d75043",
       "title": "The String of Safety (Percussion)",
-      "image_url": "https://cdn2.suno.ai/image_28c03590-731c-416e-8fd3-95cdb3d75043.jpeg",
+      "image_url": "https://media.example.com/suno/image_28c03590-731c-416e-8fd3-95cdb3d75043.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/28c03590-731c-416e-8fd3-95cdb3d75043.mp3",
+      "audio_url": "https://media.example.com/suno/28c03590-731c-416e-8fd3-95cdb3d75043.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -734,9 +736,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "3d4c1a28-4e1c-485a-8201-d21bb93aca2f",
       "title": "The String of Safety (Strings)",
-      "image_url": "https://cdn2.suno.ai/image_3d4c1a28-4e1c-485a-8201-d21bb93aca2f.jpeg",
+      "image_url": "https://media.example.com/suno/image_3d4c1a28-4e1c-485a-8201-d21bb93aca2f.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/3d4c1a28-4e1c-485a-8201-d21bb93aca2f.mp3",
+      "audio_url": "https://media.example.com/suno/3d4c1a28-4e1c-485a-8201-d21bb93aca2f.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -745,9 +747,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "b9db8ded-01ec-4e37-b8a5-64aab3a814c2",
       "title": "The String of Safety (Synth)",
-      "image_url": "https://cdn2.suno.ai/image_b9db8ded-01ec-4e37-b8a5-64aab3a814c2.jpeg",
+      "image_url": "https://media.example.com/suno/image_b9db8ded-01ec-4e37-b8a5-64aab3a814c2.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/b9db8ded-01ec-4e37-b8a5-64aab3a814c2.mp3",
+      "audio_url": "https://media.example.com/suno/b9db8ded-01ec-4e37-b8a5-64aab3a814c2.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -756,9 +758,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "10a5248e-32e6-42b9-8da1-678a8a392aef",
       "title": "The String of Safety (FX)",
-      "image_url": "https://cdn2.suno.ai/image_10a5248e-32e6-42b9-8da1-678a8a392aef.jpeg",
+      "image_url": "https://media.example.com/suno/image_10a5248e-32e6-42b9-8da1-678a8a392aef.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/10a5248e-32e6-42b9-8da1-678a8a392aef.mp3",
+      "audio_url": "https://media.example.com/suno/10a5248e-32e6-42b9-8da1-678a8a392aef.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -767,9 +769,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "2d272128-111f-4901-8f62-5ae1eb43095a",
       "title": "The String of Safety (Brass)",
-      "image_url": "https://cdn2.suno.ai/image_2d272128-111f-4901-8f62-5ae1eb43095a.jpeg",
+      "image_url": "https://media.example.com/suno/image_2d272128-111f-4901-8f62-5ae1eb43095a.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/2d272128-111f-4901-8f62-5ae1eb43095a.mp3",
+      "audio_url": "https://media.example.com/suno/2d272128-111f-4901-8f62-5ae1eb43095a.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -778,9 +780,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "4a7c19a5-f8d4-4e4a-add9-aa0bad9307cc",
       "title": "The String of Safety (Woodwinds)",
-      "image_url": "https://cdn2.suno.ai/image_4a7c19a5-f8d4-4e4a-add9-aa0bad9307cc.jpeg",
+      "image_url": "https://media.example.com/suno/image_4a7c19a5-f8d4-4e4a-add9-aa0bad9307cc.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/4a7c19a5-f8d4-4e4a-add9-aa0bad9307cc.mp3",
+      "audio_url": "https://media.example.com/suno/4a7c19a5-f8d4-4e4a-add9-aa0bad9307cc.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -789,9 +791,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "1ca774f9-3e75-48a6-941b-808875eadcd2",
       "title": "The String of Safety (Vocals)",
-      "image_url": "https://cdn2.suno.ai/image_1ca774f9-3e75-48a6-941b-808875eadcd2.jpeg",
+      "image_url": "https://media.example.com/suno/image_1ca774f9-3e75-48a6-941b-808875eadcd2.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/1ca774f9-3e75-48a6-941b-808875eadcd2.mp3",
+      "audio_url": "https://media.example.com/suno/1ca774f9-3e75-48a6-941b-808875eadcd2.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.770Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -801,9 +803,9 @@ With the above parameters, the result of full track vocal and instrument separat
 {
       "id": "14c5ffc7-addf-4fee-afd2-4b8b3e7ee470",
       "title": "Safety String (Backing Vocals)",
-      "image_url": "https://cdn2.suno.ai/image_14c5ffc7-addf-4fee-afd2-4b8b3e7ee470.jpeg",
+      "image_url": "https://media.example.com/suno/image_14c5ffc7-addf-4fee-afd2-4b8b3e7ee470.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/14c5ffc7-addf-4fee-afd2-4b8b3e7ee470.mp3",
+      "audio_url": "https://media.example.com/suno/14c5ffc7-addf-4fee-afd2-4b8b3e7ee470.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -812,9 +814,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "9d044557-450d-48ab-90dc-8eaf6f1cdb6c",
       "title": "Safety String (Drums)",
-      "image_url": "https://cdn2.suno.ai/image_9d044557-450d-48ab-90dc-8eaf6f1cdb6c.jpeg",
+      "image_url": "https://media.example.com/suno/image_9d044557-450d-48ab-90dc-8eaf6f1cdb6c.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/9d044557-450d-48ab-90dc-8eaf6f1cdb6c.mp3",
+      "audio_url": "https://media.example.com/suno/9d044557-450d-48ab-90dc-8eaf6f1cdb6c.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -823,9 +825,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "efd052d0-c12f-47b3-8282-1f3ef7610e1f",
       "title": "Safety String (Bass)",
-      "image_url": "https://cdn2.suno.ai/image_efd052d0-c12f-47b3-8282-1f3ef7610e1f.jpeg",
+      "image_url": "https://media.example.com/suno/image_efd052d0-c12f-47b3-8282-1f3ef7610e1f.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/efd052d0-c12f-47b3-8282-1f3ef7610e1f.mp3",
+      "audio_url": "https://media.example.com/suno/efd052d0-c12f-47b3-8282-1f3ef7610e1f.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -834,9 +836,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "5775372b-292e-4420-96ef-60e57a60cc1f",
       "title": "Safety String (Guitar)",
-      "image_url": "https://cdn2.suno.ai/image_5775372b-292e-4420-96ef-60e57a60cc1f.jpeg",
+      "image_url": "https://media.example.com/suno/image_5775372b-292e-4420-96ef-60e57a60cc1f.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/5775372b-292e-4420-96ef-60e57a60cc1f.mp3",
+      "audio_url": "https://media.example.com/suno/5775372b-292e-4420-96ef-60e57a60cc1f.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -845,9 +847,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "dab3f220-19cd-408e-9b96-30ec18f5b049",
       "title": "Safety String (Keyboard)",
-      "image_url": "https://cdn2.suno.ai/image_dab3f220-19cd-408e-9b96-30ec18f5b049.jpeg",
+      "image_url": "https://media.example.com/suno/image_dab3f220-19cd-408e-9b96-30ec18f5b049.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/dab3f220-19cd-408e-9b96-30ec18f5b049.mp3",
+      "audio_url": "https://media.example.com/suno/dab3f220-19cd-408e-9b96-30ec18f5b049.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -856,9 +858,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "2d0cd6d4-af82-4bb5-86fe-d92bdb367157",
       "title": "Safety String (Percussion)",
-      "image_url": "https://cdn2.suno.ai/image_2d0cd6d4-af82-4bb5-86fe-d92bdb367157.jpeg",
+      "image_url": "https://media.example.com/suno/image_2d0cd6d4-af82-4bb5-86fe-d92bdb367157.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/2d0cd6d4-af82-4bb5-86fe-d92bdb367157.mp3",
+      "audio_url": "https://media.example.com/suno/2d0cd6d4-af82-4bb5-86fe-d92bdb367157.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -867,9 +869,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "f3191a1a-5e8d-4afe-b638-3add222d52cd",
       "title": "Safety String (Strings)",
-      "image_url": "https://cdn2.suno.ai/image_f3191a1a-5e8d-4afe-b638-3add222d52cd.jpeg",
+      "image_url": "https://media.example.com/suno/image_f3191a1a-5e8d-4afe-b638-3add222d52cd.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/f3191a1a-5e8d-4afe-b638-3add222d52cd.mp3",
+      "audio_url": "https://media.example.com/suno/f3191a1a-5e8d-4afe-b638-3add222d52cd.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -878,9 +880,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "a8834ea5-200b-4206-a812-9780ef336660",
       "title": "Safety String (Synth)",
-      "image_url": "https://cdn2.suno.ai/image_a8834ea5-200b-4206-a812-9780ef336660.jpeg",
+      "image_url": "https://media.example.com/suno/image_a8834ea5-200b-4206-a812-9780ef336660.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/a8834ea5-200b-4206-a812-9780ef336660.mp3",
+      "audio_url": "https://media.example.com/suno/a8834ea5-200b-4206-a812-9780ef336660.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -889,9 +891,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "f50d1a31-ef72-400a-b8ae-0367849d007d",
       "title": "Safety String (FX)",
-      "image_url": "https://cdn2.suno.ai/image_f50d1a31-ef72-400a-b8ae-0367849d007d.jpeg",
+      "image_url": "https://media.example.com/suno/image_f50d1a31-ef72-400a-b8ae-0367849d007d.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/f50d1a31-ef72-400a-b8ae-0367849d007d.mp3",
+      "audio_url": "https://media.example.com/suno/f50d1a31-ef72-400a-b8ae-0367849d007d.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -900,9 +902,9 @@ With the above parameters, the result of full track vocal and instrument separat
     }, {
       "id": "cb581673-23cc-40d6-9f9b-0f76720f0d18",
       "title": "Safety String (Brass)",
-      "image_url": "https://cdn2.suno.ai/image_cb581673-23cc-40d6-9f9b-0f76720f0d18.jpeg",
+      "image_url": "https://media.example.com/suno/image_cb581673-23cc-40d6-9f9b-0f76720f0d18.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/cb581673-23cc-40d6-9f9b-0f76720f0d18.mp3",
+      "audio_url": "https://media.example.com/suno/cb581673-23cc-40d6-9f9b-0f76720f0d18.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -913,9 +915,9 @@ With the above parameters, the result of full track vocal and instrument separat
 {
       "id": "d91cfb52-f0a3-4546-bf8a-2ad14c3775a5",
       "title": "The String of Safety (Woodwinds)",
-      "image_url": "https://cdn2.suno.ai/image_d91cfb52-f0a3-4546-bf8a-2ad14c3775a5.jpeg",
+      "image_url": "https://media.example.com/suno/image_d91cfb52-f0a3-4546-bf8a-2ad14c3775a5.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/d91cfb52-f0a3-4546-bf8a-2ad14c3775a5.mp3",
+      "audio_url": "https://media.example.com/suno/d91cfb52-f0a3-4546-bf8a-2ad14c3775a5.mp3",
       "video_url": "",
       "created_at": "2025-06-11T02:40:30.771Z",
       "model": "chirp-ahi-stem-12-t1",
@@ -981,9 +983,9 @@ Clicking run, you can find that a result is obtained as follows:
     {
       "id": "c66e2077-7580-43f2-9937-c67a8afcd8bd",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_c66e2077-7580-43f2-9937-c67a8afcd8bd.jpeg",
+      "image_url": "https://media.example.com/suno/image_c66e2077-7580-43f2-9937-c67a8afcd8bd.jpeg",
       "lyric": "Hello Hello Hello ",
-      "audio_url": "https://cdn1.suno.ai/c66e2077-7580-43f2-9937-c67a8afcd8bd.mp3",
+      "audio_url": "https://media.example.com/suno/c66e2077-7580-43f2-9937-c67a8afcd8bd.mp3",
       "video_url": "",
       "created_at": "2025-07-10T12:54:35.199Z",
       "model": "chirp-auk",
@@ -994,9 +996,9 @@ Clicking run, you can find that a result is obtained as follows:
     {
       "id": "a922f97b-307c-4c4d-aae3-a47ba8202a10",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_a922f97b-307c-4c4d-aae3-a47ba8202a10.jpeg",
+      "image_url": "https://media.example.com/suno/image_a922f97b-307c-4c4d-aae3-a47ba8202a10.jpeg",
       "lyric": "Hello Hello Hello ",
-      "audio_url": "https://cdn1.suno.ai/a922f97b-307c-4c4d-aae3-a47ba8202a10.mp3",
+      "audio_url": "https://media.example.com/suno/a922f97b-307c-4c4d-aae3-a47ba8202a10.mp3",
       "video_url": "",
       "created_at": "2025-07-10T12:54:35.199Z",
       "model": "chirp-auk",
@@ -1105,9 +1107,9 @@ Clicking run, you can find that a result is obtained as follows:
     {
       "id": "2788cd21-bd84-422d-beb5-859c60fbf5b6",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_2788cd21-bd84-422d-beb5-859c60fbf5b6.jpeg",
+      "image_url": "https://media.example.com/suno/image_2788cd21-bd84-422d-beb5-859c60fbf5b6.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/2788cd21-bd84-422d-beb5-859c60fbf5b6.mp3",
+      "audio_url": "https://media.example.com/suno/2788cd21-bd84-422d-beb5-859c60fbf5b6.mp3",
       "video_url": "",
       "created_at": "2025-08-27T15:25:42.548Z",
       "model": "chirp-v4",
@@ -1118,9 +1120,9 @@ Clicking run, you can find that a result is obtained as follows:
     {
       "id": "a4bb7220-e971-4cbf-a626-b86c648bcf55",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_a4bb7220-e971-4cbf-a626-b86c648bcf55.jpeg",
+      "image_url": "https://media.example.com/suno/image_a4bb7220-e971-4cbf-a626-b86c648bcf55.jpeg",
       "lyric": "",
-      "audio_url": "https://cdn1.suno.ai/a4bb7220-e971-4cbf-a626-b86c648bcf55.mp3",
+      "audio_url": "https://media.example.com/suno/a4bb7220-e971-4cbf-a626-b86c648bcf55.mp3",
       "video_url": "",
       "created_at": "2025-08-27T15:25:42.548Z",
       "model": "chirp-v4",
@@ -1195,9 +1197,9 @@ Clicking run, you can find that you will get a result as follows:
     {
       "id": "a597f945-64df-4722-a631-d436450832bd",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_a597f945-64df-4722-a631-d436450832bd.jpeg",
+      "image_url": "https://media.example.com/suno/image_a597f945-64df-4722-a631-d436450832bd.jpeg",
       "lyric": "Yea your were the best I could get \\nBut I knew that it couldn’t last \\nStayed down since we were friends \\nHad to leave those thoughts in the past \\nMade like 40k just last week \\nOn top of the 20 with my babe\\ndon’t care for what niggas say",
-      "audio_url": "https://cdn1.suno.ai/a597f945-64df-4722-a631-d436450832bd.mp3",
+      "audio_url": "https://media.example.com/suno/a597f945-64df-4722-a631-d436450832bd.mp3",
       "video_url": "",
       "created_at": "2025-08-27T15:33:51.550Z",
       "model": "chirp-v4",
@@ -1208,9 +1210,9 @@ Clicking run, you can find that you will get a result as follows:
     {
       "id": "b41a8b91-3d88-4ebd-a6cf-732764b24954",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_b41a8b91-3d88-4ebd-a6cf-732764b24954.jpeg",
+      "image_url": "https://media.example.com/suno/image_b41a8b91-3d88-4ebd-a6cf-732764b24954.jpeg",
       "lyric": "Yea your were the best I could get \\nBut I knew that it couldn’t last \\nStayed down since we were friends \\nHad to leave those thoughts in the past \\nMade like 40k just last week \\nOn top of the 20 with my babe\\ndon’t care for what niggas say",
-      "audio_url": "https://cdn1.suno.ai/b41a8b91-3d88-4ebd-a6cf-732764b24954.mp3",
+      "audio_url": "https://media.example.com/suno/b41a8b91-3d88-4ebd-a6cf-732764b24954.mp3",
       "video_url": "",
       "created_at": "2025-08-27T15:33:51.550Z",
       "model": "chirp-v4",
@@ -1270,10 +1272,10 @@ Click to run, and you will find that a result is obtained, as follows:
     {
       "id": "b0515cdf-9cb5-46cd-b0fe-10a239dc9274",
       "title": "Navidad en costura  (Remastered)",
-      "image_url": "https://cdn2.suno.ai/image_b0515cdf-9cb5-46cd-b0fe-10a239dc9274.jpeg",
-      "image_large_url": "https://cdn2.suno.ai/image_large_b0515cdf-9cb5-46cd-b0fe-10a239dc9274.jpeg",
+      "image_url": "https://media.example.com/suno/image_b0515cdf-9cb5-46cd-b0fe-10a239dc9274.jpeg",
+      "image_large_url": "https://media.example.com/suno/image_large_b0515cdf-9cb5-46cd-b0fe-10a239dc9274.jpeg",
       "lyric": "In Teror the classes continue,\nnot even at Christmas is there a break;\nthe group sews among carols\nand a good piece of nougat.\nLa Popular opens its doors,\nand the workshop sounds better;\nthread, needle, and cheerful singing\nwe will have a better time\nWe continue in the seams,\nwith music and fun;\nthe students will eat\na lot of sweets ",
-      "audio_url": "https://cdn1.suno.ai/b0515cdf-9cb5-46cd-b0fe-10a239dc9274.mp3",
+      "audio_url": "https://media.example.com/suno/b0515cdf-9cb5-46cd-b0fe-10a239dc9274.mp3",
       "video_url": "",
       "created_at": "2025-12-04T13:09:59.936Z",
       "model": "chirp-v4",
@@ -1284,10 +1286,10 @@ Click to run, and you will find that a result is obtained, as follows:
     {
       "id": "06edab94-a4f9-4c0c-abac-a2e8a97c76a8",
       "title": "Navidad en costura  (Remastered)",
-      "image_url": "https://cdn2.suno.ai/image_06edab94-a4f9-4c0c-abac-a2e8a97c76a8.jpeg",
-      "image_large_url": "https://cdn2.suno.ai/image_large_06edab94-a4f9-4c0c-abac-a2e8a97c76a8.jpeg",
+      "image_url": "https://media.example.com/suno/image_06edab94-a4f9-4c0c-abac-a2e8a97c76a8.jpeg",
+      "image_large_url": "https://media.example.com/suno/image_large_06edab94-a4f9-4c0c-abac-a2e8a97c76a8.jpeg",
       "lyric": "In Teror the classes continue,\nnot even at Christmas is there a break;\nthe group sews among carols\nand a good piece of nougat.\nLa Popular opens its doors,\nand the workshop sounds better;\nthread, needle, and cheerful singing\nwe will have a better time\nWe continue in the seams,\nwith music and fun;\nthe students will eat\na lot of sweets ",
-      "audio_url": "https://cdn1.suno.ai/06edab94-a4f9-4c0c-abac-a2e8a97c76a8.mp3",
+      "audio_url": "https://media.example.com/suno/06edab94-a4f9-4c0c-abac-a2e8a97c76a8.mp3",
       "video_url": "",
       "created_at": "2025-12-04T13:09:59.936Z",
       "model": "chirp-v4",
@@ -1348,10 +1350,10 @@ Click to run, and you will find that a result is obtained, as follows:
     {
       "id": "5ff751dc-0e72-4de9-a54b-2cad50984b47",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_5ff751dc-0e72-4de9-a54b-2cad50984b47.jpeg",
-      "image_large_url": "https://cdn2.suno.ai/image_large_5ff751dc-0e72-4de9-a54b-2cad50984b47.jpeg",
+      "image_url": "https://media.example.com/suno/image_5ff751dc-0e72-4de9-a54b-2cad50984b47.jpeg",
+      "image_large_url": "https://media.example.com/suno/image_large_5ff751dc-0e72-4de9-a54b-2cad50984b47.jpeg",
       "lyric": "Sambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\n\\nSambuy come  \\nSambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\n\\nSambuy come  \\nSambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\n\\nSambuy come  \\nSambuy come back  \\nSambuy come, Sambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\n\\nSambuy come  \\nSambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\nSambuy come back",
-      "audio_url": "https://cdn1.suno.ai/5ff751dc-0e72-4de9-a54b-2cad50984b47.mp3",
+      "audio_url": "https://media.example.com/suno/5ff751dc-0e72-4de9-a54b-2cad50984b47.mp3",
       "video_url": "",
       "created_at": "2026-01-25T15:13:30.181Z",
       "model": "chirp-v4-5",
@@ -1362,10 +1364,10 @@ Click to run, and you will find that a result is obtained, as follows:
     {
       "id": "19c515c4-d7b3-4a17-8ab0-dd1ebd4861b8",
       "title": "",
-      "image_url": "https://cdn2.suno.ai/image_19c515c4-d7b3-4a17-8ab0-dd1ebd4861b8.jpeg",
-      "image_large_url": "https://cdn2.suno.ai/image_large_19c515c4-d7b3-4a17-8ab0-dd1ebd4861b8.jpeg",
+      "image_url": "https://media.example.com/suno/image_19c515c4-d7b3-4a17-8ab0-dd1ebd4861b8.jpeg",
+      "image_large_url": "https://media.example.com/suno/image_large_19c515c4-d7b3-4a17-8ab0-dd1ebd4861b8.jpeg",
       "lyric": "Sambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\n\\nSambuy come  \\nSambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\n\\nSambuy come  \\nSambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\n\\nSambuy come  \\nSambuy come back  \\nSambuy come, Sambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\n\\nSambuy come  \\nSambuy come back  \\nBluespawn, greenspawn are making you a spawn  \\nSambuy come back",
-      "audio_url": "https://cdn1.suno.ai/19c515c4-d7b3-4a17-8ab0-dd1ebd4861b8.mp3",
+      "audio_url": "https://media.example.com/suno/19c515c4-d7b3-4a17-8ab0-dd1ebd4861b8.mp3",
       "video_url": "",
       "created_at": "2026-01-25T15:13:30.181Z",
       "model": "chirp-v4-5",
@@ -1453,10 +1455,10 @@ The content is as follows:
     {
       "id": "da4324e5-84b2-484b-b0e9-dd261381c594",
       "title": "Winter Whispers",
-      "image_url": "https://cdn1.suno.ai/image_da4324e5-84b2-484b-b0e9-dd261381c594.png",
+      "image_url": "https://media.example.com/suno/image_da4324e5-84b2-484b-b0e9-dd261381c594.png",
       "lyric": "[Verse]\nSnow falling gently from the sky\nChildren giggling as they pass by\nFire crackling\nCozy and warm\nChristmas spirit begins to swarm\n[Verse 2]\nTwinkling lights\nA sight to behold\nStockings hung\nWaiting to be filled with gold\nGifts wrapped with love\nPiled high\nExcitement in the air\nYou can't deny\n[Chorus]\nWinter whispers in the wind\nJoy and love it brings\nLet's celebrate this season\nWith the ones we're missing",
-      "audio_url": "https://cdn1.suno.ai/da4324e5-84b2-484b-b0e9-dd261381c594.mp3",
-      "video_url": "https://cdn1.suno.ai/da4324e5-84b2-484b-b0e9-dd261381c594.mp4",
+      "audio_url": "https://media.example.com/suno/da4324e5-84b2-484b-b0e9-dd261381c594.mp3",
+      "video_url": "https://media.example.com/suno/da4324e5-84b2-484b-b0e9-dd261381c594.mp4",
       "created_at": "2024-05-11T07:33:05.430Z",
       "model": "chirp-v3",
       "prompt": "A song for Christmas",
@@ -1465,10 +1467,10 @@ The content is as follows:
     {
       "id": "b878a87b-a0db-4046-8ccd-ecd2fb3d4372",
       "title": "Winter Whispers",
-      "image_url": "https://cdn1.suno.ai/image_b878a87b-a0db-4046-8ccd-ecd2fb3d4372.png",
+      "image_url": "https://media.example.com/suno/image_b878a87b-a0db-4046-8ccd-ecd2fb3d4372.png",
       "lyric": "[Verse]\nSnow falling gently from the sky\nChildren giggling as they pass by\nFire crackling\nCozy and warm\nChristmas spirit begins to swarm\n[Verse 2]\nTwinkling lights\nA sight to behold\nStockings hung\nWaiting to be filled with gold\nGifts wrapped with love\nPiled high\nExcitement in the air\nYou can't deny\n[Chorus]\nWinter whispers in the wind\nJoy and love it brings\nLet's celebrate this season\nWith the ones we're missing",
-      "audio_url": "https://cdn1.suno.ai/b878a87b-a0db-4046-8ccd-ecd2fb3d4372.mp3",
-      "video_url": "https://cdn1.suno.ai/b878a87b-a0db-4046-8ccd-ecd2fb3d4372.mp4",
+      "audio_url": "https://media.example.com/suno/b878a87b-a0db-4046-8ccd-ecd2fb3d4372.mp3",
+      "video_url": "https://media.example.com/suno/b878a87b-a0db-4046-8ccd-ecd2fb3d4372.mp4",
       "created_at": "2024-05-11T07:33:05.430Z",
       "model": "chirp-v3",
       "prompt": "A song for Christmas",
@@ -1487,8 +1489,8 @@ Of course, we can also obtain results through streaming calls; we just need to s
 During the waiting process, we can get the following output:
 
 ```json {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"pending","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
-{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=1f610752-f426-4fd5-89a8-ba2ad0370881","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
-{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp4","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://audiopipe.suno.ai/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","trace_id":"4440342a-41c4-4140-8bb1-3537a598ca2e","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://cdn2.suno.ai/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://cdn2.suno.ai/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://cdn1.suno.ai/d1a3109d-799b-401e-b032-4b501bcf26f3.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":127.16}]}
+{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://media.example.com/suno/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://media.example.com/suno/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://media.example.com/suno/preview/?item_id=1f610752-f426-4fd5-89a8-ba2ad0370881","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://media.example.com/suno/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://media.example.com/suno/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://media.example.com/suno/preview/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://media.example.com/suno/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://media.example.com/suno/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://media.example.com/suno/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://media.example.com/suno/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://media.example.com/suno/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://media.example.com/suno/preview/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]}
+{"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://media.example.com/suno/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://media.example.com/suno/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://media.example.com/suno/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"https://media.example.com/suno/1f610752-f426-4fd5-89a8-ba2ad0370881.mp4","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://media.example.com/suno/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://media.example.com/suno/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://media.example.com/suno/preview/?item_id=d1a3109d-799b-401e-b032-4b501bcf26f3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"running","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar"}]} {"success":true,"task_id":"1af4b454-ce84-4512-a0a2-de3f8574ecd8","trace_id":"4440342a-41c4-4140-8bb1-3537a598ca2e","data":[{"id":"1f610752-f426-4fd5-89a8-ba2ad0370881","title":"Snowflakes and Mistletoe","image_url":"https://media.example.com/suno/image_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","image_large_url":"https://media.example.com/suno/image_large_1f610752-f426-4fd5-89a8-ba2ad0370881.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://media.example.com/suno/1f610752-f426-4fd5-89a8-ba2ad0370881.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":129.92},{"id":"d1a3109d-799b-401e-b032-4b501bcf26f3","title":"Snowflakes and Mistletoe","image_url":"https://media.example.com/suno/image_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","image_large_url":"https://media.example.com/suno/image_large_d1a3109d-799b-401e-b032-4b501bcf26f3.jpeg","lyric":"[Verse]\nLights are tangled on the tree again\nThe cat’s knocked over the wreath\nCookies burning in the oven too\nBut I’m still grinning through my teeth\n[Prechorus]\nSnow is falling like glitter in the sky\nI’ve got a feeling this year’s gonna fly\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe\n[Verse 2]\nGrandma’s singing a little off-key\nThe kids are laughing too loud\nThe dog’s stolen a turkey leg\nChaos is a Christmas crowd\n[Prechorus]\nBut the fire’s crackling\nWarm and bright\nAnd my heart’s a candle tonight\n[Chorus]\nSnowflakes and mistletoe\nEverywhere I go\nI know\nLove is the gift\nThe glow\nSnowflakes and mistletoe","audio_url":"https://media.example.com/suno/d1a3109d-799b-401e-b032-4b501bcf26f3.mp3","video_url":"","created_at":"2025-12-13T11:29:25.101Z","model":"chirp-v5","state":"succeeded","prompt":"A song for Christmas","style":"uplifting, orchestral with bells and acoustic guitar","duration":127.16}]}
 | Status Code | `error.code`  | `error.message`                                                 |
 | ----------- | ------------- | --------------------------------------------------------------- |
 | 400         | `bad_request` | `The song id does not exist or has been taken offline.`         |

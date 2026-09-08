@@ -1,8 +1,10 @@
 # Suno Upload Reference Audio API Integration Instructions
 
+> **Example URL note:** Media hosts in historical response snapshots are normalized to `media.example.com` for publication. These URLs show response structure and are not downloadable assets. Terminal audio and WAV results preferentially use an Ace Data Cloud CDN URL; if persistence fails, the original media URL may be retained, so download important results promptly. Intermediate preview URLs are not persisted.
+
 SUNO allows us to upload reference audio for secondary creation. This document explains the integration method of the related API.
 
-This API has only one input parameter, which is `audio_url`, a publicly accessible CDN address that supports the mp3 suffix.
+The core input is `audio_url`, a publicly accessible audio address. This input URL is passed to processing and is not pre-stored by the terminal media persistence flow.
 
 Here, the `audio_url` we input is `https://cdn.acedata.cloud/suno_demo.mp3`, which is a publicly accessible CDN address.
 
@@ -26,9 +28,9 @@ The result is as follows:
         "audio_id": "00135f7d-cda1-4d70-b007-779f07143586",
         "lyric": "[Intro]\nHa-ha-ha-ha-ha-ha\n[Verse 1]\nCandy skies are dripping blue\nStuck in world of chewed up glue\nThe sun's a lollipop melting slow\nDripped in sugar on the ground below\nOh-oh\n[Chorus]\nIt's a bubblegum catastrophe\nSticky mess can't set it free\nPop it once it multiplies\nCandy chaos in disguise\nIt's a bubblegum catastrophe\nSticky mess can't set it free\nPop it once it multiplies\nCandy chaos in disguise\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\nCandy chaos in disguise\n[Verse 2]\nJellybean mountains crumble fast\nRainbows made of soda blast\nEvery step's a gummy bear trap\nMy sugar rush is taking a nap\nOh-oh\n[Bridge]\nChew it up (ha-ha-ha-ha)\nSpit it out (ha-ha-ha-ha)\nRound and round (ha-ha-ha-ha)\nWithout a doubt (ha-ha-ha-ha)\n[Chorus]\nIt's a bubblegum catastrophe\nSticky mess can't set it free\nPop it once it multiplies\nCandy chaos in disguise\nIt's a bubblegum catastrophe\nSticky mess can't set it free\nPop it once it multiplies\nCandy chaos in disguise\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\n[Outro]\nCotton candy clouds collapse\nChocolate rivers running laps\nEverywhere's a sugar flood\nMy shoes are drowning caramel\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\nHa-ha-ha-ha-ha hey\nIt's a bubblegum catastrophe\nSticky mess can't set it free\nPop it once it multiplies\nCandy chaos in disguise\nIt's a bubblegum catastrophe\nSticky mess can't set it free\nPop it once it multiplies\nCandy chaos in disguise",
         "style": "Upbeat bubblegum pop track with a high-energy electronic production style. The song features a bright, processed female vocal with a youthful and energetic tone, often layered with harmonies and occasional pitch-shifted ad-libs. The instrumentation is dominated by bouncy, staccato synthesizer chords, a driving four-on-the-floor electronic drum beat with crisp claps on the backbeat, and a prominent, melodic bassline. The tempo is approximately 128 BPM in a major key, utilizing a standard pop chord progression of I-V-vi-IV. Production elements include heavy use of sidechain compression, vocal chops, and shimmering sound effects that contribute to a sugary, hyper-pop aesthetic. The structure follows a verse-chorus-verse-chorus-bridge-chorus format with a high-energy build-up leading into the explosive, hook-driven choruses.",
-        "image_url": "https://cdn2.suno.ai/image_00135f7d-cda1-4d70-b007-779f07143586.jpeg",
-        "image_large_url": "https://cdn2.suno.ai/image_large_00135f7d-cda1-4d70-b007-779f07143586.jpeg",
-        "audio_url": "https://cdn1.suno.ai/00135f7d-cda1-4d70-b007-779f07143586.mp3",
+        "image_url": "https://media.example.com/suno/image_00135f7d-cda1-4d70-b007-779f07143586.jpeg",
+        "image_large_url": "https://media.example.com/suno/image_large_00135f7d-cda1-4d70-b007-779f07143586.jpeg",
+        "audio_url": "https://media.example.com/suno/00135f7d-cda1-4d70-b007-779f07143586.mp3",
         "title": "up-d6c3970d-6db1-41e3-b966-90539c93678a",
         "duration": 131.16
     }

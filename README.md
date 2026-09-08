@@ -727,6 +727,7 @@ Integrate Suno AI music generation capabilities into your application through a 
 </div>
 </section>
 <section class="s-section s-bg-white">
+<div class="s-container"><p><strong>Example URL note:</strong> Media hosts in historical response snapshots are normalized to <code>media.example.com</code> for publication; they show response structure and are not downloadable assets. Terminal audio and WAV results preferentially use Ace Data Cloud CDN URLs, while intermediate preview URLs are not persisted.</p></div>
 <div class="s-container">
 <div class="code-split">
 <div class="code-left">
@@ -760,9 +761,9 @@ Integrate Suno AI music generation capabilities into your application through a 
 "title": "Summer Highway",
 "style": "cheerful pop, driving beat",
 "duration": 124.5,
-"audio_url": "https://cdn1.suno.ai/a8f2c9.mp3",
-"image_url": "https://cdn2.suno.ai/a8f2c9.jpeg",
-"video_url": "https://cdn1.suno.ai/a8f2c9.mp4",
+"audio_url": "https://media.example.com/suno/a8f2c9.mp3",
+"image_url": "https://media.example.com/suno/a8f2c9.jpeg",
+"video_url": "https://media.example.com/suno/a8f2c9.mp4",
 "state": "succeeded"
 }]
 }</pre>

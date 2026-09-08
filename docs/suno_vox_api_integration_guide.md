@@ -1,5 +1,7 @@
 # Suno Vox API Integration Instructions
 
+> **Example URL note:** Media hosts in historical response snapshots are normalized to `media.example.com` for publication. These URLs show response structure and are not downloadable assets. Terminal audio and WAV results preferentially use an Ace Data Cloud CDN URL; if persistence fails, the original media URL may be retained, so download important results promptly. Intermediate preview URLs are not persisted.
+
 SUNO allows us to create a new version of Persona-v2-vox: singer style, which differs from the old version and requires obtaining the `vox_audio_id` first. This document explains the integration method for creating the new version of Persona-v2-vox.
 
 First, we need to use the API to obtain the `vox_audio_id` parameter value. This API can accept multiple input parameters, such as `audio_id`, `vocal_start`, and `vocal_end`, which refer to the song ID and the selected time range.
@@ -38,7 +40,7 @@ The result is as follows:
     "id": "24f0827e-5847-4011-b9b7-fc0b62032b65",
     "source_clip_id": "42599b24-fb14-4cd3-a444-e15ffde3661b",
     "status": "complete",
-    "vocal_audio_url": "https://cdn1.suno.ai/processed_24f0827e-5847-4011-b9b7-fc0b62032b65_vocals.m4a",
+    "vocal_audio_url": "https://media.example.com/suno/processed_24f0827e-5847-4011-b9b7-fc0b62032b65_vocals.m4a",
     "vocal_end_s": 30,
     "vocal_start_s": 20,
     "wave_response": {
