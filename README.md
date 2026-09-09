@@ -742,7 +742,7 @@ Integrate Suno AI music generation capabilities into your application through a 
 -d '{
 "action": "generate",
 "prompt": "A cheerful pop song about a summer road trip",
-"model": "chirp-v4",
+"model": "chirp-v6",
 "custom": false,
 "callback_url": "https://your-app.com/webhook"
 }'</pre>
