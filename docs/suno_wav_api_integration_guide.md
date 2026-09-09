@@ -1,6 +1,6 @@
 # Suno Wav API Integration Instructions
 
-> **Example URL note:** Media hosts in historical response snapshots are normalized to `media.example.com` for publication. These URLs show response structure and are not downloadable assets. Terminal audio and WAV results preferentially use an Ace Data Cloud CDN URL; if persistence fails, the original media URL may be retained, so download important results promptly. Intermediate preview URLs are not persisted.
+> **Example URL note:** Media hosts in historical response snapshots are normalized to `media.example.com` for publication. These URLs show response structure and are not downloadable assets. Terminal audio and WAV results preferentially use an Ace Data Cloud CDN URL. For WAV, a pre-transfer URL may be retained only after an immediate check confirms that it still downloads a valid WAV file; otherwise the request ends with a failure or timeout. Download important results promptly. Intermediate preview URLs are not persisted.
 
 SUNO allows us to obtain music in wav format files. This document explains the integration methods for the related API.
 
@@ -15,7 +15,7 @@ url = "https://api.acedata.cloud/suno/wav"
 
 headers = {
     "accept": "application/json",
-    "authorization": "Bearer aa287fa4cc54401087a9fab3f99630af",
+    "authorization": "Bearer YOUR_API_KEY",
     "content-type": "application/json"
 }
 
@@ -42,4 +42,4 @@ The result is as follows:
 }
 ```
 
-The `file_url` field is the WAV download address. Ace Data Cloud CDN is preferred for terminal results; if persistence fails, the original media URL may be retained. Download important results promptly.
+The `file_url` field is the WAV download address. Ace Data Cloud CDN is preferred for terminal results. A pre-transfer address may be returned only when an immediate check confirms that it still downloads a valid WAV file; an expired, inaccessible, or invalid address is never returned as a successful result. Download important results promptly.
