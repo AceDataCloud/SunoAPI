@@ -1,10 +1,12 @@
-# Suno Vox API Integration Guide
+# Suno Vox API Integration Instructions
 
-SUNO allows us to create the new Persona-v2-vox version: singer style. Unlike the old version, it is necessary to first obtain `vox_audio_id`. This document explains the integration method for creating the new Persona-v2-vox.
+> **Example URL note:** Media hosts in historical response snapshots are normalized to `media.example.com` for publication. These URLs show response structure and are not downloadable assets. Terminal audio and WAV results preferentially use an Ace Data Cloud CDN URL; if persistence fails, the original media URL may be retained, so download important results promptly. Intermediate preview URLs are not persisted.
 
-First, you need to use this API to obtain the `vox_audio_id` parameter value. This API can accept multiple input parameters, such as `audio_id`, `vocal_start`, and `vocal_end`. It refers to the song ID and the selected time range.
+SUNO allows us to create a new version of Persona-v2-vox: singer style, which differs from the old version and requires obtaining the `vox_audio_id` first. This document explains the integration method for creating the new version of Persona-v2-vox.
 
-Here, the `audio_id` we enter is `42599b24-fb14-4cd3-a444-e15ffde3661b`.
+First, we need to use the API to obtain the `vox_audio_id` parameter value. This API can accept multiple input parameters, such as `audio_id`, `vocal_start`, and `vocal_end`, which refer to the song ID and the selected time range.
+
+Here, the `audio_id` we input is `42599b24-fb14-4cd3-a444-e15ffde3661b`.
 
 ```python
 import requests
@@ -38,7 +40,7 @@ The result is as follows:
     "id": "24f0827e-5847-4011-b9b7-fc0b62032b65",
     "source_clip_id": "42599b24-fb14-4cd3-a444-e15ffde3661b",
     "status": "complete",
-    "vocal_audio_url": "https://cdn.acedata.cloud/assets/examples/fish/5ade0339-5f11-487e-aacc-06a908271706-8e3fcb0e5547.mp3",
+    "vocal_audio_url": "https://media.example.com/suno/processed_24f0827e-5847-4011-b9b7-fc0b62032b65_vocals.m4a",
     "vocal_end_s": 30,
     "vocal_start_s": 20,
     "wave_response": {
@@ -99,7 +101,7 @@ The result is as follows:
 }
 ```
 
-As you can see, the `id` field in `data` is the `vox_audio_id` we need. Then, we go to the [Persona API](https://platform.acedata.cloud/documents/suno-persona) to create the new Persona-v2-vox: singer style. The specific input is as follows:
+As we can see, the `id` field in `data` is the `vox_audio_id` we want, and then we go to the [Persona API](https://platform.acedata.cloud/documents/78bb6c62-6ce0-490f-a7df-e89d80ec0583) to create the new version of Persona-v2-vox: singer style, with the specific input as shown below:
 
 ```python
 import requests
@@ -124,7 +126,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-After calling it, the following result is obtained:
+After the call, we get the following result:
 
 ```json
 {
@@ -136,4 +138,4 @@ After calling it, the following result is obtained:
 }
 ```
 
-Then, we can use the `persona_id` value above to create with the new Persona-v2-vox: singer style. The specific creation method is consistent with the [Suno Song Generation API Integration Guide](https://platform.acedata.cloud/documents/suno-audios-integration#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%8C%E6%89%8B%E9%A3%8E%E6%A0%BC%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD). Finally, we can use the Suno Vox API to create songs with the new Persona-v2-vox: singer style.
+Then we can create songs using the new version of Persona-v2-vox: singer style based on the `persona_id` value above, and the specific creation method is consistent with the [Suno Song Generation API Integration Instructions](https://platform.acedata.cloud/documents/suno-audios-integration#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%8C%E6%89%8B%E9%A3%8E%E6%A0%BC%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD). Finally, we can use the Suno Vox API to create songs in the new version of Persona-v2-vox: singer style.
