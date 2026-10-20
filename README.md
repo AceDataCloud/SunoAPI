@@ -35,6 +35,12 @@ Keywords: suno-api, ai-music, music-generation, lyrics-generation, rest-api, ai-
 - English integration guides, API references, and service documentation
 - Global-ready workflow for developers building chat, image, video, music, and search products
 
+## Audio generation and processing
+
+For `POST /suno/audios`, `negative_tags` excludes styles or genres only when `custom` is `true`. The API currently sets no fixed character limit for this field, but overly long content may still fail to process; keep it concise.
+
+A downloadable audio file does not guarantee that its `audio_id` remains available for follow-up operations such as covers, extensions or stem separation. If `suno_processing_unavailable`, `suno_model_unavailable` or `suno_processing_failed` is returned, retain the `task_id` and `trace_id` and contact support. See the [audio generation integration guide](docs/suno_audios_generation_api_integration_guide.md) for the documented error messages.
+
 ## Custom Models (Beta)
 
 Create a reusable music model from 6–24 authorized audio files, query its status, and generate new tracks through `POST /suno/custom-models`. See the [custom models integration guide](docs/suno_custom_models_api_integration_guide.md).
