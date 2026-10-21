@@ -1531,6 +1531,7 @@ For the processing errors below, retain the `task_id` and `trace_id` and contact
 | 500         | `api_error`   | `job failed with unknown error`                                 |
 | 500         | `api_error`   | `no available worker in system`                                 |
 | 500         | `api_error`   | `service under maintenance, generation paused`                  |
+| 500         | `api_error`   | `the account may have been offline`                              |
 | 500         | `suno_processing_unavailable` | `Music processing is unavailable. Contact support with the trace ID.` |
 | 500         | `suno_model_unavailable` | `The selected model is unavailable for this operation. Contact support with the trace ID.` |
 | 500         | `suno_processing_failed` | `Music processing returned no audio. Contact support with the trace ID.` |
