@@ -34,6 +34,33 @@ If you are not logged in or registered, you will be automatically redirected to 
 
 Upon first application, there will be a free quota available for use of the API.
 
+## Audio availability precheck (Beta)
+
+Before a follow-up operation such as an extension or cover, optionally use `POST /suno/availability` to check for positive evidence that the song is available on the current channel. This check requires an API token, returns synchronously, and currently consumes no Credits.
+
+1. Wait for the original Suno task to complete. Use the song's UUID (the `id` in its returned audio data) as `audio_id`, not the task's `task_id`.
+2. Send a JSON body containing only `audio_id`, with Bearer authentication. Replace the illustrative UUID below with your completed song's ID.
+
+   ```bash
+   curl -X POST 'https://api.acedata.cloud/suno/availability' \
+     -H 'Authorization: Bearer YOUR_API_TOKEN' \
+     -H 'Content-Type: application/json' \
+     -d '{"audio_id":"33333333-3333-4333-8333-333333333333"}'
+   ```
+
+3. Read the response directly; do not poll the returned `task_id` for this synchronous check. On HTTP 200, `success` is `true`, `data.id` identifies the checked song, and `data.available` is always `true`. The response also includes `task_id` and `trace_id` for diagnostics.
+4. Treat any error as a failed or inconclusive check, not as `available: false`. Even a successful check is only evidence at that moment: it does not guarantee that a particular extension, cover, or other operation will succeed, and availability can change before that operation starts.
+
+| HTTP status | Meaning |
+| --- | --- |
+| 400 | `audio_id` is missing or is not a valid UUID. |
+| 401 | API token is missing or invalid. |
+| 429 | Requests are rate-limited. |
+| 500 | Availability could not be confirmed; do not interpret the error as `false`. |
+| 503 | `availability_unknown`: the current channel cannot confirm availability. An inconclusive offline state is not proof that a subsequent operation will fail. |
+
+The check does not return `data.available: false`. Preserve diagnostic IDs when investigating failures, and still inspect the actual follow-up operation's result.
+
 ## Basic Usage
 
 If you want to generate a song, you can input any text, for example, if I want to generate a song about Christmas, I can input `a song for Christmas`, as shown in the image:

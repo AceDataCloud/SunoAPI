@@ -41,6 +41,10 @@ For `POST /suno/audios`, `negative_tags` excludes styles or genres only when `cu
 
 A downloadable audio file does not guarantee that its `audio_id` remains available for follow-up operations such as covers, extensions or stem separation. If `suno_processing_unavailable`, `suno_model_unavailable` or `suno_processing_failed` is returned, retain the `task_id` and `trace_id` and contact support. See the [audio generation integration guide](docs/suno_audios_generation_api_integration_guide.md) for the documented error messages.
 
+### Audio availability check (Beta)
+
+Before an extension or cover, optionally call `POST /suno/availability` with the completed song's UUID as `audio_id`, not its `task_id`. The check requires a Bearer API token, returns synchronously, and currently consumes no Credits. A successful check returns `data.id` and `data.available: true`, meaning positive evidence of availability on the current channel—not a guarantee that the next operation will succeed. If availability cannot be confirmed, `503 availability_unknown` is returned instead of `false`; other errors are not negative availability results either. See the [precheck procedure and error handling](docs/suno_audios_generation_api_integration_guide.md#audio-availability-precheck-beta).
+
 ## Custom Models (Beta)
 
 Create a reusable music model from 6–24 authorized audio files, query its status, and generate new tracks through `POST /suno/custom-models`. See the [custom models integration guide](docs/suno_custom_models_api_integration_guide.md).
@@ -1175,6 +1179,7 @@ Explore the supported endpoints and integration guides for Suno Music Generation
 | [Suno MashupLyrics Generation API](https://platform.acedata.cloud/documents/851f9405-5f19-405a-8dbd-df4bd88e05a2?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=suno_api_readme_documents_851f9405_5f19_405a_8dbd_df4bd88e05a2) | `/suno/mashup-lyrics` | [Suno Mashup Lyrics Generation API Integration Guide](https://platform.acedata.cloud/documents/ec26e17f-7709-40f4-ad87-2f50c16f94b0?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=suno_api_readme_documents_ec26e17f_7709_40f4_ad87_2f50c16f94b0) |
 | [Suno Tasks API](https://platform.acedata.cloud/documents/b0dd9823-0e01-4c75-af83-5a6e2e05bfed?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=suno_api_readme_documents_b0dd9823_0e01_4c75_af83_5a6e2e05bfed) | `/suno/tasks` | [Suno Tasks API Integration Guide](https://platform.acedata.cloud/documents/d3868342-7f11-4670-bd31-61a63663cb10?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=suno_api_readme_documents_d3868342_7f11_4670_bd31_61a63663cb10) |
 | [Suno Upload API](https://platform.acedata.cloud/documents/766db278-012c-43c4-9245-5f18d8dc4d82?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=suno_api_readme_documents_766db278_012c_43c4_9245_5f18d8dc4d82) | `/suno/upload` | [Suno Upload API Integration Guide](https://platform.acedata.cloud/documents/26092dda-23d9-4874-9916-e12db6fce3b5?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=suno_api_readme_documents_26092dda_23d9_4874_9916_e12db6fce3b5) |
+| [Suno Audio Availability Check API (Beta)](https://platform.acedata.cloud/documents/suno-availability) | `/suno/availability` | [Audio availability precheck](docs/suno_audios_generation_api_integration_guide.md#audio-availability-precheck-beta) |
 | [Suno Studio Projects API (Beta)](https://platform.acedata.cloud/documents/suno-projects?utm_source=github&utm_medium=referral&utm_campaign=evergreen&utm_content=suno_api_readme_documents_suno_projects) | `/suno/projects` | [Project workflow](#studio-projects-beta) |
 
 ## Related Resources
