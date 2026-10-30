@@ -41,6 +41,10 @@ For `POST /suno/audios`, `negative_tags` excludes styles or genres only when `cu
 
 A downloadable audio file does not guarantee that its `audio_id` remains available for follow-up operations such as covers, extensions or stem separation. If `suno_processing_unavailable`, `suno_model_unavailable` or `suno_processing_failed` is returned, retain the `task_id` and `trace_id` and contact support. See the [audio generation integration guide](docs/suno_audios_generation_api_integration_guide.md) for the documented error messages.
 
+### Covers with a private voice
+
+For a voice created through `/suno/voices`, first upload the original song to `/suno/upload` with `mode: "standard"` and the voice's `persona_id`. Then call `/suno/audios` with `action: "upload_cover"`, the returned `data.audio_id`, and the same `persona_id`. All three steps must use the same service channel. Do not reuse an audio ID uploaded without that voice association or combine `persona_id` with enhanced upload mode. `vocal_gender` is not required and cannot replace the voice ID. Follow the [private-voice cover procedure](docs/suno_voices_api_integration_guide.md#cover-a-song-with-a-private-voice).
+
 ### Audio availability check (Beta)
 
 Before an extension or cover, optionally call `POST /suno/availability` with the completed song's UUID as `audio_id`, not its `task_id`. The check requires a Bearer API token, returns synchronously, and currently consumes no Credits. A successful check returns `data.id` and `data.available: true`, meaning positive evidence of availability on the current channel—not a guarantee that the next operation will succeed. If availability cannot be confirmed, `503 availability_unknown` is returned instead of `false`; other errors are not negative availability results either. See the [precheck procedure and error handling](docs/suno_audios_generation_api_integration_guide.md#audio-availability-precheck-beta).

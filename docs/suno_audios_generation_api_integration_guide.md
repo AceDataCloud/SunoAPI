@@ -88,7 +88,7 @@ Additionally, we set the Request Body, including:
 - `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
 - `underpainting_start`/`underpainting_end`: the start and end time in seconds for adding accompaniment to a cappella.
 - `samples_start`/`samples_end`: the start and end time in seconds for adding samples to an uploaded music track; used with the `samples` action.
-- `persona_id`: the artist's song ID.
+- `persona_id`: the singer-style or cloned-voice Persona ID, not a song ID. For `cover` / `upload_cover`, it selects the cover voice. A private voice requires uploading the original song through `/suno/upload` with the same `persona_id` first; use the returned `audio_id` and keep all steps on the same service channel. No additional `vocal_gender` is needed.
 - `continue_at`: the time in seconds to continue the existing audio. For example, 213.5 means continue to 3 minutes and 33.5 seconds.
 - `style_influence`: advanced parameter for `style_influence`.
 - `replace_section_end`: the final time for the replacement segment.
@@ -478,6 +478,8 @@ When generating a song based on an existing song, the style of the returned song
 
 - action: The content is `cover`, and when performing a cover operation on custom uploaded music, it must be specified as: `upload_cover`.
 - audio_id: The ID of the previously generated song.
+
+To select a cover voice, also pass `persona_id`. For a private voice created through `/suno/voices`, first upload the original song through `/suno/upload` with the same `persona_id` and `mode: "standard"`, then use the returned `data.audio_id` for `upload_cover`. Keep voice creation, upload, and cover generation on the same service channel. Do not reuse an audio ID that was not associated with that voice during upload. `vocal_gender` is not required and cannot replace a voice ID. See the [private-voice cover procedure](suno_voices_api_integration_guide.md#cover-a-song-with-a-private-voice).
 
 For example, if the ID of the originally generated song is: 0a1e1b10-c36a-41c9-9bfb-b26d9d25db98, then you can set the parameters as follows:
 

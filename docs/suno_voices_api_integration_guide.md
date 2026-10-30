@@ -36,7 +36,30 @@ The result is as follows:
 
 As can be seen, the `persona_id` field in `data` is the ID of the created voice persona. Voice personas created from uploaded audio are always private (`is_public: false`).
 
-With the voice persona ID, you can use the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) to generate songs in that voice. Pass `action` as `artist_consistency` (or `artist_consistency_vox` for Persona-v2-vox) and include the `persona_id` returned above.
+Pass the returned `persona_id` to the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) with `action: "generate"` to generate songs in that voice, or use it with `cover` / `upload_cover` for covers. No additional `vocal_gender` is needed; voice similarity still depends on the reference material and generated result.
+
+## Cover a Song with a Private Voice
+
+1. Create a voice through `/suno/voices` and retain `data.persona_id`.
+2. Call `/suno/upload` with the original song's public `audio_url`, `mode: "standard"`, and that `persona_id`. This associates the uploaded song with the private voice. `persona_id` is not supported with enhanced upload mode.
+3. After a successful upload, use its returned `data.audio_id` with the same `persona_id` in `/suno/audios`. This is a request template, not a recorded result:
+
+   ```json
+   {
+     "action": "upload_cover",
+     "model": "chirp-v6",
+     "audio_id": "YOUR_VOICE_ASSOCIATED_AUDIO_ID",
+     "persona_id": "YOUR_VOICE_PERSONA_ID",
+     "custom": true,
+     "instrumental": false,
+     "lyric": "[Verse]\nWrite the lyrics to be sung",
+     "async": true
+   }
+   ```
+
+Voice creation, song upload, and cover generation must all use the same service channel. Do not reuse a song ID that was not associated with this private voice during upload; see the [upload guide](suno_upload_api_integration_guide.md#upload-a-song-for-a-private-voice-cover). A gender preference cannot replace `persona_id`.
+
+## Python Voice Creation Example
 
 The corresponding Python code:
 

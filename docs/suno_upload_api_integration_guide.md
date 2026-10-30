@@ -40,3 +40,19 @@ The result is as follows:
 As can be seen, the `audio_id` field in `data` is the song ID after uploading.
 
 With the song ID, we can use the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) to generate custom songs. For example, by passing `action` as `upload_extend` and `audio_id` as the returned song ID, we can generate a new song based on the reference audio.
+
+## Upload a Song for a Private-Voice Cover
+
+To cover a song with a private voice created through `/suno/voices`, upload the original song with that voice's `persona_id`. This request template associates the uploaded song with the voice:
+
+```json
+{
+  "audio_url": "https://cdn.acedata.cloud/suno_demo.mp3",
+  "mode": "standard",
+  "persona_id": "YOUR_VOICE_PERSONA_ID"
+}
+```
+
+After a successful upload, call `/suno/audios` with `action: "upload_cover"`, the returned `data.audio_id`, and the same `persona_id`. Do not reuse an older audio ID that was uploaded without that voice association. See the [private-voice cover procedure](suno_voices_api_integration_guide.md#cover-a-song-with-a-private-voice).
+
+`persona_id` is optional and supported only with `mode: "standard"` (the default), not `mode: "enhanced"`. Voice creation, song upload, and cover generation must all use the same service channel. No additional `vocal_gender` is needed; a gender preference cannot replace a voice ID.
