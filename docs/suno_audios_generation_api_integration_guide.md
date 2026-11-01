@@ -82,22 +82,26 @@ Additionally, we set the Request Body, including:
 - `instrumental`: the pure music option for the inspiration mode from Suno.
 - `title`: the music title for the custom mode from Suno.
 - `style`: the music style for the custom mode from Suno.
-- `negative_tags`: music styles or genres to exclude when `custom` is `true`. This API currently sets no fixed character limit for this field; overly long content may still fail to process, so keep it concise.
+- `negative_tags`: music styles or genres to exclude in custom generation or `replace_section`. This API currently sets no fixed character limit for this field; overly long content may still fail to process, so keep it concise.
 - `audio_weight`: the proportion of the uploaded reference audio, range 0-1, the larger the more it relies on the reference audio.
 - `audio_id`: the reference music ID for follow-up operations such as covers, extensions and stem separation. A downloadable audio file does not guarantee that this ID remains available for further processing. If `suno_processing_unavailable` is returned, retain the `task_id` and `trace_id` and contact support.
 - `overpainting_start`/`overpainting_end`: the start and end time in seconds for adding vocals to existing pure music.
 - `underpainting_start`/`underpainting_end`: the start and end time in seconds for adding accompaniment to a cappella.
-- `samples_start`/`samples_end`: the start and end time in seconds for adding samples to an uploaded music track; used with the `samples` action.
-- `persona_id`: the singer-style or cloned-voice Persona ID, not a song ID. For `cover` / `upload_cover`, it selects the cover voice. A private voice requires uploading the original song through `/suno/upload` with the same `persona_id` first; use the returned `audio_id` and keep all steps on the same service channel. No additional `vocal_gender` is needed.
-- `continue_at`: the time in seconds to continue the existing audio. For example, 213.5 means continue to 3 minutes and 33.5 seconds.
+- `samples_start`/`samples_end`: sample interval in seconds for `samples`. Start defaults to 0 and must be non-negative; end is required, greater than start and no later than the source duration. Decimal seconds are supported.
+- `persona_id`: the singer-style or cloned-voice Persona ID, not a song ID. Supported for `generate`, `cover`, `upload_cover`, `artist_consistency` and `artist_consistency_vox`; the last two require it and may also receive the source song's `audio_id`. `extend` / `upload_extend` do not use an extra Persona ID. Voice support for `mashup` / `inspo` depends on the service channel; other actions do not guarantee it. A private voice cover requires uploading the original song through `/suno/upload` with the same `persona_id` first; use the returned `audio_id` and keep all steps on the same service channel. No additional `vocal_gender` is needed.
+- `continue_at`: the extension boundary in seconds for `extend` / `upload_extend`; required and must be greater than 0. Decimal seconds such as `30.792` are preserved without rounding.
 - `style_influence`: advanced parameter for `style_influence`.
-- `replace_section_end`: the final time for the replacement segment.
-- `replace_section_start`: the starting time for the replacement segment.
+- `replace_section_end`: required end time in seconds, greater than start and no later than the source duration.
+- `replace_section_start`: required non-negative start time in seconds; decimals are supported.
 - `vocal_gender`: control of male and female voices, female voice `f`, male voice `m`, effective for models 4.5 and above.
 - `weirdness`: advanced parameter for `weirdness`.
-- `duration`: the target length of the generated track in seconds, given as an integer between 10 and 360. It is used for generation in custom mode (`custom` is `true`). It is a hint rather than a bound — the model takes it into account but does not commit to it, and the actual length of each returned track is reported by the `duration` field in the response, usually shorter than the value you asked for and not repeatable across identical requests.
+- `duration`: the target length of the generated track in seconds, given as an integer between 10 and 360. Only `generate` currently uses this field; its effect depends on mode and model. Other actions do not use it. It is a hint rather than a bound — the model takes it into account but does not commit to it, and the actual length of each returned track is reported by the `duration` field in the response, usually shorter than the value you asked for and not repeatable across identical requests.
 - `lyric_prompt`: the prompt for generating lyrics, effective only when `custom` is `true` and `lyric` is not provided.
 - `callback_url`: the URL for callback results.
+
+Follow-up source operations require `audio_id`: `extend`, `upload_extend`, `cover`, `upload_cover`, `concat`, `stems`, `all_stems`, `replace_section`, `underpainting`, `overpainting`, `remaster`, `samples`, `add_stem`, `extract_stem` and `adjust_speed`. `mashup` requires at least two `mashup_audio_ids`. Missing source IDs or required time boundaries return HTTP 400.
+
+For `inspo`, supply 1–4 publicly accessible authorized `audio_urls`. `instrumental=true` requests music without lyrics; `persona_id` applies only on channels supporting that combination. `lyric_prompt` generates lyrics when `custom=true` and `lyric` is absent.
 
 The generated code is as follows:
 
@@ -343,7 +347,7 @@ Next, we must fill in the lyrics and style to customize the generated song, spec
 - lyric: lyric text
 - custom: set to `true`, representing custom generation. This parameter defaults to false, representing using `prompt` for generation.
 - style: the style of the song, optional.
-- continue_at: the time in seconds to continue the existing audio. For example, 213.5 means to continue to 3 minutes and 33.5 seconds.
+- continue_at: required extension boundary greater than 0 seconds. Decimal seconds such as `30.792` are preserved without rounding. `extend` and `upload_extend` do not use an additional `persona_id`.
 
 The example for filling out is as follows:
 
@@ -542,8 +546,9 @@ When a song is generated and you need to perform a separate operation to replace
 - lyric: The complete lyrics after replacement (only needs to overlap with the prompt, not the complete lyrics),
 - prompt: The part of the lyrics that needs to be replaced.
 - style: The style of the song, optional.
-- replace_section_start: The start time of the lyrics corresponding to `lyric` on the timeline.
-- replace_section_end: The end time of the lyrics corresponding to `lyric` on the timeline.
+- negative_tags: Optional styles or genres to exclude.
+- replace_section_start: Required start time in seconds, at least 0; decimals are supported.
+- replace_section_end: Required end time in seconds, greater than the start and no later than the source duration.
 
 For example, if the ID of the originally generated song is: ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0, then you can set the parameters as follows:
 
@@ -663,6 +668,8 @@ With the above parameters, the result of vocal and instrument separation can be 
 The generated result is similar to the previous text, thus completing the process of vocal and instrument separation of the originally generated song.
 
 ## Full Track Vocal and Instrument Separation
+
+`all_stems` waits for all tracks to finish before returning terminal success. A playable URL during processing does not mean the complete stem set is ready.
 
 After generating the song, when a full track vocal and instrument separation operation is needed, the following content can be specified:
 
@@ -1048,7 +1055,7 @@ Thus, custom songs were generated using advanced parameters, and the results are
 
 By default the model decides how long a generated track is, typically somewhere between 30 seconds and 4 minutes. To ask for a longer or shorter result, pass `duration` — an integer number of seconds between 10 and 360.
 
-It is used for custom mode (`custom` is `true`). Note that `duration` is a **hint, not a bound**: the model weighs it while composing but does not commit to it. In practice the result is often noticeably shorter than requested, and the two tracks in a single response can differ several-fold. Even an identical request submitted twice can come back with very different lengths. Do not treat it as precise length control — if you need an exact length, trim the finished track or retry.
+Only `generate` currently uses `duration`; its effect depends on mode and model, and other actions do not use it. Note that `duration` is a **hint, not a bound**: the model weighs it while composing but does not commit to it. In practice the result is often noticeably shorter than requested, and the two tracks in a single response can differ several-fold. Even an identical request submitted twice can come back with very different lengths. Do not treat it as precise length control — if you need an exact length, trim the finished track or retry.
 
 The corresponding Python code:
 
@@ -1419,8 +1426,8 @@ Suno supports a Samples feature that lets you embed a short audio clip from an u
 
 - action: The content is `samples`.
 - audio_id: The ID of the uploaded audio track to sample from.
-- samples_start: The start time in seconds of the clip to sample from the uploaded track; defaults to 0.
-- samples_end: The end time in seconds of the clip to sample; must be less than the total duration of the uploaded track.
+- samples_start: Start time in seconds, default 0, non-negative; decimals are supported.
+- samples_end: Required end time in seconds, greater than the start and no later than the source duration.
 
 The corresponding Python code:
 
