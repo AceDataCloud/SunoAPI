@@ -49,6 +49,10 @@ For a voice created through `/suno/voices`, first upload the original song to `/
 
 Before an extension or cover, optionally call `POST /suno/availability` with the completed song's UUID as `audio_id`, not its `task_id`. The check requires a Bearer API token, returns synchronously, and currently consumes no Credits. A successful check returns `data.id` and `data.available: true`, meaning positive evidence of availability on the current channel—not a guarantee that the next operation will succeed. If availability cannot be confirmed, `503 availability_unknown` is returned instead of `false`; other errors are not negative availability results either. See the [precheck procedure and error handling](docs/suno_audios_generation_api_integration_guide.md#audio-availability-precheck-beta).
 
+### Persona management
+
+`GET /suno/persona` listing and `DELETE /suno/persona` deletion consume no Credits, with no extra billing-exemption header required. Bearer API authentication is still required; `POST /suno/persona` creation continues to follow the API's existing pricing rules. See the [persona integration guide](docs/suno_persona_api_integration_guide.md).
+
 ## Custom Models (Beta)
 
 Create a reusable music model from 6–24 authorized audio files, query its status, and generate new tracks through `POST /suno/custom-models`. See the [custom models integration guide](docs/suno_custom_models_api_integration_guide.md).
