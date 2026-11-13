@@ -2,6 +2,8 @@
 
 Suno allows you to create a custom voice persona from your own audio recording. The resulting `persona_id` can then be used with the [Suno Audios Generation API](https://platform.acedata.cloud/documents/4da95d9d-7722-4a72-857d-bf6be86036e9) to generate songs in that voice.
 
+Billing: a successful voice creation request has a standard fee of **0.15 Credits**. Account discounts follow the actual bill; failed requests are not charged.
+
 This API accepts three parameters:
 
 - `audio_url`: A publicly accessible URL of the audio file (MP3 or WAV format, at least 10 seconds long, containing clear vocals from a single speaker without background noise or music).

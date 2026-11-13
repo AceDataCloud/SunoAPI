@@ -75,9 +75,9 @@ Here we can see that we have set the Request Headers, including:
 Additionally, we set the Request Body, including:
 
 - `action`: the action of this music generation task, default is `generate`, mainly includes: `extend`, `upload_extend`, `cover`, `upload_cover`, `replace_section`, `concat`, `stems`, `all_stems`, `remaster`, `artist_consistency`, `artist_consistency_vox`, `underpainting`, `overpainting`, `mashup`, `samples`.
-- `prompt`: the prompt for the inspiration mode from Suno.
+- `prompt`: the inspiration prompt for ordinary generation. For `replace_section`, supply the local new lyrics for the selected interval, preferably identical to `lyric`, not a style description.
 - `model`: the model for this music generation task. The v6 family includes `chirp-v6`, `chirp-v6-wild`, and `chirp-v6-mini`; previous model names remain accepted for compatibility.
-- `lyric`: the lyrics content for the custom mode from Suno.
+- `lyric`: lyrics for ordinary custom generation. For `replace_section`, supply only the local new lyrics to sing in the selected interval; returning a full song does not require full-song lyrics.
 - `custom`: whether to use the custom mode, default is: `false`.
 - `instrumental`: the pure music option for the inspiration mode from Suno.
 - `title`: the music title for the custom mode from Suno.
@@ -538,80 +538,59 @@ The generated result is similar to the above, completing the process of creating
 
 ## Replace Section
 
-When a song is generated and you need to perform a separate operation to replace a section of the song, you can specify the following content for the replacement operation:
+`action: "replace_section"` regenerates a selected interval and joins it back into the source song. `replace_section_result_mode` defaults to `full_song`, returning two complete songs without another `concat` call. This procedure is for `/suno/audios`, not the separate Studio Projects replacement API.
 
-- action: The content is `replace_section`.
-- audio_id: The ID of the previously generated song.
-- model: The song generation model,
-- lyric: The complete lyrics after replacement (only needs to overlap with the prompt, not the complete lyrics),
-- prompt: The part of the lyrics that needs to be replaced.
-- style: The style of the song, optional.
-- negative_tags: Optional styles or genres to exclude.
-- replace_section_start: Required start time in seconds, at least 0; decimals are supported.
-- replace_section_end: Required end time in seconds, greater than the start and no later than the source duration.
+### Prepare the input
 
-For example, if the ID of the originally generated song is: ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0, then you can set the parameters as follows:
+- `audio_id`: the complete source song's ID, not its `task_id`. For another edit, use the chosen complete result's `data[].id`.
+- `model`: the song generation model, for example `chirp-v6`.
+- `lyric`: only the local new lyrics to sing in the selected interval, not the entire song's lyrics.
+- `prompt`: the local new lyrics, preferably identical to `lyric`; it is not an inspiration or style description for this action. Existing requests with only local `lyric` and no `prompt` remain usable, but adding `prompt` does not guarantee a successful lyric change.
+- `style` and `negative_tags`: optional style description and exclusions.
+- `replace_section_start` / `replace_section_end`: decimal seconds in the current source song, with `0 ≤ start < end ≤ source duration`.
+- `replace_section_result_mode`: `full_song` (default) for two complete songs, or `candidates` for two uncombined replacement candidates.
+
+Full-song output does not require full-song lyric input. Supplying the entire lyrics can produce an overly long replacement and lengthen the song. Local input also does not guarantee exact lyrics or a fixed duration.
+
+### Submit and retrieve the complete songs
+
+This is a request template, not a recorded result. Replace the placeholder ID and choose the actual interval in your source; the example assumes seconds 30–50 cover these four lines.
 
 ```json
 {
   "action": "replace_section",
-  "lyric": "[Chorus]\n新年快乐 人人欢快歌\n祝福洒满每一片角落\n新年快乐 心中花火多\n愿望成真生活似金色波\n[Verse 2]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
-  "prompt": "梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
-  "replace_section_start": 28.94100580270793,
-  "replace_section_end": 85.39410058027079,
-  "model": "chirp-v4",
-  "audio_id": "ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0",
+  "audio_id": "YOUR_COMPLETED_AUDIO_ID",
+  "model": "chirp-v6",
   "custom": false,
-  "instrumental": false
+  "instrumental": false,
+  "lyric": "晚风吹过安静的街巷\n绿色风筝停在我身旁\n我们沿着河岸轻轻唱\n把今天的故事放心上",
+  "prompt": "晚风吹过安静的街巷\n绿色风筝停在我身旁\n我们沿着河岸轻轻唱\n把今天的故事放心上",
+  "replace_section_start": 30.0,
+  "replace_section_end": 50.0,
+  "replace_section_result_mode": "full_song",
+  "async": true
 }
 ```
 
-With other parameters unchanged, the returned result will be a song with the replaced section, which is the result of replacing a section of the originally generated song, as shown below:
+Retain the returned `task_id` and poll `POST /suno/tasks` with `{"action":"retrieve","id":"YOUR_TASK_ID"}`. Wait for completion and check `response.success`; read the two complete songs' `id`, `audio_url`, and `duration` from `response.data`. Listen to both before choosing one. A successful task does not prove the new lyrics were sung verbatim or the duration matches your expectation.
 
-```json
-{
-  "success": true,
-  "task_id": "7a37c35d-7081-413d-908d-ab2d3f8139bf",
-  "trace_id": "1ed92d6e-9a19-48f7-ab34-68c82c792303",
-  "data": [
-    {
-      "id": "2a1467dc-51a4-4872-9ccc-ccd96e4fbbb6",
-      "title": "新年快乐",
-      "image_url": "https://media.example.com/suno/image_dc1b5edc-fbae-44a3-8962-d596dbd2b0d7.jpeg",
-      "lyric": "[Chorus]\n新年快乐 人人欢快歌\n祝福洒满每一片角落\n新年快乐 心中花火多\n愿望成真生活似金色波\n[Verse 2]\n梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地",
-      "audio_url": "https://media.example.com/suno/2a1467dc-51a4-4872-9ccc-ccd96e4fbbb6.mp3",
-      "video_url": "",
-      "created_at": "2025-04-18T01:55:02.930Z",
-      "model": "chirp-v4",
-      "state": "succeeded",
-      "style": "traditional influences, female vocals",
-      "duration": 202.52,
-      "concat_history": [
-        {
-          "id": "ade7241b-0357-4a5e-9b3d-4ec4f4b3a0c0",
-          "type": "gen",
-          "source": "ios",
-          "infill_start_s": 28.94100580270793,
-          "infill_end_s": 85.39410058027079,
-          "infill_dur_s": 56.45309477756285,
-          "infill_context_start_s": 0,
-          "infill_context_end_s": 115.39410058027079,
-          "include_future_s": 2,
-          "include_history_s": 2,
-          "infill": true,
-          "infill_lyrics": "梅花绽放春意洋溢满地\n梅花绽放春意洋溢满地"
-        },
-        {
-          "id": "dc1b5edc-fbae-44a3-8962-d596dbd2b0d7"
-        }
-      ]
-    }
-  ]
-}
-```
-The generated result is similar to the previous text, thus completing the process of replacing segments of the originally generated song.
+### Check the result and edit again
+
+1. Listen to the source and use `/suno/timing` to select a complete musical phrase. Do not choose a range from fixed lyric-array indexes or expect a few lines to preserve the rhythm of a longer passage.
+2. Keep the new lyrics close to the original interval's line count, syllable count and rhythm. Even a small word change needs listening verification.
+3. Check the new words, transitions and complete song duration. `full_song` does not mean equal length: a longer replacement shifts later audio. The request's `duration` field applies only to ordinary generation and cannot lock replacement length.
+4. Returned `lyric` is metadata, not an audio transcript. In `full_song` mode it combines complete lyrics when source lyric timing is available, but may be empty otherwise. New words in metadata do not prove they were sung; verify timing against the actual audio, especially edited results.
+5. For another edit, use the chosen complete result's ID as `audio_id`, recheck its duration and interval, and supply only the new local lyrics. Do not reuse pre-edit timestamps or pass the previous whole-song `lyric` as local input.
+
+If the completed task still sings old words, omits words or is much longer, check the source ID, interval and local lyrics, then inspect the other result. Polling more often cannot change completed audio. Preserve the `task_id`, source ID, request fields, interval and result audio for support if needed.
+
+### Optional: choose a candidate before concatenating
+
+Use `replace_section_result_mode: "candidates"` only when you want to select a replacement candidate yourself. Candidates may contain context; their duration alone does not establish that they are complete songs. Select a candidate's `data[].id` and call `concat` to obtain a complete song. The default `full_song` output is already concatenated and must not be concatenated again.
 
 ## Vocal and Instrument Separation
+
+Billing: a successful `action: "stems"` request has a standard fee of **0.56 Credits**, counting the vocals and instrumental outputs together as one request. Account discounts follow the actual bill; failed requests are not charged. `all_stems` and `extract_stem` have their own prices.
 
 After generating the song, when a secondary creation is needed for separate operations of accompaniment and vocals, pure music accompaniment and clean vocals can be separated. The following content can be specified:
 

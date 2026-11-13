@@ -51,6 +51,20 @@ For `POST /suno/audios`, `negative_tags` excludes styles or genres only when `cu
 
 A downloadable audio file does not guarantee that its `audio_id` remains available for follow-up operations such as covers, extensions or stem separation. If `suno_processing_unavailable`, `suno_model_unavailable` or `suno_processing_failed` is returned, retain the `task_id` and `trace_id` and contact support. See the [audio generation integration guide](docs/suno_audios_generation_api_integration_guide.md) for the documented error messages.
 
+### Replace a song section
+
+For `/suno/audios` with `action: "replace_section"`, send the selected interval's local new lyrics in `lyric` and preferably the same text in `prompt`, not the entire song's lyrics. The default `full_song` mode returns two complete songs without another `concat` call; it does not guarantee unchanged duration or verbatim singing. Listen to the results before another edit, then use the chosen complete song's ID and recheck its timing. Follow the [replacement procedure](docs/suno_audios_generation_api_integration_guide.md#replace-section), not the separate Studio Projects procedure below.
+
+### Standard request fees
+
+| Operation | Credits per successful request |
+| --- | --- |
+| `/suno/lyrics` generation | 0.08, including multiple lyric candidates |
+| `/suno/voices` creation | 0.15 |
+| `/suno/audios` with `action: "stems"` | 0.56, including both vocal and instrumental outputs |
+
+Failed requests are not charged; applicable discounts follow the actual bill. `all_stems` and `extract_stem` retain their own prices. See the [lyrics](docs/suno_lyrics_generation_api_integration_guide.md), [voices](docs/suno_voices_api_integration_guide.md), and [stem separation](docs/suno_audios_generation_api_integration_guide.md#vocal-and-instrument-separation) guides.
+
 ### Covers with a private voice
 
 For a voice created through `/suno/voices`, first upload the original song to `/suno/upload` with `mode: "standard"` and the voice's `persona_id`. Then call `/suno/audios` with `action: "upload_cover"`, the returned `data.audio_id`, and the same `persona_id`. All three steps must use the same service channel. Do not reuse an audio ID uploaded without that voice association or combine `persona_id` with enhanced upload mode. `vocal_gender` is not required and cannot replace the voice ID. Follow the [private-voice cover procedure](docs/suno_voices_api_integration_guide.md#cover-a-song-with-a-private-voice).
